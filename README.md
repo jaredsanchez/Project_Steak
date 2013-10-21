@@ -1,4 +1,4 @@
-Project_Steak
+Stakeholder Mapping
 =============
 
-Class project for CS169 at UC Berkeley. Stakeholder Mapping porject.
+Class project for CS169 at UC Berkeley.
