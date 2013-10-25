@@ -19,10 +19,10 @@ Background: Start on the home page
 
 Scenario: add a new person to the intitiative
   Then I should not see "James Bond"
-  When I press "Add Person"
+  When I follow "Add a new stakeholder"
   Then I should be on the Add Person page
-  When I fill in "name" with "James Bond"
-  When I fill in "progress" with "3"
+  When I fill in "Name" with "James Bond"
+  When I fill in "Progress" with "3"
   When I press "Add"
-  Then I should be on the Stakeholder Mapping home page
+  Then I should be on the StakeHolder Mapping home page
   Then I should see "James Bond"
