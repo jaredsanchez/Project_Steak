@@ -21,6 +21,12 @@ module NavigationHelpers
     when /^the Add Person page/
       new_person_path
 
+    when /^the Add Event page/
+      new_event_path
+
+    when /^the Events page/
+      events_path
+
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

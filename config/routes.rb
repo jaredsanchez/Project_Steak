@@ -14,6 +14,9 @@ ProjectSteak::Application.routes.draw do
   #   resources :products
   resources :people
   root :to => redirect('/people')
+
+  resources :events
+
   # Sample resource route with options:
   #   resources :products do
   #     member do

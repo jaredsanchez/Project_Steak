@@ -1,0 +1,18 @@
+%h1 Events
+
+%table#events
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Location
+      %th Date 
+    %tbody
+      -@events.each do |event|
+        %tr
+          %td= event.name
+          %td= event.description
+          %td= event.where
+          %td= event.event_time
+= link_to 'Back to People Page', people_path
+
