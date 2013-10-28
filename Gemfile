@@ -20,7 +20,6 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'ruby-debug19'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
@@ -52,4 +51,4 @@ gem 'haml'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'

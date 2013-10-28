@@ -7,6 +7,7 @@ class OrgUnitsController < ApplicationController
   def create
     # get all orgs from API and write each one to database
     #1.upto(7) do |i|
+      debugger
       xml_doc = getOrgs(1)
       if ! xml_doc.xpath('/OrganizationUnits').empty?
         xml_doc.xpath('/OrganizationUnits/*').each do |unit|
