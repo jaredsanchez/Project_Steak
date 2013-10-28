@@ -1,0 +1,17 @@
+%h1 All Org_Units
+
+%table#org_units
+  %thead
+    %tr
+      %th Org Node
+      %th Org Node Description
+      %th Level
+  %tbody
+    - @units.each do |unit|
+      %tr
+        %td= unit.org_node
+        %td= unit.org_node_description
+        %td= unit.level
+
+= form_tag org_units_path do
+  = submit_tag 'Create Orgs'
