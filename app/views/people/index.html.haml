@@ -7,12 +7,12 @@
     %link{href: "stylesheet.css", rel: "stylesheet", type: "text/css"}/
     :javascript
       function showOne(className, target){
-      	document.getElementById('hello').style.display = 'none';
-      	elements = document.getElementsByClassName(className);
-      	for (var i = 0; i < elements.length; i++) {
-      		elements[i].style.display = 'none';
-      	}
-      	document.getElementById(target).style.display = 'block';
+        document.getElementById('hello').style.display = 'none';
+        elements = document.getElementsByClassName(className);
+        for (var i = 0; i < elements.length; i++) {
+          elements[i].style.display = 'none';
+        }
+        document.getElementById(target).style.display = 'block';
       };
   %body
     %a{name: ""}
@@ -23,9 +23,9 @@
         %ul
           %li
             %a{href: "#"} People
-	    %ul
-	      %li
-		%a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
+        %ul
+          %li
+            %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
           %li
             %a{href: "#"} Initiatives
             %ul
@@ -53,11 +53,11 @@
                 per person, generate a <li> with proper onClick
                 Should look something like this:
                 onclick = "showOne('main', 'person.name')">person.name</a>...
-				
-				%li{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
-			-@people.each do |person|
-              %li
-                %a{href: "#", onclick: "showOne('main', '#{person.name}')"} person.name
+        
+              %li{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
+              -@people.each do |person|
+                %li
+                  %a{href: "#", onclick: "showOne('main', '#{person.name}')"} person.name
             %nav
         %td#body
           #hello
@@ -85,18 +85,18 @@
             truncate initiatives to 50 characters followed by ellipsis (...)
             Ex:
             [Name] - [Beginning of description]...
-			#add_person.main
-				= form_tag people_path do
-					= label :person, :name, 'Name'
-					= text_field :person, 'name'
-					= label :person, :progress, 'Progress'
-					= text_field :person, 'progress'
-					= submit_tag 'Add'
+      #add_person.main
+        = form_tag people_path do
+          = label :person, :name, 'Name'
+          = text_field :person, 'name'
+          = label :person, :progress, 'Progress'
+          = text_field :person, 'progress'
+          = submit_tag 'Add'
           #p1.main
             .info
               %a.edit{href: "#edit"} Edit Info
               %span Name:
-              %span#field= person.name
+              %span#field= #person.name
               %br/
               %span Organization:
               %span#field [From Org Chart]
@@ -112,7 +112,7 @@
               %br/
               %span Progress:
               %span#field
-				person.progress
+                =#person.progress
                 .progress
                   / <div class="progress_score">Score:1163</div>
                   .progress-bar.progress-bar-aware{style: "width: 35%"}
