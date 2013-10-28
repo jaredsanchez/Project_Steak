@@ -11,7 +11,7 @@ gem 'rails', '3.2.14'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
+  gem 'therubyracer', '0.10.2', :platforms => :ruby
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
@@ -25,6 +25,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'factory_girl_rails'
 end
 
 group :test do

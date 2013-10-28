@@ -1,0 +1,11 @@
+%h1 Add a Stake Holder
+
+= form_tag people_path do
+
+  = label :person, :name, 'Name'
+  = text_field :person, 'name'
+
+  = label :person, :progress, 'Progress'
+  = text_field :person, 'progress'
+
+  = submit_tag 'Add'
