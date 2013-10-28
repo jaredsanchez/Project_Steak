@@ -1,3 +1,5 @@
+require 'nokogiri'              # XML parser
+
 class OrgUnitsController < ApplicationController
   include OrgUnitsControllerHelper
   def index
@@ -9,15 +11,13 @@ class OrgUnitsController < ApplicationController
     #1.upto(7) do |i|
       debugger
       xml_doc = getOrgs(1)
-      if ! xml_doc.xpath('/OrganizationUnits').empty?
-        xml_doc.xpath('/OrganizationUnits/*').each do |unit|
+        xml_doc.xpath('//OrganizationUnit').each do |unit|
           org_unit = Hash.new
           org_unit['org_node'] = unit['orgNode']
           org_unit['org_node_description'] = unit['orgNodeDescription']
           org_unit['level'] = unit['level']
           OrgUnit.create!(org_unit)
         end
-      end
     #end
     redirect_to org_units_path
   end
