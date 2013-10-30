@@ -53,12 +53,9 @@
                 per person, generate a <li> with proper onClick
                 Should look something like this:
                 onclick = "showOne('main', 'person.name')">person.name</a>...
-        
-              %li{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
-
+              -@people.each do |person|
                 %li
-                  %a{href: "#", onclick: "showOne('main', 'person_name')"} 
-              end
+                  %a{href: "#", onclick: "showOne('main', '#{person.name.gsub(/\s+/, "")}')"} #{person.name}
             %nav
         %td#body
           #hello
@@ -81,78 +78,67 @@
                   Andy Smith&nbsp&nbsp&nbsp
                   Wesley To&nbsp&nbsp&nbsp
                   Jeff Zayas
-          /
-            per person, generate a 'main' <div> with proper id  and populated info
-            truncate initiatives to 50 characters followed by ellipsis (...)
-            Ex:
-            [Name] - [Beginning of description]...
-          
             #add_person.main
-              = form_tag people_path do
-                = label :person, :name, 'Name'
-                = text_field :person, 'name'
-                = label :person, :progress, 'Progress'
-                = text_field :person, 'progress'
-                = submit_tag 'Add'
+              =form_tag people_path do
+                =label :person, :name, 'Name'
+                =text_field :person, 'name'
+                =label :person, :progress, 'Progress'
+                =text_field :person, 'progress'
+                =submit_tag 'Add'
 
-            .main[person.name]
-              .info
-                %a.edit{href: "#edit"} Edit Info
-                %span Name:
-                %span.field= #{person.name}
-                %br/
-                %span Organization:
-                %span.field [From Org Chart]
-                %br/
-                %span Position:
-                %span.field [From LinkedIn / Org Chart]
-                %br/
-                %span Phone:
-                %span.field 510-555-5555
-                %br/
-                %span Email:
-                %span.field abc@email.com
-                %br/
-                %span Progress:
-                %span.field
-                  =#{person.progress}
-                    .progress
-                      / <div class="progress_score"></div>
-                      .progress-bar.progress-bar-aware{style: "width: 25%"}
-                        %span.sr-only (Aware)
-                      .progress-bar.progress-bar-interested{style: "width: 25%"}
-                        %span.sr-only (Interested)
-                      .progress-bar.progress-bar-trying{style: "width: 25%"}
-                        %span.sr-only (Trying)
-                      .progress-bar.progress-bar-adopted{style: "width: 25%"}
-                        %span.sr-only (Adopted)
-                / Populate initiatives with iterator
-                .events
-                  %ul
-                    %li
-                      %a{href: "#event_name"} Event 1
-                      %ul.popup
-                        /
-                          event.name
-                          event.place
-                          etc...
-                        Popup-->
-                        %br/
-                        [Initiative Info Here]
-                        %br/
-                        <--
-                / Populate annotations with iterator
-                .notes
-                  %ul
-                    %li
-                      %a{href: "#event_name"} Note 1
-                      %ul.popup
-                        Popup-->
-                        %br/
-                        [Annotation here]
-                        %br/
-                        <--
-                    %li
-                      %a{href: "#add_note"} Add Note
+            -@people.each do |person|
+              %div{:id => [person.name.gsub(/\s+/, "")], :class => 'main'}
+                .info
+                  %a.edit{href: "#edit"} Edit Info
+                  Name: #{person.name}
+                  %br/
+                  Organization: [From Org Chart]
+                  %br/
+                  Position: [From LinkedIn / Org Chart]
+                  %br/
+                  Phone: 510-555-5555
+                  %br/
+                  Email: abc@email.com
+                  %br/
+                  Progress: =#{person.progress}
+                  .progress
+                    / <div class="progress_score"></div>
+                    .progress-bar.progress-bar-aware{style: "width: 25%"}
+                      %span.sr-only (Aware)
+                    .progress-bar.progress-bar-interested{style: "width: 25%"}
+                      %span.sr-only (Interested)
+                    .progress-bar.progress-bar-trying{style: "width: 25%"}
+                      %span.sr-only (Trying)
+                    .progress-bar.progress-bar-adopted{style: "width: 25%"}
+                      %span.sr-only (Adopted)
+                  / Populate initiatives with iterator
+                  .events
+                    %ul
+                      %li
+                        %a{href: "#event_name"} Event 1
+                        %ul.popup
+                          %li
+                            /
+                              event.name
+                              event.place
+                              etc...
+                            Popup
+                            %br/
+                            [Initiative Info Here]
+                            %br/
+                  / Populate annotations with iterator
+                  .notes
+                    %ul
+                      %li
+                        %a{href: "#event_name"} Note 1
+                        %ul.popup
+                          %li
+                            Popup
+                            %br/
+                            [Annotation here]
+                            %br/
+
+                      %li
+                        %a{href: "#add_note"} Add Note
     #footer
       Project Steak - Developed for CS169
