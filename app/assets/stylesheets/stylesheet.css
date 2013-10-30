@@ -6,24 +6,19 @@ body{
 	overflow-x:hidden;
 	font-family: 'Helvetica Neue', helvetica, 'microsoft sans serif', arial, sans-serif;
 }
-
 .thumb {
 	width:100px;
 	height:100px;
 	border-radius:10px;
 }
-
-
-
 #nav_container{
 	display: block;
 	width:112%;
-	margin-top:-0.5%;
+	margin-top:-1%;
 	margin-left:-5%;
 	margin-right:auto;
 	text-align: center;
 }
-
 #header{
 	font-size:3em;
 	text-align:center;

@@ -15,7 +15,7 @@
         document.getElementById(target).style.display = 'block';
       };
   %body
-    %a{name: ""}
+    %a{name: "display"}
     #nav_container
       #header
         Project Steak
@@ -49,14 +49,13 @@
         %td
           %nav#sidebar
             %ul
-              /
-                per person, generate a <li> with proper onClick
-                Should look something like this:
-                onclick = "showOne('main', 'person.name')">person.name</a>...
+              %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
               -@people.each do |person|
                 %li
-                  %a{href: "#", onclick: "showOne('main', '#{person.name.gsub(/\s+/, "")}')"} #{person.name}
-            %nav
+                  %a{href: "#display", onclick: "showOne('main', '#{person.name.gsub(/\s+/, "")}')"} #{person.name}
+                  %ul
+                    %li
+                      %img.thumb(src="/images/placeholder.png" alt="Profile Image")
         %td#body
           #hello
             %em Welcome to Project Steak
@@ -72,12 +71,12 @@
                 As a part of CS 169: Software Engineering Fall 2013
                 %br/
                 %small
-                  Rey Blume&nbsp&nbsp&nbsp
-                  John Gunnison&nbsp&nbsp&nbsp
-                  Jared Sanchez&nbsp&nbsp&nbsp
-                  Andy Smith&nbsp&nbsp&nbsp
-                  Wesley To&nbsp&nbsp&nbsp
-                  Jeff Zayas
+                  Rey&nbsp;Blume&nbsp;&nbsp;&nbsp;
+                  John&nbsp;Gunnison&nbsp;&nbsp;&nbsp;
+                  Jared&nbsp;Sanchez&nbsp;&nbsp;&nbsp;
+                  Andy&nbsp;Smith&nbsp;&nbsp;&nbsp;
+                  Wesley&nbsp;To&nbsp;&nbsp;&nbsp;
+                  Jeff&nbsp;Zayas
             #add_person.main
               =form_tag people_path do
                 =label :person, :name, 'Name'
@@ -118,10 +117,6 @@
                         %a{href: "#event_name"} Event 1
                         %ul.popup
                           %li
-                            /
-                              event.name
-                              event.place
-                              etc...
                             Popup
                             %br/
                             [Initiative Info Here]
@@ -137,7 +132,6 @@
                             %br/
                             [Annotation here]
                             %br/
-
                       %li
                         %a{href: "#add_note"} Add Note
     #footer
