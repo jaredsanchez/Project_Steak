@@ -23,9 +23,9 @@
         %ul
           %li
             %a{href: "#"} People
-        %ul
-          %li
-            %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
+            %ul
+              %li
+                %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
           %li
             %a{href: "#"} Initiatives
             %ul
@@ -55,9 +55,10 @@
                 onclick = "showOne('main', 'person.name')">person.name</a>...
         
               %li{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
-              -@people.each do |person|
+
                 %li
-                  %a{href: "#", onclick: "showOne('main', '#{person.name}')"} #{person.name}
+                  %a{href: "#", onclick: "showOne('main', 'person_name')"} 
+              end
             %nav
         %td#body
           #hello
@@ -93,7 +94,7 @@
                 = label :person, :progress, 'Progress'
                 = text_field :person, 'progress'
                 = submit_tag 'Add'
-          -@people.each do |person|
+
             .main[person.name]
               .info
                 %a.edit{href: "#edit"} Edit Info
@@ -129,9 +130,7 @@
                 .events
                   %ul
                     %li
-                      %a{href: "#event_name"}
-                        / event name
-                        Event 1
+                      %a{href: "#event_name"} Event 1
                       %ul.popup
                         /
                           event.name
@@ -141,6 +140,7 @@
                         %br/
                         [Initiative Info Here]
                         %br/
+                        <--
                 / Populate annotations with iterator
                 .notes
                   %ul
@@ -151,7 +151,8 @@
                         %br/
                         [Annotation here]
                         %br/
+                        <--
                     %li
-                      %a{href: "#add_note"} +add note
+                      %a{href: "#add_note"} Add Note
     #footer
       Project Steak - Developed for CS169

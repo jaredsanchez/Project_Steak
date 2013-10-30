@@ -23,9 +23,9 @@
         %ul
           %li
             %a{href: "#"} People
-        %ul
-          %li
-            %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
+            %ul
+              %li
+                %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
           %li
             %a{href: "#"} Initiatives
             %ul
@@ -58,6 +58,7 @@
               -@people.each do |person|
                 %li
                   %a{href: "#", onclick: "showOne('main', '#{person.name}')"} #{person.name}
+              end
             %nav
         %td#body
           #hello
@@ -129,9 +130,7 @@
                 .events
                   %ul
                     %li
-                      %a{href: "#event_name"}
-                        / event name
-                        Event 1
+                      %a{href: "#event_name"} Event 1
                       %ul.popup
                         /
                           event.name
@@ -141,6 +140,7 @@
                         %br/
                         [Initiative Info Here]
                         %br/
+                        <--
                 / Populate annotations with iterator
                 .notes
                   %ul
@@ -151,7 +151,8 @@
                         %br/
                         [Annotation here]
                         %br/
+                        <--
                     %li
-                      %a{href: "#add_note"} +add note
+                      %a{href: "#add_note"} Add Note
     #footer
       Project Steak - Developed for CS169
