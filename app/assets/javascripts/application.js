@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+function showOne(className, target){
+	document.getElementById('hello').style.display = 'none';
+	elements = document.getElementsByClassName(className);
+	for (var i = 0; i < elements.length; i++) {
+		elements[i].style.display = 'none';
+	}
+	document.getElementById(target).style.display = 'block';
+};

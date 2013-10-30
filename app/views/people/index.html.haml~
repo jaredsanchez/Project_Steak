@@ -1,138 +1,121 @@
-!!!
-%html
-  %head
-    %meta{charset: "UTF-8"}/
-    %meta{content: "CS169 Stakeholder Mapping; charset=UTF-8", name: "description"}/
-    %title Project Steak
-    %link{href: "stylesheet.css", rel: "stylesheet", type: "text/css"}/
-    :javascript
-      function showOne(className, target){
-        document.getElementById('hello').style.display = 'none';
-        elements = document.getElementsByClassName(className);
-        for (var i = 0; i < elements.length; i++) {
-          elements[i].style.display = 'none';
-        }
-        document.getElementById(target).style.display = 'block';
-      };
-  %body
-    %a{name: "display"}
-    #nav_container
-      #header
-        Project Steak
-      %nav#navbar
+%a{name: "display"}
+#nav_container
+  #header
+    Project Steak
+  %nav#navbar
+    %ul
+      %li
+        %a{href: "#"} People
         %ul
           %li
-            %a{href: "#"} People
-            %ul
-              %li
-                %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
+            %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
+      %li
+        %a{href: "#"} Initiatives
+        %ul
           %li
-            %a{href: "#"} Initiatives
-            %ul
-              %li
-                %a{href: "#"} All
-              %li
-                %a{href: "#"} Completed
-              %li
-                %a{href: "#"} Imcomplete
+            %a{href: "#"} All
           %li
-            %a{href: "#"} Events
-            %ul
-              %li
-                %a{href: "#"} Calendar
-              %li
-                %a{href: "#"} Add Event
+            %a{href: "#"} Completed
           %li
-            %a{href: "#"} Logout
-    %table
-      %tr
-        %td
-          %nav#sidebar
-            %ul
-              %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
-              -@people.each do |person|
+            %a{href: "#"} Imcomplete
+      %li
+        %a{href: "#"} Events
+        %ul
+          %li
+            %a{href: "#"} Calendar
+          %li
+            %a{href: "#"} Add Event
+      %li
+        %a{href: "#"} Logout
+%table
+  %tr
+    %td
+      %nav#sidebar
+        %ul
+          %li
+            %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
+          -@people.each do |person|
+            %li
+              %a{href: "#display", onclick: "showOne('main', '#{person.name.gsub(/\s+/, "")}')"} #{person.name}
+              %ul
                 %li
-                  %a{href: "#display", onclick: "showOne('main', '#{person.name.gsub(/\s+/, "")}')"} #{person.name}
-                  %ul
-                    %li
-                      %img.thumb(src="/images/placeholder.png" alt="Profile Image")
-        %td#body
-          #hello
-            %em Welcome to Project Steak
+                  %img.thumb(src="/images/placeholder.png" alt="Profile Image")
+    %td#body
+      #hello
+        %em Welcome to Project Steak
+        %br/
+        %small
+          Stakeholder mapping
+          %br/
+          %small
+            Developed for Aaron Culich and
+            %br/
+            the EECS Department of UC Berkeley
+            %br/
+            As a part of CS 169: Software Engineering Fall 2013
             %br/
             %small
-              Stakeholder mapping
+              Rey&nbsp;Blume&nbsp;&nbsp;&nbsp;
+              John&nbsp;Gunnison&nbsp;&nbsp;&nbsp;
+              Jared&nbsp;Sanchez&nbsp;&nbsp;&nbsp;
+              Andy&nbsp;Smith&nbsp;&nbsp;&nbsp;
+              Wesley&nbsp;To&nbsp;&nbsp;&nbsp;
+              Jeff&nbsp;Zayas
+        #add_person.main
+          = form_tag people_path do
+            = label :person, :name, 'Name'
+            = text_field :person, 'name'
+            = label :person, :progress, 'Progress'
+            = text_field :person, 'progress'
+            = submit_tag 'Add'
+        -@people.each do |person|
+          %div{:id => [person.name.gsub(/\s+/, "")], :class => 'main'}
+            .info
+              %a.edit{href: "#edit"} Edit Info
+              Name: #{person.name}
               %br/
-              %small
-                Developed for Aaron Culich and
-                %br/
-                the EECS Department of UC Berkeley
-                %br/
-                As a part of CS 169: Software Engineering Fall 2013
-                %br/
-                %small
-                  Rey&nbsp;Blume&nbsp;&nbsp;&nbsp;
-                  John&nbsp;Gunnison&nbsp;&nbsp;&nbsp;
-                  Jared&nbsp;Sanchez&nbsp;&nbsp;&nbsp;
-                  Andy&nbsp;Smith&nbsp;&nbsp;&nbsp;
-                  Wesley&nbsp;To&nbsp;&nbsp;&nbsp;
-                  Jeff&nbsp;Zayas
-            #add_person.main
-              =form_tag people_path do
-                =label :person, :name, 'Name'
-                =text_field :person, 'name'
-                =label :person, :progress, 'Progress'
-                =text_field :person, 'progress'
-                =submit_tag 'Add'
-
-            -@people.each do |person|
-              %div{:id => [person.name.gsub(/\s+/, "")], :class => 'main'}
-                .info
-                  %a.edit{href: "#edit"} Edit Info
-                  Name: #{person.name}
-                  %br/
-                  Organization: [From Org Chart]
-                  %br/
-                  Position: [From LinkedIn / Org Chart]
-                  %br/
-                  Phone: 510-555-5555
-                  %br/
-                  Email: abc@email.com
-                  %br/
-                  Progress: =#{person.progress}
-                  .progress
-                    / <div class="progress_score"></div>
-                    .progress-bar.progress-bar-aware{style: "width: 25%"}
-                      %span.sr-only (Aware)
-                    .progress-bar.progress-bar-interested{style: "width: 25%"}
-                      %span.sr-only (Interested)
-                    .progress-bar.progress-bar-trying{style: "width: 25%"}
-                      %span.sr-only (Trying)
-                    .progress-bar.progress-bar-adopted{style: "width: 25%"}
-                      %span.sr-only (Adopted)
-                  / Populate initiatives with iterator
-                  .events
-                    %ul
+              Organization: [From Org Chart]
+              %br/
+              Position: [From LinkedIn / Org Chart]
+              %br/
+              Phone: 510-555-5555
+              %br/
+              Email: abc@email.com
+              %br/
+              Progress: =#{person.progress}
+              .progress
+                / <div class="progress_score"></div>
+                .progress-bar.progress-bar-aware{style: "width: 25%"}
+                  %span.sr-only (Aware)
+                .progress-bar.progress-bar-interested{style: "width: 25%"}
+                  %span.sr-only (Interested)
+                .progress-bar.progress-bar-trying{style: "width: 25%"}
+                  %span.sr-only (Trying)
+                .progress-bar.progress-bar-adopted{style: "width: 25%"}
+                  %span.sr-only (Adopted)
+              / Populate initiatives with iterator
+              .events
+                %ul
+                  %li
+                    %a{href: "#event_name"} Event 1
+                    %ul.popup
                       %li
-                        %a{href: "#event_name"} Event 1
-                        %ul.popup
-                          %li
-                            Popup
-                            %br/
-                            [Initiative Info Here]
-                            %br/
-                  / Populate annotations with iterator
-                  .notes
-                    %ul
+                        Popup
+                        %br/
+                        [Initiative Info Here]
+                        %br/
+              / Populate annotations with iterator
+              .notes
+                %ul
+                  %li
+                    %a{href: "#event_name"} Note 1
+                    %ul.popup
                       %li
-                        %a{href: "#event_name"} Note 1
-                        %ul.popup
-                          %li
-                            Popup
-                            %br/
-                            [Annotation here]
-                            %br/
-                      %li
-                        %a{href: "#add_note"} Add Note
-    #footer
-      Project Steak - Developed for CS169
+                        Popup
+                        %br/
+                        [Annotation here]
+                        %br/
+                  %li
+                    %a{href: "#add_note"} Add Note
+#footer
+  Project Steak - Developed for CS169
