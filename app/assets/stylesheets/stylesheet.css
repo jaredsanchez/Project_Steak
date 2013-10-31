@@ -182,6 +182,7 @@ body{
 	display: table-cell;
 	vertical-align: top; 
 	padding-top:3%;
+	height: 570px;
 }
 .edit {
 	float:right;
