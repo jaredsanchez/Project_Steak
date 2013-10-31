@@ -15,12 +15,6 @@
 //= require_tree .
 function showOne(className, target){
     $("#hello").hide();
-	//document.getElementById('hello').style.display = 'none';
     $("." + className).hide();
-	//elements = document.getElementsByClassName(className);
-	//for (var i = 0; i < elements.length; i++) {
-	//	elements[i].style.display = 'none';
-	//}
     $("#" + target).css('display', 'block');
-	//document.getElementById(target).style.display = 'block';
 };
