@@ -5,13 +5,13 @@ Feature: Login with LinkedIn Account
   I want to log in with my LinkedIn Account
 
 Scenario: Log in with LinkedIn Account
-  Given I am on the Stakeholder Mapping Home Page
-  I should see "login_linkedin"
+  Given I am on the home page
+  Then I should see "login_linkedin"
   When I log in with Linkedin using "test_email@gmail.com" and password "password"
-  I should see "Log in successful"
+  Then I should see "Log in successful"
 
 Scenario: Invalid Logins should redirect to home page 
-  Given I am on the Stakeholder Mapping Home Page
+  Given I am on the home page
   When I log in with Linkedin using "invalidemail" and password "?"
-  I should see "Error: Invalid login"
+  Then I should see "Error: Invalid login"
 
