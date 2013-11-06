@@ -6,15 +6,11 @@ body{
 	overflow-x:hidden;
 	font-family: 'Helvetica Neue', helvetica, 'microsoft sans serif', arial, sans-serif;
 }
-
 .thumb {
 	width:100px;
 	height:100px;
 	border-radius:10px;
 }
-
-
-
 #nav_container{
 	display: block;
 	width:112%;
@@ -23,7 +19,6 @@ body{
 	margin-right:auto;
 	text-align: center;
 }
-
 #header{
 	font-size:3em;
 	text-align:center;
@@ -49,13 +44,6 @@ body{
 #navbar {
 	display: inline-block;
 }
-#navbar ul ul {
-	display: none;
-}
-#navbar ul li:hover > ul {
-	display: block;
-	
-}
 #navbar ul {
 	background: #bfc5cf; 
 	background: linear-gradient(top, #efefef 0%, #9ba4b1 100%);  
@@ -75,6 +63,9 @@ body{
 }
 #navbar ul li {
 	float: left;
+	position:relative;
+	display:block;
+
 }
 #navbar ul li:hover {
 	background: #4b545f;
@@ -83,9 +74,6 @@ body{
 	background: -webkit-linear-gradient(top, #4f5f6f 0%,#5f6975 40%);
 	border-radius:10px;
 }
-#navbar ul li:hover a {
-	color: #ffffff;
-}
 #navbar ul li a {
 	display: block; 
 	padding: 25px 40px;
@@ -93,13 +81,23 @@ body{
 	text-decoration: none;
 	border-radius:10px;
 }
-#navbar ul ul {
+#navbar ul li:hover a {
+	color: #ffffff;
+}
+#navbar ul li ul {
+	display:none;
 	background: #5f6975;
 	position: absolute; 
 	top: 100%;
 	border-radius:10px;
 }
-#navbar ul ul li {
+#navbar ul li a:hover + ul {
+	display:block;
+	z-index:1;
+	float:bottom;
+	position:relative;
+}
+#navbar ul li ul li {
 	float: none; 
 	border-top: 1px solid #6b727c;
 	border-bottom: 1px solid #575f6a;
@@ -119,6 +117,8 @@ body{
 	width: 200px;
 	display: block; 
 	margin-bottom:10%;
+	text-overflow:ellipsis;
+	vertical-align:top;
 }
 #sidebar ul {
 	padding: 0;
@@ -138,6 +138,7 @@ body{
 	display: block;
 	width: 100%;
 	height:40px;
+	text-overflow:ellipsis;
 }
 #sidebar ul li:hover {
 	background: #4b545f;
@@ -150,7 +151,7 @@ body{
 	display:none;
 }
 
-#sidebar ul li a:hover + ul{
+#sidebar ul li:hover + ul{
 	position:relative;
 	top:-100%;
 	left:100px;
@@ -174,6 +175,7 @@ body{
 	font-size: 80%;
 	color: black;
 	text-decoration: none;
+	text-overflow:ellipsis;
 }
 #body {
 	width:84.5%;
@@ -207,6 +209,13 @@ body{
 	background: -moz-linear-gradient(top, #efefef 0%, #bfc5cf 100%); 
 	background: -webkit-linear-gradient(top, #efefef 0%,#bfc5cf 100%); 
 	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+        color:#353535;
+	font-size:0.8em;
+}
+
+.info span{
+	font-size:1.25em;
+	display:inline;
 }
 
 .main{
@@ -317,13 +326,7 @@ body{
 	float:right;
 	position:absolute;
 }
-.info{
-	color:#353535;
-}
-.info span{
-	font-size:80%;
-	display:inline;
-}
+
 
 
 .events {
