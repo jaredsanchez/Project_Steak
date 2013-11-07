@@ -112,7 +112,7 @@ body{
 }
 #sidebar {
 	margin-left:200px;
-	margin-top:10%;
+	margin-top:2%;
 	float:left;
 	width: 200px;
 	display: block; 
@@ -177,10 +177,15 @@ body{
 	text-decoration: none;
 	text-overflow:ellipsis;
 }
+
+#sidebar-td{
+    vertical-align:top;
+}
+
 #body {
-	width:84.5%;
+	width:100%;
 	padding-top:0;
-	padding-left:5%;
+	padding-left:2%;
 	display: table-cell;
 	vertical-align: top; 
 	padding-top:3%;
@@ -196,8 +201,6 @@ body{
 .edit:hover {
 	color:#9ba4b1;
 }
-
-
 
 .info{
 	width:70%;
