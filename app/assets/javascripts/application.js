@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+function showOne(className, target){
+    $("#hello").hide();
+    $("." + className).hide();
+    $("#" + target).css('display', 'block');
+};
