@@ -1,0 +1,37 @@
+%h2 Details about #{@event.name}
+- if flash[:notice]
+  #notice.message= flash[:notice]
+- elsif flash[:warning]
+  #notice.message= flash[:warning]
+
+
+%ul#detials
+  %li
+    Name:
+    = @event.name
+  %li
+    Location:
+    = @event.where
+  %li 
+    Date:
+    = @event.event_time
+%h3 Description:
+%p#description= @event.description
+
+%table#people
+  %thead
+    %h4 People Attending:
+  %tbody
+    - @event.people.each do |person|
+      %tr
+        %td= person.name
+
+%h4 Add Person to This Event:
+= form_tag "/events/add_person/#{@event.id}", :method => :get do
+  = label_tag 'person_label' , 'Name of Person'
+  = text_field_tag :name_person
+  = hidden_field_tag 'id', @event.id
+  = submit_tag 'Add Person'
+
+= button_to 'Delete Event', event_path(@event), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Back to Events List', events_path
