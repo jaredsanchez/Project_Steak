@@ -15,15 +15,15 @@ Background: Start on the home page
   | Wesley To     | 2        |
   | Andy Smith    | 4        |
 
-  And I am on the StakeHolder Mapping home page
+  And I am on the events page
 
 Scenario: add a new event
   Then I should not see "Stakeholder Dinner"
-  When I follow "Add Event"
+  When I follow "Add New Event"
   Then I should be on the Add Event page
   When I fill in "Name" with "Stakeholder Dinner"
   When I fill in "Description" with "A dinner for stake holders"
   When I fill in "Location" with "Cheeseboard"
-  When I press "Add"
-  Then I should be on the StakeHolder Mapping home page
+  When I press "Add Event"
+  Then I should be on the events page
 

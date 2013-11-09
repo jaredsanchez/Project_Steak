@@ -19,7 +19,7 @@ Background: Start on the home page
 
 Scenario: add a new person to the intitiative
   Then I should not see "James Bond"
-  When I follow "Add a new stakeholder"
+  When I click "Add Person"
   Then I should be on the Add Person page
   When I fill in "Name" with "James Bond"
   When I fill in "Progress" with "3"

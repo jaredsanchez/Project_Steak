@@ -5,29 +5,36 @@ Feature: add people to events
 
 Background:
   Given I am on the events page
-  Given the following events exist:
-    | name                | description           | where         | event_time                |
-    | Stakeholder Dinner  | dinner w/ stakeholder | Cheeseboard   | 2013-11-1T00:00:00+00:00  |
+  And I follow "Add New Event"
+  And I fill in "Event Name" with "Stakeholder Dinner"
+  And I fill in "Description" with "Discussion about the API"
+  And I fill in "Location" with "Cory"
+  And I press "Add Event"
+  Then I should be on the events page
+  And I should see "Stakeholder Dinner"
+
+  Given the following people exist:
+    |name         | progress |
+    |John Gunnison| 1        |
+    |Jeff Zayas   | 4        |
+
 
 
   Scenario: show event page
     When I follow "Stakeholder Dinner"
-    Then I should be on the show event page
-    And I should see "Stakeholder Dinner"
+    Then I should see "Stakeholder Dinner"
 
   Scenario: delete event
     When I follow "Stakeholder Dinner"
-    Then I should be on the show event page
-    When I press "Delete"
-    Then I shold be on the events page
+    When I press "Delete Event"
+    Then I should be on the events page
     And I should not see "Stakeholder Dinner"
 
   Scenario: add a person to event
     When I follow "Stakeholder Dinner"
-    Then I should be on the show event page
-    When I press "Add Person"
-    And I select "Jeff Zayas"
-    Then "Jeff Zayas" should be attending the event "Stakeholder Dinner"
+    And I fill in "person_name" with "Jeff Zayas"
+    And I press "Add Person"
+    Then I should see "Jeff Zayas"
 
 
     
