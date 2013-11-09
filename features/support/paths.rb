@@ -16,7 +16,7 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
     when /^the StakeHolder Mapping home page/
-      people_path
+      '/'
 
     when /^the Add Person page/
       new_person_path
@@ -26,7 +26,10 @@ module NavigationHelpers
 
     when /^the Events page/
       events_path
+    
 
+    when /^the show event page/
+      event_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
