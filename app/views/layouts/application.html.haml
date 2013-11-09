@@ -10,7 +10,7 @@
     #nav_container
       #header
         Project&nbsp;Steak
-      %div#navbar
+      %nav#navbar
         %ul
           %li
             %a{href: "#"} People
@@ -35,89 +35,95 @@
                 %a{href: "#"} Add Event
           %li
             %a{href: "#"} Logout
-    %table
-      %tr
-        %td#sidebar-td
-          %div#sidebar
+
+    %div#sidebar
+      %ul
+        %li
+          %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
+        -@people.each do |person|
+          %li
+            %a{href: "#display", onclick: "showOne('main', '#{person.name.gsub(/\s+/, "")}')"} 
+              #{person.name}
+              %br/
+              .mini_progress
+                .minibar.minibar-aware{Style:"width:25%"}
+                .minibar.minibar-interested{Style:"width:25%"}
+                .minibar.minibar-trying{Style:"width:25%"}
+                .minibar.minibar-adopted{Style:"width:25%"}
+    %div#body
+      = yield
+      #add_person.main
+        = form_tag people_path do
+          #leftform
+            = label :person, :name, 'Name'
+            &nbsp;&nbsp;
+            %br/
+            %br/
+            = label :person, :progress, 'Progress'
+            &nbsp;&nbsp;
+          #rightform
+            = text_field :person, 'name'
+            %br/
+            %br/
+            = text_field :person, 'progress'
+            %br/
+            %br/
+            = submit_tag 'Add'
+      -@people.each do |person|
+        %div{:id => [person.name.gsub(/\s+/, "")], :class => 'main'}
+          .info
+            %a.edit{href: "#edit"} Edit Info
+            Name:
+            %span#field #{person.name.gsub(/\s+/, " ")}
+            %br/
+            Organization:&nbsp;
+            %span#field [From Org Chart]
+            %br/
+            Position:&nbsp;
+            %span#field [From LinkedIn / Org Chart]
+            %br/
+            Phone:&nbsp;
+            %span#field 510-555-5555
+            %br/
+            Email:&nbsp;
+            %span#field abc@email.com
+            %br/
+            Progress:&nbsp;
+            %span#field #{person.progress}
+            / populate the progress bars with an iterator
+            %span#field
+              .progress
+                .progress-bar.progress-bar-aware{style: "width: 25%"}
+                  %span.sr-only (Aware)
+                .progress-bar.progress-bar-interested{style: "width: 25%"}
+                  %span.sr-only (Interested)
+                .progress-bar.progress-bar-trying{style: "width: 25%"}
+                  %span.sr-only (Trying)
+                .progress-bar.progress-bar-adopted{style: "width: 25%"}
+                  %span.sr-only (Adopted)
+            / Populate initiatives with iterator
+          .popup
             %ul
               %li
-                %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
-              -@people.each do |person|
-                %li
-                  %a{href: "#display", onclick: "showOne('main', '#{person.name.gsub(/\s+/, "")}')"} #{person.name}
-        %td#body
-          = yield
-          #add_person.main
-            = form_tag people_path do
-              #leftform
-                = label :person, :name, 'Name'
-                &nbsp;&nbsp;
-                %br/
-                %br/
-                = label :person, :progress, 'Progress'
-                &nbsp;&nbsp;
-              #rightform
-                = text_field :person, 'name'
-                %br/
-                %br/
-                = text_field :person, 'progress'
-                %br/
-                %br/
-                = submit_tag 'Add'
-          -@people.each do |person|
-            %div{:id => [person.name.gsub(/\s+/, "")], :class => 'main'}
-              .info
-                %a.edit{href: "#edit"} Edit Info
-                Name:
-                %span#field #{person.name.gsub(/\s+/, " ")}
-                %br/
-                Organization:&nbsp;
-                %span#field [From Org Chart]
-                %br/
-                Position:&nbsp;
-                %span#field [From LinkedIn / Org Chart]
-                %br/
-                Phone:&nbsp;
-                %span#field 510-555-5555
-                %br/
-                Email:&nbsp;
-                %span#field abc@email.com
-                %br/
-                Progress:&nbsp;
-                %span#field #{person.progress}
-                %span#field
-                  .progress
-                    .progress-bar.progress-bar-aware{style: "width: 25%"}
-                      %span.sr-only (Aware)
-                    .progress-bar.progress-bar-interested{style: "width: 25%"}
-                      %span.sr-only (Interested)
-                    .progress-bar.progress-bar-trying{style: "width: 25%"}
-                      %span.sr-only (Trying)
-                    .progress-bar.progress-bar-adopted{style: "width: 25%"}
-                      %span.sr-only (Adopted)
-                / Populate initiatives with iterator
-              .events
+                %a{href: "#event_name"} Event 1
                 %ul
                   %li
-                    %a{href: "#event_name"} Event 1
-                    %ul.popup
-                      %li
-                        Popup
-                        %br/
-                        [Event Info Here]
-                        %br/
-              / Populate annotations with iterator
-              .notes
+                    Popup
+                    %br/
+                    [Event Info Here]
+                    %br/
+            / Populate annotations with iterator
+          .popup
+            %ul
+              %li
+                %a{href: "#event_name"} Note 1
                 %ul
                   %li
-                    %a{href: "#event_name"} Note 1
-                    %ul.popup
-                      %li
-                        Popup
-                        %br/
-                        [Annotation here]
-                        %br/
-                  %li
-                    %a{href: "#add_note"} Add Note
+                    Popup
+                    %br/
+                    [Annotation here]
+                    %br/
+              %li
+                %a{href: "#add_note"} Add Note
     #footer
       Project Steak - Developed for CS169  
