@@ -18,13 +18,14 @@
 %h3 Description:
 %p#description= @event.description
 
-%table#people
-  %thead
-    %h4 People Attending:
-  %tbody
-    - @event.people.each do |person|
-      %tr
-        %td= person.name
+- if @event.people_id != nil 
+  %table#people
+    %thead
+      %h4 People Attending:
+    %tbody
+      - @event.people.each do |person|
+        %tr
+          %td= person.name
 
 %h4 Add Person to This Event:
 = form_tag "/events/add_person/#{@event.id}", :method => :get do
@@ -34,4 +35,6 @@
   = submit_tag 'Add Person'
 
 = button_to 'Delete Event', event_path(@event), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Edit Event', edit_event_path(@event)
 = link_to 'Back to Events List', events_path
+
