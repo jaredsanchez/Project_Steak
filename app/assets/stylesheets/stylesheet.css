@@ -1,10 +1,10 @@
 body{
-	/*background: #efefef;*/ 
-	background-image:url(/assets/bg.jpg);
-	/*background: linear-gradient(bottom, #efefef 0%, #fefefe 100%);  
+	background: #efefef;
+	background: linear-gradient(bottom, #efefef 0%, #fefefe 100%);  
 	background: -moz-linear-gradient(bottom, #efefef 0%, #fefefe 100%); 
 	background: -webkit-linear-gradient(bottom, #efefef 0%,#fefefe 100%); 
-	*/overflow-x:hidden;
+	background-image:url(/assets/bg.jpg);
+	overflow-x:hidden;
 	font-family: 'Helvetica Neue', helvetica, 'microsoft sans serif', arial, sans-serif;
 }
 .thumb {
