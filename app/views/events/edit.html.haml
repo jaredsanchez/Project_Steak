@@ -1,0 +1,16 @@
+%h1 Edit Event
+
+= form_tag events_path(@event) do
+  = label :event, :name, 'Name'
+  = text_field :event, 'name'
+
+  = label :event, :description, 'Description'
+  = text_field :event, 'description'
+
+  = label :event, :where, 'Location'
+  = text_field :event, 'where'
+
+  = label :event, :event_time, 'Event Date'
+  = date_select :event, :event_time
+
+  = submit_tag 'Update Event'

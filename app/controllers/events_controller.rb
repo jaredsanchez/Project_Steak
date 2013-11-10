@@ -10,4 +10,7 @@ class EventsController < ApplicationController
     redirect_to people_path and return
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
 end
