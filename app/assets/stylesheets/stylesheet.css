@@ -100,7 +100,7 @@ body{
 	border-radius:10px;
 	
 }
-#navbar ul li a:hover + ul {
+#navbar ul li:hover > ul {
 	display:block;
 	z-index:1;
 	float:bottom;
