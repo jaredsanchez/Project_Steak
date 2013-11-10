@@ -46,10 +46,7 @@
               #{person.name}
               %br/
               .mini_progress
-                .minibar.minibar-aware{Style:"width:25%"}
-                .minibar.minibar-interested{Style:"width:25%"}
-                .minibar.minibar-trying{Style:"width:25%"}
-                .minibar.minibar-adopted{Style:"width:25%"}
+                =render :partial => "progress#{person.progress}"
     %div#body
       = yield
       #add_person.main
@@ -93,14 +90,7 @@
             / populate the progress bars with an iterator
             %span#field
               .progress
-                .progress-bar.progress-bar-aware{style: "width: 25%"}
-                  %span.sr-only (Aware)
-                .progress-bar.progress-bar-interested{style: "width: 25%"}
-                  %span.sr-only (Interested)
-                .progress-bar.progress-bar-trying{style: "width: 25%"}
-                  %span.sr-only (Trying)
-                .progress-bar.progress-bar-adopted{style: "width: 25%"}
-                  %span.sr-only (Adopted)
+                =render :partial => "progress_lg_#{person.progress}"
             / Populate initiatives with iterator
           .popup
             %ul
