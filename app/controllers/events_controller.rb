@@ -45,4 +45,7 @@ class EventsController < ApplicationController
     redirect_to "/events" and return
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
 end
