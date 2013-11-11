@@ -27,9 +27,9 @@ module NavigationHelpers
     when /^the Events page/
       events_path
     
-
     when /^the show event page/
-      event_path
+      event = Event.find(1)
+      event_path(event)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
