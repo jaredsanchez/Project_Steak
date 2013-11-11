@@ -18,7 +18,7 @@
 %h3 Description:
 %p#description= @event.description
 
-- if @event.people_id != nil 
+- if @event.people != [] 
   %table#people
     %thead
       %h4 People Attending:
