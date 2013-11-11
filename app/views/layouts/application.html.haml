@@ -7,9 +7,19 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+<<<<<<< HEAD
     %a{name: "display"} 
     =render :partial => '/layouts/navbar'
     =render :partial => "/layouts/sidebar"
     #body
       = yield
+      - if user_signed_in?
+        Greetings #{current_user.name}
+        [#{link_to "sign out", signout_path}]
+        -#%ul
+        -#  - @calendars.items.each do |calendar|
+        -#    %li= calendar["summary"]
+      - else
+        [#{link_to "sign in", signin_path}]
     =render :partial => '/layouts/footer'
+  
