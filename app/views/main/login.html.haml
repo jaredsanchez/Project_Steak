@@ -1,0 +1,16 @@
+%h1 Home
+%p
+  - if user_signed_in?
+    Welcome #{current_user.name}
+    [#{link_to "Sign out of Google", signout_path}]
+
+    -#%ul
+    -#  - @calendars.items.each do |calendar|
+    -#    %li= calendar["summary"]
+    -#    %ul
+    -#      %li
+    -#        ID: #{calendar["id"]}
+    -#      %li
+    -#        Description: #{calendar["description"]}
+  - else
+    [#{link_to "Google Sign-in", signin_path}]
