@@ -46,7 +46,7 @@
               #{person.name}
               %br/
               .mini_progress
-                =render :partial => "progress#{person.progress}"
+                =render :partial => "/main/progress#{person.progress}"
     %div#body
       = yield
       #add_person.main
@@ -90,7 +90,7 @@
             / populate the progress bars with an iterator
             %span#field
               .progress
-                =render :partial => "progress_lg_#{person.progress}"
+                =render :partial => "/main/progress_lg_#{person.progress}"
             / Populate initiatives with iterator
           .popup
             %ul
