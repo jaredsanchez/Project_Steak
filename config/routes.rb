@@ -1,4 +1,6 @@
 ProjectSteak::Application.routes.draw do
+  root :to => 'home#index'
+
   get "main/index"
 
   # The priority is based upon order of creation:
