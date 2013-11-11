@@ -42,6 +42,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'figaro'
 gem 'selenium-webdriver'
+gem 'google_oauth_calendar' , :git => 'git@github.com:deafgreatdane/google_oauth_calendar.git'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -57,3 +58,7 @@ gem 'selenium-webdriver'
 
 # To use debugger
 gem 'debugger'
+
+gem "omniauth", ">= 1.0.3"
+gem "omniauth-google-oauth2"
+gem "google-api-client"
