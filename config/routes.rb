@@ -18,6 +18,23 @@ ProjectSteak::Application.routes.draw do
   resources :people
   resources :events
 
+  match '/auth/failure' => 'sessions#failure'
+
+  match '/signout' => 'sessions#destroy', :as => :signout
+
+  match '/signin' => 'sessions#new', :as => :signin
+
+  match '/auth/:provider/callback' => 'sessions#create'
+
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "sessions/failure"
+
+  get '/login', :to => 'sessions#new', :as => :login
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failure' 
   # Sample resource route with options:
   #   resources :products do
   #     member do
