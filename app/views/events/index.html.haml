@@ -10,9 +10,10 @@
     %tbody
       -@events.each do |event|
         %tr
-          %td= event.name
+          %td= link_to "#{event.name}", event_path(event)
           %td= event.description
           %td= event.where
           %td= event.event_time
-= link_to 'Back to People Page', people_path
 
+=# link_to 'Back to People Page', people_path
+= link_to 'Add New Event',  new_event_path
