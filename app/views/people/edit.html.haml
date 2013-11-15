@@ -1,10 +1,25 @@
-%h1 Edit Event
 
-= form_tag people_path(@person), :method => :put do
-  = label :event, :name, 'Name'
-  = text_field :event, 'name'
 
-  = label :event, :progress, 'Progress'
-  = text_field :event, 'progress'
 
-  = submit_tag 'Update Person'
+
+#add_person.main#default
+  
+  = form_tag people_path(@person), :method => :put do
+    #leftform
+      %br/
+      = label :person, :name, 'Name'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = label :person, :progress, 'Progress'
+      &nbsp;&nbsp;
+    #rightform
+      .small_link#delete= link_to 'Delete Person', people_path(@person), :method => :delete, :confirm => 'Are you sure?'
+      %br/
+      = text_field :person, 'name'
+      %br/
+      %br/
+      = text_field :person, 'progress'
+      %br/
+      %br/
+      = submit_tag 'Update'

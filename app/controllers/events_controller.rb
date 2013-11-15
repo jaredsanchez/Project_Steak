@@ -39,10 +39,15 @@ class EventsController < ApplicationController
 
   end
   def create
-    @people = Person.all
-    @event = Event.create!(params[:event])
-    flash[:notice] = "#{@event.name} was successfully added"
-    redirect_to "/events" and return
+    @event = Event.new params[:event]
+
+    if @event.save
+      flash[:notice] = "#{@event.name} was successfully added to your list of events"
+      redirect_to event_path(@event)
+    else
+      @event = Event.all
+      render :new
+    end
   end
 
   def edit

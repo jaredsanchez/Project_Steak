@@ -1,17 +1,30 @@
-%h1 Add an Event
-
-= form_tag events_path do
-  = label :event, :name, 'Event Name'
-  = text_field :event, 'name'
-
-  = label :event, :description, 'Description'
-  = text_field :event, 'description'
-
-  = label :event, :where, 'Location'
-  = text_field :event, 'where'
-
-  = label :event, :event_time, 'Event Date'
-  = date_select :event, :event_time
-
-  = submit_tag 'Add Event'
-
+#add_event.main#default
+  = form_tag event_path do
+    #leftform
+      = label :event, :name, 'Name'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = label :event, :description, 'Description'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = label :event, :where, 'Location'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = label :event, :event_time, 'Date'
+    #rightform
+      = text_field :event, 'name'
+      %br/
+      %br/
+      = text_field :event, 'description'
+      %br/
+      %br/
+      = text_field :event, 'where'
+      %br/
+      %br/
+      = text_field :event, 'event_time'
+      %br/
+      %br/
+      = submit_tag 'Add'

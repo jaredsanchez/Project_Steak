@@ -6,5 +6,8 @@
   %tbody#scrolling_list
     -@people.each do |person|
       %tr
-        %td= link_to "#{person.name}", people_path(person)
-        %td= person.progress
+        %td= link_to person.name, person_path(person.id)
+        %td
+          .mini_progress
+            -title = "progress#{person.progress}"
+            =render :partial => "/main/#{title}"
