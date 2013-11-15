@@ -23,11 +23,16 @@ body{
 #header{
 	font-size:3em;
 	text-align:center;
-	color:white;
 	background: #2f3f4f;
 	background: linear-gradient(left, #1f2f3f 0%, #5f6f7f 100%);
 	background: -moz-linear-gradient(left, #1f2f3f 0%, #5f6f7f 100%);
 	background: -webkit-linear-gradient(left, #1f2f3f 0%,#5f6f7f 100%);
+
+}
+#header a{
+	text-decoration:none;
+	color:white;
+	display:block;
 }
 
 #footer{
@@ -192,6 +197,10 @@ body{
 	padding-top:3%;
 	height: 570px;
 	margin-left:450px;
+}
+
+#scrolling_list{
+	overflow-y:scroll;
 }
 .edit {
 	float:right;

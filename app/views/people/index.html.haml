@@ -1,0 +1,11 @@
+%table#people
+  %thead
+    %tr
+      %th{:class => @name_header}=sortable("name")
+      %th{:class => @progress_header}=sortable("progress")
+  %tbody#scrolling_list
+    -@people.each do |person|
+      %tr
+        %td= link_to "#{person.name}", people_path(person)
+        %td= person.progress
+        %td= link_to "More about #{person.name}", people_path(person)

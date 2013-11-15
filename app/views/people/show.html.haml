@@ -1,0 +1,20 @@
+%h2 Details about #{@person.name}
+- if flash[:notice]
+  #notice.message= flash[:notice]
+- elsif flash[:warning]
+  #notice.message= flash[:warning]
+
+
+%ul#detials
+  %li
+    Name:
+    = @person.name
+  %li
+    Progress:
+    = @person.progress
+
+
+= button_to 'Delete Person', people_path(@person), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Edit Info', edit_people_path(@person)
+= link_to 'Back to People List', people_path
+

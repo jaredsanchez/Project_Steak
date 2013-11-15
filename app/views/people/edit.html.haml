@@ -1,0 +1,10 @@
+%h1 Edit Event
+
+= form_tag people_path(@person), :method => :put do
+  = label :event, :name, 'Name'
+  = text_field :event, 'name'
+
+  = label :event, :progress, 'Progress'
+  = text_field :event, 'progress'
+
+  = submit_tag 'Update Person'
