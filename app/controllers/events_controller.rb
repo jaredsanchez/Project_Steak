@@ -3,6 +3,17 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @people = Person.all
+    sort = params[:sort] || session[:sort]
+    order = params[:order] || session[:order]
+    case sort
+    when 'name'
+      case order
+      when 'asc'
+        @events.sort! {|a,b| a.name<=> b.name}
+      when 'desc'
+        @events.sort! {|a,b| b.name<=>a.name}
+      end
+    end
   end
 
   def new 
@@ -32,11 +43,10 @@ class EventsController < ApplicationController
   end
 
   def show
-    id = params[:id]
     @people = Person.all
-    @event = Event.find_by_id(id)
-
-
+    @events = Event.all
+    @event = Event.find params[:id] 
+    redirect_to event_path(@event)
   end
   def create
     @event = Event.new params[:event]

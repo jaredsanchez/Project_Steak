@@ -3,10 +3,10 @@
 %table#events
   %thead
     %tr
-      %th Name
+      %th{:class => @name_header}=sortable("name")
       %th Description
       %th Location
-      %th Date 
+      %th{:class => @date_header}=sortable("date") 
     %tbody
       -@events.each do |event|
         %tr
@@ -15,5 +15,4 @@
           %td= event.where
           %td= event.event_time
 
-=# link_to 'Back to People Page', people_path
 = link_to 'Add New Event',  new_event_path
