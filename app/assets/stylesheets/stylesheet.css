@@ -205,7 +205,7 @@ body{
 #scrolling_list{
 	overflow-y:scroll;
 }
-.edit {
+.small_link {
 	float:right;
 	text-decoration:none;
 	color:#353535;
@@ -240,7 +240,6 @@ body{
 }
 
 .popup{
-	margin:5% 0 5% 0;
 	text-overflow:ellipsis;
 }
 
