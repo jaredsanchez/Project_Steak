@@ -23,6 +23,11 @@ class PeopleController < ApplicationController
     end
   end
 
+  def show
+    id = params[:id]
+    @person = Person.find(id)
+    redirect_to people_path(@person)
+  end
 
   def create
     @person = Person.create!(params[:person])

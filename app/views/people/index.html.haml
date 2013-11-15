@@ -1,4 +1,4 @@
-%table#people
+%table.main#default
   %thead
     %tr
       %th{:class => @name_header}=sortable("name")
@@ -8,4 +8,3 @@
       %tr
         %td= link_to "#{person.name}", people_path(person)
         %td= person.progress
-        %td= link_to "More about #{person.name}", people_path(person)
