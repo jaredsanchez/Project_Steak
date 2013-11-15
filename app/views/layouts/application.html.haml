@@ -9,14 +9,14 @@
     %a{name: "display"} 
     #nav_container
       #header
-        Project&nbsp;Steak
+        %a{href: "/"} Project&nbsp;Steak
       %nav#navbar
         %ul
           %li
-            %a{href: "#"} People
+            = link_to 'People', people_path()
             %ul
               %li
-                %a{href: "#", onclick: "showOne('main', 'add_person')"} Add&nbsp;Person
+                %a{href: "#add_a_person", onclick: "showOne('main', 'add_person')"} Add&nbsp;Person
           %li
             %a{href: "#"} Initiatives
             %ul
@@ -27,10 +27,10 @@
               %li
                 %a{href: "#"} Imcomplete
           %li
-            %a{href: "/events"} Events
+            = link_to 'Events', events_path()
             %ul
               %li
-                %a{href: "/events"} Calendar
+                = link_to 'Events', events_path()
               %li
                 %a{href: "#"} Add&nbsp;Event
           %li
@@ -38,8 +38,6 @@
 
     %div#sidebar
       %ul
-        %li
-          %a{href: "#", onclick: "showOne('main', 'add_person')"} Add Person
         -@people.each do |person|
           %li
             %a{href: "#display", onclick: "showOne('main', '#{person.name.gsub(/\s+/, "")}')"} 
@@ -69,7 +67,7 @@
       -@people.each do |person|
         %div{:id => [person.name.gsub(/\s+/, "")], :class => 'main'}
           .info
-            %a.edit{href: "#edit"} Edit Info
+            %a.edit{href: "#edit_person"} Edit Info
             Name:
             %span#field #{person.name.gsub(/\s+/, " ")}
             %br/
