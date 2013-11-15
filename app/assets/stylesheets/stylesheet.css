@@ -12,6 +12,9 @@ body{
 	height:100px;
 	border-radius:10px;
 }
+#default{
+	display:block;
+}
 #nav_container{
 	display: block;
 	width:112%;

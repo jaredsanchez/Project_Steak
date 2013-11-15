@@ -1,3 +1,5 @@
+-# in app/views/people/show.html.haml
+
 %h2 Details about #{@person.name}
 - if flash[:notice]
   #notice.message= flash[:notice]
@@ -5,7 +7,7 @@
   #notice.message= flash[:warning]
 
 
-%ul#detials
+%ul#info
   %li
     Name:
     = @person.name
