@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
 
   def index
+    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @events = Event.all
-    @people = Person.all
     sort = params[:sort] || session[:sort]
     order = params[:order] || session[:order]
     case sort
@@ -17,10 +17,11 @@ class EventsController < ApplicationController
   end
 
   def new 
-    @people = Person.all
+    @favorites = Person.find(:all, :conditions => { :favorite => true})
   end
   
   def add_person
+    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @event = Event.find(params[:id])
     person = Person.find_by_name(params[:name_person])
     if person == nil
@@ -35,7 +36,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @people = Person.all
+    @favorites = Person.find(:all, :conditions => { :favorite => true})
     event = Event.find(params[:id])
     event.destroy
     flash[:notice]= "#{event.name}   Deleted"
@@ -43,14 +44,15 @@ class EventsController < ApplicationController
   end
 
   def show
-    @people = Person.all
+    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @events = Event.all
     @event = Event.find params[:id] 
     redirect_to event_path(@event)
   end
+
   def create
     @event = Event.new params[:event]
-
+    @favorites = Person.find(:all, :conditions => { :favorite => true})
     if @event.save
       flash[:notice] = "#{@event.name} was successfully added to your list of events"
       redirect_to event_path(@event)
@@ -61,12 +63,13 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @people = Person.all
+    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @event = Event.find(params[:id])
   end
 
 
   def update
+    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @event = Event.find(params[:id])
     @event.update_attributes!(params[:event])
     flash[:notice] = "#{@event.name} was successfully updated."

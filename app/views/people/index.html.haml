@@ -1,13 +1,21 @@
 %table.main#default
   %thead
     %tr
-      %th{:class => @name_header}=sortable("name")
+      %th{:class => @first_name_header}=sortable("first_name")
+      %th{:class => @last_name_header}=sortable("last_name")
       %th{:class => @progress_header}=sortable("progress")
+      %th{:class => @favorite_header}=sortable("favorite")
   %tbody#scrolling_list
     -@people.each do |person|
       %tr
-        %td= link_to person.name, person_path(person.id)
+        %td= link_to person.first_name, person_path(person.id)
+        %td= link_to person.last_name, person_path(person.id)
         %td
           .mini_progress
             -title = "progress#{person.progress}"
             =render :partial => "/main/#{title}"
+        %td
+          -if person.favorite
+            Yes
+          -else
+            No

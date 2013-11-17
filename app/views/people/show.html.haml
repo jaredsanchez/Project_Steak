@@ -1,9 +1,9 @@
 -# in app/views/people/show.html.haml
-%div{:id => [@person.name.gsub(/\s+/, "")]}
+%div{:id => [@person.first_name+@person.last_name]}
   .info
     .small_link#edit= link_to 'Edit Info', edit_person_path(@person)
     Name:
-    %span#field #{@person.name.gsub(/\s+/, " ")}
+    %span#field #{@person.first_name + ' ' + @person.last_name}
     %br/
     Organization:&nbsp;
     %span#field [From Org Chart]

@@ -4,11 +4,11 @@ ProjectSteak::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   get 'events/add_person/:id', to: 'events#add_person'
-  match 'people/new', to: 'people#new'
-  match 'events/new', to: 'events#new'
-  match 'events/:id', to: 'events#show'
-  match 'people/:id', to: 'people#show'
-  match 'people/:id/edit', to: 'people#edit'
+  #match 'people/new', to: 'people#new'
+  #match 'events/new', to: 'events#new'
+  #get 'events/:id', to: 'events#show'
+  #get 'people/:id', to: 'people#show'
+  #match 'people/:id/edit', to: 'people#edit'
   
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
