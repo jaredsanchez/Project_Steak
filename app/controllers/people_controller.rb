@@ -27,9 +27,21 @@ class PeopleController < ApplicationController
     when "progress"
       case order
       when 'asc'
-	@people.sort! { |a,b| b.progress <=> a.progress}
+        @people.sort! do |a, b| 
+          if (b.progress == a.progress)
+            a.first_name <=> b.first_name
+          else
+            a.progress <=> b.progress
+          end
+        end
       when 'desc'
-        @people.sort! { |a,b| a.progress <=> b.progress}
+        @people.sort! do |a, b| 
+          if (a.progress == b.progress)
+            a.first_name <=> b.first_name
+          else
+            b.progress <=> a.progress
+          end
+        end
       end
     when 'favorite'
       case order
