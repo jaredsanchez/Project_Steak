@@ -1,0 +1,8 @@
+%div#sidebar
+  %ul
+    -@favorites.each do |person|
+      %li
+        =link_to person_path(person.id) do
+          #{person.first_name+" "+person.last_name}
+          .mini_progress
+            =render :partial => "/main/progress#{person.progress}"

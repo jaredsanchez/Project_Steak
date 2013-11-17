@@ -1,0 +1,28 @@
+#nav_container
+  #header
+    %a{href: "/"} Project&nbsp;Steak
+  %nav#navbar
+    %ul
+      %li
+        = link_to 'People', people_path()
+        %ul
+          %li
+            = link_to "Add&nbsp;Person".html_safe, new_person_path
+      %li
+        %a{href: "#"} Initiatives
+        %ul
+          %li
+            %a{href: "#"} All
+          %li
+            %a{href: "#"} Completed
+          %li
+            %a{href: "#"} Imcomplete
+      %li
+        = link_to 'Events', events_path()
+        %ul
+          %li
+            = link_to 'Events', events_path()
+          %li
+            = link_to "Add&nbsp;Event".html_safe, new_event_path
+      %li
+        %a{href: "#"} Logout
