@@ -38,11 +38,10 @@
 
     %div#sidebar
       %ul
-        -@people.each do |person|
-          /-if #{person.favorite}
+        -@favorites.each do |person|
           %li
             =link_to person_path(person.id) do
-              #{person.name}
+              #{person.first_name+" "+person.last_name}
               .mini_progress
                 -title = "progress#{person.progress}"
                 =render :partial => "/main/#{title}"
