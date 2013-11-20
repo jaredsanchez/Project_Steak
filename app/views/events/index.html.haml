@@ -1,5 +1,12 @@
 %h1 Events
-
+- if user_signed_in?
+  Greetings #{current_user.name}
+  [#{link_to "sign out", signout_path}]
+  -#%ul
+  -#  - @calendars.items.each do |calendar|
+  -#    %li= calendar["summary"]
+- else
+  [#{link_to "sign in", signin_path}]
 %table#events
   %thead
     %tr
@@ -16,6 +23,7 @@
           %td= event.event_time
 
 =# link_to 'Back to People Page', people_path
+= link_to 'Update', 
 = link_to 'Add New Event',  new_event_path
 = debug(session)
 = debug(User.all)
