@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131121023743) do
-=======
-ActiveRecord::Schema.define(:version => 20131111034317) do
->>>>>>> Ran omniauth installer w/ google_oauth2
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -25,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20131111034317) do
     t.integer  "people_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "google_id"
   end
 
   create_table "events_people", :force => true do |t|

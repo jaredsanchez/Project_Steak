@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    #puts "New gets called"
     redirect_to '/auth/google_oauth2'
   end
 
@@ -14,12 +15,13 @@ class SessionsController < ApplicationController
     user.save
 
     session[:user_id] = user.id
-    redirect_to root_url, :notice => 'Signed in!'
+    redirect_to events_path, :notice => 'Signed in!'
   end
 
   def destroy
-    reset_session
-    redirect_to root_url, :notice => 'Signed out!'
+    #reset_session
+    session[:user_id] = nil
+    redirect_to events_path, :notice => 'Signed out!'
   end
 
   def failure

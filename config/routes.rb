@@ -35,6 +35,8 @@ ProjectSteak::Application.routes.draw do
   get '/login', :to => 'sessions#new', :as => :login
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure' 
+
+  match '/events/update', :to => 'events#update'
   # Sample resource route with options:
   #   resources :products do
   #     member do
