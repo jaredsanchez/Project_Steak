@@ -4,7 +4,9 @@ class MainController < ApplicationController
         @people = Person.all 
         render 'index'
     else
-        redirect_to signin_path
+        #redirect_to signin_path
+        @people = Person.all 
+        render 'index'
     end
   end
 end
