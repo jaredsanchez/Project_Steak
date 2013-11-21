@@ -1,17 +1,16 @@
 %h1 Add an Event
 
 = form_tag events_path do
-  = label :event, :name, 'Event Name'
-  = text_field :event, 'name'
-
-  = label :event, :description, 'Description'
+  = label :event, :name, 'Event Name' 
+  = text_field :event, 'name' 
+  %br
+  = label :event, :description, 'Description' \
   = text_field :event, 'description'
-
-  = label :event, :where, 'Location'
+  %br
+  = label :event, :where, 'Location' \
   = text_field :event, 'where'
-
-  = label :event, :event_time, 'Event Date'
-  = date_select :event, :event_time
-
+  %br
+  = label :event, :event_time, 'Event Date' \
+  = datetime_select :event, :event_time
+  %br
   = submit_tag 'Add Event'
-

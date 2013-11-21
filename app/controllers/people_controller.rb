@@ -5,6 +5,10 @@ class PeopleController < ApplicationController
     @people = Person.all
   end
 
+  def new
+  	@people = Person.all
+  end
+
 
   def create
     @person = Person.create!(params[:person])

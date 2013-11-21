@@ -16,7 +16,7 @@
             %a{href: "#"} People
             %ul
               %li
-                %a{href: "#", onclick: "showOne('main', 'add_person')"} Add&nbsp;Person
+                %a{href: "/people/new"} Add&nbsp;Person  
           %li
             %a{href: "#"} Initiatives
             %ul
@@ -32,7 +32,7 @@
               %li
                 %a{href: "/events"} Calendar
               %li
-                %a{href: "#"} Add&nbsp;Event
+                %a{href: "/events/new"} Add&nbsp;Event
           %li
             = link_to "Logout", signout_path
 

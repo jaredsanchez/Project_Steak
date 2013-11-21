@@ -1,7 +1,13 @@
-%h1 Events
+%h3 Events
+
 - if user_signed_in?
   Greetings #{current_user.name}
   [#{link_to "sign out", signout_path}]
+  %br
+  -if session[:calendar_id]
+    %iframe{frameborder: "0", height: "300", scrolling: "no", src: "https://www.google.com/calendar/embed?src="+session[:calendar_id]+"&ctz=America/Los_Angeles", style: "border: 0", width: "500"}
+  
+  %br
   -#%ul
   -#  - @calendars.items.each do |calendar|
   -#    %li= calendar["summary"]
@@ -16,14 +22,13 @@
       %th Date 
     %tbody
       -@events.each do |event|
-        %tr
-          %td= link_to "#{event.name}", event_path(event)
-          %td= event.description
-          %td= event.where
-          %td= event.event_time
+        -if event.uid == current_user.uid
+          %tr
+            %td= link_to "#{event.name}", event_path(event)
+            %td= event.description
+            %td= event.where
+            %td= event.event_time
 
 =# link_to 'Back to People Page', people_path
-= link_to 'Update', 
+= button_to 'Update', refresh_path, :method => :get
 = link_to 'Add New Event',  new_event_path
-= debug(session)
-= debug(User.all)

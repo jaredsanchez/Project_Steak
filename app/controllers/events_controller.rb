@@ -30,35 +30,49 @@ class EventsController < ApplicationController
     #end
   end
 
-  def update
+  def refresh
+
+
+
     puts "update called"
     if (user_signed_in? )
       client = ClientBuilder.get_client(current_user)
       service = client.discovered_api('calendar', 'v3')
       result = client.execute(:api_method => service.calendar_list.list)
+
       calendars = result.data
       google_cal_hash = Hash.new
       calendars.items.each { |cal|
-        event = client.execute(:api_method => service.events.list, :parameters => {'calendarId'=> cal.id})
-        cal_events = event.data.items
-        cal_events.each { |curr_event|
-          if !curr_event["id"].nil?
-            google_cal_hash[curr_event["id"]] = curr_event
-          end
-        } 
+        if (cal.summary == "CS169 Project")
+          puts "calid:"
+          puts cal.id
+          session[:calendar_id] = cal.id
+          event = client.execute(:api_method => service.events.list, :parameters => {'calendarId'=> cal.id})
+          cal_events = event.data.items
+          cal_events.each { |curr_event|
+            if !curr_event["id"].nil?
+              google_cal_hash[curr_event["id"]] = curr_event
+            end
+          } 
+        end
       }
-      google_cal_hash.each {|google_id, event| 
+      google_cal_hash.each {|google_id, value| 
         if Event.find_by_google_id(google_id).nil?
-          Event.create!(:name => event["summary"], :google_id => google_id, :where => event["location"], :event_time => event["start"]["dateTime"])
+          Event.create!(:name => value["summary"], :google_id => google_id, :where => value["location"], :event_time => value["start"]["dateTime"], :description => value["description"], :uid => current_user.uid)
         end
       }
     end
+    redirect_to events_path and return
   end
 
   def new 
     @people = Person.all
   end
   
+
+
+
+
   def add_person
     @event = Event.find(params[:id])
     person = Person.find_by_name(params[:name_person])
@@ -76,7 +90,13 @@ class EventsController < ApplicationController
   def destroy
     @people = Person.all
     event = Event.find(params[:id])
+    client = ClientBuilder.get_client(current_user)
+    service = client.discovered_api('calendar', 'v3')
+    result = client.execute(:api_method => service.events.delete, :parameters => {'calendarId' => session[:calendar_id], 'eventId' => event.google_id})
+
     event.destroy
+
+
     flash[:notice]= "#{event.name}   Deleted"
     redirect_to events_path  and return
   end
@@ -90,7 +110,25 @@ class EventsController < ApplicationController
   end
   def create
     @people = Person.all
+
     @event = Event.create!(params[:event])
+    @event.uid = current_user.uid
+    @event.save
+    puts "Event.uid: "
+    puts @event.uid
+    #should eventually include attendees with email
+    attendees = [{"email" => "bob@gmail.com"}]
+    event = {
+      'summary' => @event.name,
+      'location' => @event.where,
+      'start' => {'dateTime' => @event.event_time.to_datetime.rfc3339},
+      'end' => {'dateTime' => @event.event_time.to_datetime.rfc3339},
+      'attendees' => attendees
+    }
+    client = ClientBuilder.get_client(current_user)
+    service = client.discovered_api('calendar', 'v3')
+
+    result = client.execute(:api_method => service.events.insert, :parameters => {'calendarId' => session[:calendar_id]}, :body => JSON.dump(event),   :headers => {'Content-Type' => 'application/json'})
     flash[:notice] = "#{@event.name} was successfully added"
     redirect_to "/events" and return
   end
