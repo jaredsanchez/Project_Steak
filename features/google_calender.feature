@@ -4,8 +4,9 @@ Feature: Access Google Calender
   I want to be able to see my Google Calender in the Application
 
   Background: Start on the home page
-    Given I am on the home page
-    And I have signed in with Google
+    Given I am on the events page
+    And I follow "sign in"
+    Then I should be on the events page
     Given the following Google events exist:
       |title | where |
       |Dinner|Top Dog|

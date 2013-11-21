@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20131121023743) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "google_id"
+    t.string   "uid"
   end
 
   create_table "events_people", :force => true do |t|

@@ -15,6 +15,10 @@
       %br/
       = label :person, :favorite, 'Favorite'
       &nbsp;&nbsp;
+      %br/
+      %br/
+      = label :person, :email, 'Email'
+      &nbsp;&nbsp;
     .rightform
       = text_field :person, 'first_name'
       %br/
@@ -26,6 +30,9 @@
       %br/
       %br/
       = check_box :person, 'favorite' 
+      %br/
+      %br/
+      = text_field :person, 'email'
       %br/
       %br/
       = submit_tag 'Add'
