@@ -59,15 +59,3 @@ Scenario: sort the people by progress ascending order
   When I follow "Progress"
   Then I should see the following people in this order: 'John', 'Jeff', 'Wesley', 'Rey', 'Andy', 'Jared'
 
-
-Scenario: sort the people by favorite descending order
-  When I follow "People"
-  When I follow "Favorite"
-  When I follow "Favorite"
-  Then I should see the following people in this order: 'Jeff', 'John', 'Rey', 'Andy', 'Jared', 'Wesley'
-
-
-Scenario: sort the people by favorite ascending order
-  When I follow "People"
-  When I follow "Favorite"
-  Then I should see the following people in this order: 'Andy', 'Jared', 'Wesley', 'Jeff', 'John', 'Rey'

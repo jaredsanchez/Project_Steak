@@ -1,8 +1,8 @@
 class PeopleController < ApplicationController
 
-  before_filter :init_favorites
+  before_filter :init_vars
 
-  def init_favorites
+  def init_vars
     @favorites = Person.find(:all, :conditions => { :favorite => true})
   end
   def new
@@ -17,27 +17,39 @@ class PeopleController < ApplicationController
       case order
       when 'asc'
         @people.sort! do |a, b| 
-          if (b.progress == a.progress)
+          if (b.send(sort) == a.send(sort))
             a.first_name <=> b.first_name
           else
-            a.progress <=> b.progress
+            a.send(sort) <=> b.send(sort)
           end
         end
       when 'desc'
         @people.sort! do |a, b| 
-          if (a.progress == b.progress)
+          if (a.send(sort) == b.send(sort))
             a.first_name <=> b.first_name
           else
-            b.progress <=> a.progress
+            b.send(sort) <=> a.send(sort)
           end
         end
       end
     else
       case order
       when 'asc'
-        @people.sort! {|a,b| a.send(sort)<=> b.send(sort)}
+        @people.sort! {|a,b| 
+	  if a.send(sort) == b.send(sort)
+	    a.last_name <=> b.last_name
+	  else
+	    a.send(sort)<=> b.send(sort)
+	  end
+	}
       when 'desc'
-        @people.sort! {|a,b| b.send(sort)<=>a.send(sort)}
+        @people.sort! {|a,b| 
+	  if b.send(sort) == a.send(sort)
+	    a.last_name <=> b.last_name
+	  else
+	    b.send(sort)<=> a.send(sort)
+	  end
+	}
       end
     end
   end
