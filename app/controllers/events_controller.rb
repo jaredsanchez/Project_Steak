@@ -1,27 +1,30 @@
 class EventsController < ApplicationController
 
-  def index
+  before_filter :init_vars
+
+  def init_vars
     @favorites = Person.find(:all, :conditions => { :favorite => true})
+  end
+
+
+  def index
     @events = Event.all
     sort = params[:sort] || session[:sort]
     order = params[:order] || session[:order]
-    case sort
-    when 'name'
+    if sort == 'name'
       case order
       when 'asc'
-        @events.sort! {|a,b| a.name<=> b.name}
+        @events.sort! {|a,b| a.send(sort)<=> b.send(sort)}
       when 'desc'
-        @events.sort! {|a,b| b.name<=>a.name}
+        @events.sort! {|a,b| b.send(sort)<=>a.send(sort)}
       end
     end
   end
 
   def new 
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
   end
   
   def add_person
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @event = Event.find(params[:id])
     person = Person.find_by_name(params[:name_person])
     if person == nil
@@ -36,7 +39,6 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     event = Event.find(params[:id])
     event.destroy
     flash[:notice]= "#{event.name}   Deleted"
@@ -44,7 +46,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @events = Event.all
     @event = Event.find params[:id] 
     redirect_to event_path(@event)
@@ -52,7 +53,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new params[:event]
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     if @event.save
       flash[:notice] = "#{@event.name} was successfully added to your list of events"
       redirect_to event_path(@event)
@@ -63,13 +63,11 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @event = Event.find(params[:id])
   end
 
 
   def update
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @event = Event.find(params[:id])
     @event.update_attributes!(params[:event])
     flash[:notice] = "#{@event.name} was successfully updated."
