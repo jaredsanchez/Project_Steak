@@ -1,29 +1,18 @@
 class PeopleController < ApplicationController
 
-  def new
+  before_filter :init_favorites
+
+  def init_favorites
     @favorites = Person.find(:all, :conditions => { :favorite => true})
+  end
+  def new
   end
 
   def index
-    @people = Person.all.sort! {|a,b| a.first_name<=> b.first_name}
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
+    @people = Person.all.sort! {|a,b| a.last_name <=> b.last_name}
     sort = params[:sort] || session[:sort]
     order = params[:order] || session[:order]
     case sort
-    when 'last_name'
-      case order
-      when 'asc'
-        @people.sort! {|a,b| a.last_name<=> b.last_name}
-      when 'desc'
-        @people.sort! {|a,b| b.last_name<=>a.last_name}
-      end
-    when 'first_name'
-      case order
-      when 'asc'
-        @people.sort! {|a,b| a.first_name<=> b.first_name}
-      when 'desc'
-        @people.sort! {|a,b| b.first_name<=>a.first_name}
-      end
     when "progress"
       case order
       when 'asc'
@@ -43,40 +32,22 @@ class PeopleController < ApplicationController
           end
         end
       end
-    when 'favorite'
+    else
       case order
       when 'asc'
-        @people.sort! do |a, b| 
-          if (a.favorite == b.favorite)
-            a.first_name <=> b.first_name
-          elsif a.favorite
-            1
-          else
-            -1
-          end
-        end
+        @people.sort! {|a,b| a.send(sort)<=> b.send(sort)}
       when 'desc'
-         @people.sort! do |a, b| 
-          if (b.favorite == a.favorite)
-            a.first_name <=> b.first_name
-          elsif b.favorite
-            1
-          else
-            -1
-          end
-        end
+        @people.sort! {|a,b| b.send(sort)<=>a.send(sort)}
       end
     end
   end
 
   def show
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @person = Person.find params[:id] 
   end
 
   def create
     @person = Person.new params[:person]
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     if @person.save
       flash[:notice] = "#{@person.first_name} was successfully added to your list of stake holders"
       redirect_to person_path(@person)
@@ -86,14 +57,16 @@ class PeopleController < ApplicationController
   end
 
   def edit
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
+    @person = Person.find params[:id]
+  end
+
+  def update
     @person = Person.find params[:id]
     @person.update_attributes!(params[:person])
     flash[:notice] = "#{@person.name} was successfully updated."
   end
 
   def destroy
-    @favorites = Person.find(:all, :conditions => { :favorite => true})
     @person = Person.find(params[:id])
     @person.destroy
     flash[:notice] = "'#{@person.first_name}' deleted."
