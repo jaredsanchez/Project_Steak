@@ -38,7 +38,10 @@ ActiveRecord::Schema.define(:version => 20131121023743) do
 
   create_table "people", :force => true do |t|
     t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.integer  "progress"
+    t.boolean  "favorite"
     t.integer  "events_id"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false

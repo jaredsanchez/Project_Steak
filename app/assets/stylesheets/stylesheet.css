@@ -1,3 +1,8 @@
+/*=================================
+       Overall page styling
+
+          IGNORE THESE
+=================================*/
 body{
 	background: #efefef;
 	background: linear-gradient(bottom, #efefef 0%, #fefefe 100%);  
@@ -6,14 +11,6 @@ body{
 	background-image:url(/assets/bg.jpg);
 	overflow-x:hidden;
 	font-family: 'Helvetica Neue', helvetica, 'microsoft sans serif', arial, sans-serif;
-}
-.thumb {
-	width:100px;
-	height:100px;
-	border-radius:10px;
-}
-#default{
-	display:block;
 }
 #nav_container{
 	display: block;
@@ -56,7 +53,142 @@ body{
 	background: -moz-linear-gradient(left, #1f2f3f 0%, #5f6f7f 100%);
 	background: -webkit-linear-gradient(left, #1f2f3f 0%,#5f6f7f 100%);
 }
+#hello {
+	font-size:2em;
+	padding:10%;
+	text-align:center;
+	border-radius:10px;
+	vertical-align:top;
+	width:45%;
+	margin-top:3%;
+	background: #bfc5cf;
+	background: linear-gradient(top, #efefef 0%, #bfc5cf 100%);  
+	background: -moz-linear-gradient(top, #efefef 0%, #bfc5cf 100%); 
+	background: -webkit-linear-gradient(top, #efefef 0%,#bfc5cf 100%); 
+	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+}
+#body {
+	padding-top:0;
+	padding-left:2%;
+	display: block;
+	vertical-align: top; 
+	padding-top:3%;
+	height: 570px;
+	margin-left:450px;
+}
+input{
+	border-radius:5px;
+}
 
+/*===============================
+  Miscellaneous styling classes
+
+     ==>  USE THESE  <==
+
+.thumb => thumbnail images
+.icon => very small icons
+.small_link => delete, edit links...
+.info => infobox for events/people
+.leftform => left side of a form with fields
+.rightform => right side with inputs
+.button => submit buttons
+.list_table => display all objects in a list (People, events...)
+.popup => informational popup
+
+     USE THESE CLASSES AS-IS!
+    DO NOT MODIFY THEM AT RISK
+  OF BREAKING OTHER DEPENDENCIES
+===============================*/
+
+.thumb {
+	width:100px;
+	height:100px;
+	border-radius:10px;
+}
+.icon{
+	width:1em;
+	height:1em;
+}
+.small_link {
+	float:right;
+	text-decoration:none;
+	color:#353535;
+	font-size:75%;
+}
+.info{
+	width:70%;
+	padding:1%;
+	border-radius:10px;
+	vertical-align:top;
+	background: #bfc5cf;
+	background: linear-gradient(top, #efefef 0%, #bfc5cf 100%);  
+	background: -moz-linear-gradient(top, #efefef 0%, #bfc5cf 100%); 
+	background: -webkit-linear-gradient(top, #efefef 0%,#bfc5cf 100%); 
+	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+        color:#353535;
+	font-size:0.8em;
+}
+.leftform{
+	float:left;
+	text-align:right;
+}
+.rightform{
+	float:left;
+}
+
+.button{
+	background: #cfdfdf;
+	background: linear-gradient(left, #9ba4b1 0%, #cfdfdf 100%);  
+	background: -moz-linear-gradient(left, #9ba4b1 0%, #cfdfdf 100%); 
+	background: -webkit-linear-gradient(left, #9ba4b1 0%,#cfdfdf 100%); 
+	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
+}
+.list_table{
+	box-shadow: 0px 0px 9px #4b545f;
+	background: #bfc5cf;
+	background: linear-gradient(right, #9ba4b1 0%, #dfdfdf 100%);  
+	background: -moz-linear-gradient(right, #9ba4b1 0%, #dfdfdf 100%); 
+	background: -webkit-linear-gradient(right, #9ba4b1 0%,#dfdfdf 100%); 
+	border-radius:10px;
+	color:#454545;
+}
+.popup{
+	text-overflow:ellipsis;
+}
+/*=================================
+          Dependencies
+
+          IGNORE THESE
+=================================*/
+.list_table th{
+	text-decoration:underline;
+	padding:1px 5px 1px 5px;
+}
+.list_table td{
+	padding:1px 5px 1px 5px;
+}
+.list_table a{
+	text-decoration:none;
+	color:#454545;
+}
+.list_table a:hover{
+	color:#6e7e8e; 
+}
+.list_table .progress_header{
+	width:150px;
+}
+
+.small_link:hover {
+	color:#9ba4b1;
+}
+.info span{
+	font-size:1.25em;
+	display:inline;
+}
+
+/*=================================
+             Navbar
+=================================*/
 #navbar {
 	display: inline-block;
 }
@@ -123,6 +255,10 @@ body{
 #navbar ul ul li a:hover {
 	background: #4b545f;
 }
+
+/*=================================
+             Sidebar
+=================================*/
 #sidebar {
 	margin-left:200px;
 	margin-top:2%;
@@ -191,58 +327,9 @@ body{
 	text-decoration: none;
 	text-overflow:ellipsis;
 }
-
-#body {
-	padding-top:0;
-	padding-left:2%;
-	display: block;
-	vertical-align: top; 
-	padding-top:3%;
-	height: 570px;
-	margin-left:450px;
-}
-
-#scrolling_list{
-	overflow-y:scroll;
-}
-.small_link {
-	float:right;
-	text-decoration:none;
-	color:#353535;
-	font-size:75%;
-}
-
-.edit:hover {
-	color:#9ba4b1;
-}
-
-.info{
-	width:70%;
-	padding:1%;
-	border-radius:10px;
-	vertical-align:top;
-	background: #bfc5cf;
-	background: linear-gradient(top, #efefef 0%, #bfc5cf 100%);  
-	background: -moz-linear-gradient(top, #efefef 0%, #bfc5cf 100%); 
-	background: -webkit-linear-gradient(top, #efefef 0%,#bfc5cf 100%); 
-	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
-        color:#353535;
-	font-size:0.8em;
-}
-
-.info span{
-	font-size:1.25em;
-	display:inline;
-}
-
-.main{
-	display:none;
-}
-
-.popup{
-	text-overflow:ellipsis;
-}
-
+/*=================================
+       Popup Dependencies
+=================================*/
 .popup ul li{
 	width:100%;
 	border-radius: 10px;  
@@ -299,41 +386,9 @@ body{
 	position:absolute;
 }
 
-
-#hello {
-	font-size:2em;
-	padding:10%;
-	text-align:center;
-	border-radius:10px;
-	vertical-align:top;
-	width:45%;
-	margin-top:3%;
-	background: #bfc5cf;
-	background: linear-gradient(top, #efefef 0%, #bfc5cf 100%);  
-	background: -moz-linear-gradient(top, #efefef 0%, #bfc5cf 100%); 
-	background: -webkit-linear-gradient(top, #efefef 0%,#bfc5cf 100%); 
-	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
-}
-
-input{
-	border-radius:5px;
-}
-
-#leftform{
-	float:left;
-	text-align:right;
-}
-#rightform{
-	float:left;
-}
-.button{
-	background: #cfdfdf;
-	background: linear-gradient(left, #9ba4b1 0%, #cfdfdf 100%);  
-	background: -moz-linear-gradient(left, #9ba4b1 0%, #cfdfdf 100%); 
-	background: -webkit-linear-gradient(left, #9ba4b1 0%,#cfdfdf 100%); 
-	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
-}
-
+/*=================================
+          Progress Bars
+=================================*/
 .mini_progress{
 	width:90%;
 	margin:0 auto 5px auto;

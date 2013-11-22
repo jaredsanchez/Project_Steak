@@ -1,6 +1,4 @@
-%h1 Events
-
-%table#events
+%table.list_table
   %thead
     %tr
       %th{:class => @name_header}=sortable("name")
@@ -14,5 +12,3 @@
           %td= event.description
           %td= event.where
           %td= event.event_time
-
-= link_to 'Add New Event',  new_event_path

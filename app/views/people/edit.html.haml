@@ -1,7 +1,6 @@
-#add_person.main#default
-  
+#edit_person.main#default
   = form_tag people_path(@person), :method => :put do
-    #leftform
+    .leftform
       %br/
       = label :person, :first_name, 'First Name'
       &nbsp;&nbsp;
@@ -17,7 +16,7 @@
       %br/
       = label :person, :favorite, 'Favorite'
       &nbsp;&nbsp;
-    #rightform
+    .rightform
       .small_link#delete= link_to 'Delete Person', people_path(@person), :method => :delete, :confirm => 'Are you sure?'
       %br/
       = text_field :person, 'first_name'
@@ -26,7 +25,7 @@
       = text_field :person, 'last_name'
       %br/
       %br/
-      = text_field :person, 'progress'
+      = select :person, 'progress', [['None', '0'], ['Aware', '1'], ['Interested', '2'], ['Trying', '3'], ['Adopted', '4']]
       %br/
       %br/
       = check_box :person, 'favorite' 
