@@ -41,11 +41,9 @@ class SessionsController < ApplicationController
   end
 
   def find_linkedin_connections(auth)
-    #temp_user = User.create_with_omniauth(auth)
-    #temp_user.token = auth[:credentials][:token]
-    
     temp_client = LinkedIn::Client.new(ENV['LINKEDIN_KEY'],ENV['LINKEDIN_SECRET'])
-    temp_client.authorize_from_access(auth[:credentials][:token], auth[:credentials][:secret])
+    # fix so ACCESSS_TOKEN and ACCESS_SECRET don't need to be hard coded in
+    temp_client.authorize_from_access('ACCESSS_TOKEN', 'ACCESS_SECRET')
     xml_doc = Nokogiri::XML(temp_client.connections.to_xml)
     first_names = xml_doc.xpath('//first-name')
     last_names = xml_doc.xpath('//last-name')
