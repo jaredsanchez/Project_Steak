@@ -1,4 +1,30 @@
+require 'nokogiri'
+
 class Person < ActiveRecord::Base
-	has_and_belongs_to_many :events
-	attr_accessible :name, :progress
+    extend ApplicationHelper
+	
+    has_and_belongs_to_many :events
+	attr_accessible :name, :progress, :active
+
+    def self.processPeople(org_unit)
+        uri = "https://apis.berkeley.edu/calnet/person?searchFilter" +
+          "=(departmentNumber=" + org_unit['org_node'] + ")&attributesToReturn=berkeleyEduFirstName,berkeleyEduLastName" +
+          #"=(departmentNumber=" + "EH1EO" + ")&attributesToReturn=displayname" +  
+          "&app_id=" + ENV['CAL_NET_ID'] + "&app_key=" + ENV['CAL_NET_KEY']
+        doc = getXML(uri)
+        doc.xpath('//person').map do |person|
+          first_name = person.xpath('berkeleyedufirstname').inner_text.split(" ").first.capitalize
+          last_name = person.xpath('berkeleyedulastname').inner_text.capitalize
+          updated_person = Person.find_or_initialize_by_first_name_and_last_name(first_name, last_name)
+          new_person = Hash.new
+          new_person['name'] = name
+          new_person['progress'] = 1
+          new_person['active'] = true
+          updated_person.update_attributes(new_person)
+        end
+    end
+
+    def self.deactivateAllPeople()
+        self.update_all "active = 'false'"
+    end
 end

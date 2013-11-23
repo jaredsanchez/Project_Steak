@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131108235005) do
+ActiveRecord::Schema.define(:version => 20131121023743) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -28,12 +28,23 @@ ActiveRecord::Schema.define(:version => 20131108235005) do
     t.integer "person_id"
   end
 
+  create_table "org_units", :force => true do |t|
+    t.string   "org_node"
+    t.string   "org_node_description"
+    t.integer  "level"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
   create_table "people", :force => true do |t|
     t.string   "name"
     t.integer  "progress"
     t.integer  "events_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "last_name"
+    t.string   "first_name"
+    t.boolean  "active",     :default => false
   end
 
 end
