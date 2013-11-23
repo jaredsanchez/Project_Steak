@@ -63,3 +63,5 @@ gem 'google_oauth_calendar' , :git => 'git@github.com:deafgreatdane/google_oauth
 gem "omniauth", ">= 1.0.3"
 gem "omniauth-google-oauth2"
 gem "google-api-client"
+gem "omniauth-linkedin-oauth2"
+gem "linkedin"

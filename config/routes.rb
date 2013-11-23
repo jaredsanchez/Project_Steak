@@ -28,6 +28,8 @@ ProjectSteak::Application.routes.draw do
 
   match '/signin' => 'sessions#new', :as => :signin
 
+  match '/linkedin_signin' => 'sessions#new_linkedin', :as => :linkedin_signin
+
   match '/auth/:provider/callback' => 'sessions#create'
 
   get "sessions/new"
