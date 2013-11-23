@@ -1,1 +1,11 @@
-= button_to 'Find LinkedIn Connections', linkedin_signin_path
+%table
+  %thead
+    %tr
+      %th "Name
+      %th "Connection?"
+  %tbody
+    -@people.each do |person|
+      %tr
+        %td= person.name
+        %td= person.is_linkedin_connection
+= button_to 'Find LinkedIn Connections', linkedin_signin_path 
