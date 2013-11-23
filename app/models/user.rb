@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
       end
     end
   end
-  attr_accessible :email, :name, :provider, :refresh_token, :token, :token_expires_at, :uid
+  attr_accessible :email, :name, :provider, :refresh_token, :token, :token_expires_at, :uid, :secret
 end
