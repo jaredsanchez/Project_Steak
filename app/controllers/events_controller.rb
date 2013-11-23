@@ -32,9 +32,6 @@ class EventsController < ApplicationController
 
   def refresh
 
-
-
-    puts "update called"
     if (user_signed_in? )
       client = ClientBuilder.get_client(current_user)
       service = client.discovered_api('calendar', 'v3')
@@ -44,8 +41,7 @@ class EventsController < ApplicationController
       google_cal_hash = Hash.new
       calendars.items.each { |cal|
         if (cal.summary == "CS169 Project")
-          puts "calid:"
-          puts cal.id
+
           session[:calendar_id] = cal.id
           event = client.execute(:api_method => service.events.list, :parameters => {'calendarId'=> cal.id})
           cal_events = event.data.items
@@ -57,8 +53,11 @@ class EventsController < ApplicationController
         end
       }
       google_cal_hash.each {|google_id, value| 
+        puts value["summary"]
         if Event.find_by_google_id(google_id).nil?
-          Event.create!(:name => value["summary"], :google_id => google_id, :where => value["location"], :event_time => value["start"]["dateTime"], :description => value["description"], :uid => current_user.uid)
+          newevent = Event.create!(:name => value["summary"], :google_id => google_id, :where => value["location"], :event_time => value["start"]["dateTime"], :description => value["description"], :uid => current_user.uid)
+          puts "newevent"
+          puts newevent
         end
       }
     end
@@ -114,8 +113,7 @@ class EventsController < ApplicationController
     @event = Event.create!(params[:event])
     @event.uid = current_user.uid
     @event.save
-    puts "Event.uid: "
-    puts @event.uid
+
     #should eventually include attendees with email
     attendees = [{"email" => "bob@gmail.com"}]
     event = {

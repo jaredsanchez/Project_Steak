@@ -22,12 +22,13 @@
       %th Date 
     %tbody
       -@events.each do |event|
-        -if event.uid == current_user.uid
-          %tr
-            %td= link_to "#{event.name}", event_path(event)
-            %td= event.description
-            %td= event.where
-            %td= event.event_time
+        - if user_signed_in?
+          -if event.uid == current_user.uid
+            %tr
+              %td= link_to "#{event.name}", event_path(event)
+              %td= event.description
+              %td= event.where
+              %td= event.event_time
 
 =# link_to 'Back to People Page', people_path
 = button_to 'Update', refresh_path, :method => :get
