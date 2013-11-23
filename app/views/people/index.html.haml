@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 %table.list_table
   %thead
     %tr
@@ -12,10 +13,9 @@
         %td
           -if person.favorite
             =image_tag "favorites.png", :class => "icon"
-        /
-        /  %td
-        /    -if person.linkedin
-        /      =image_tag "linkedin.png", :class => 'icon'
+        %td
+          -if person.is_linkedin_connection
+            =image_tag "linkedin.png", :class => 'icon'
         %td= link_to person.first_name, person_path(person.id)
         %td= link_to person.last_name, person_path(person.id)
         %td

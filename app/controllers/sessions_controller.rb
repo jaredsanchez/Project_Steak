@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   require 'nokogiri'
-  require 'client_builder'
   require 'linkedin'
 
   def new
@@ -44,24 +43,30 @@ class SessionsController < ApplicationController
   def find_linkedin_connections(auth)
     #temp_user = User.create_with_omniauth(auth)
     #temp_user.token = auth[:credentials][:token]
-    #temp_client = LinkedIn::Client.new
-    #temp_client.authorize_from_access(auth[:credentials][:token], auth[:credentials][:secret])
-    #connections = temp_client.connections
-    client = OAuth2::Client.new(
-            ENV['LINKEDIN_KEY'], ENV['LINKEDIN_SECRET'],
-                    :site => "https://www.linkedin.com",
-                    :token_url => "/uas/oauth2/accessToken",
-                    :authorize_url => "/uas/oauth2/authorization?resopse_type=code")
-    connections = client.connections
+    
+    temp_client = LinkedIn::Client.new(ENV['LINKEDIN_KEY'],ENV['LINKEDIN_SECRET'])
+    temp_client.authorize_from_access(auth[:credentials][:token], auth[:credentials][:secret])
+    xml_doc = Nokogiri::XML(temp_client.connections.to_xml)
+    first_names = xml_doc.xpath('//first-name')
+    last_names = xml_doc.xpath('//last-name')
+    connections = first_names.zip(last_names)
+    connections.each do |connection|
+      first_name = connection[0].text
+      last_name = connection[1].text
+      full_name = first_name + ' ' + last_name
+      match = Person.find_by_name(full_name)
+      if match
+        match.is_linkedin_connection = true
+      end
+    end
+    redirect_to people_path and return
+    
+    #client = OAuth2::Client.new(
+     #       ENV['LINKEDIN_KEY']ENV['LINKEDIN_KEY'],
+      #              :site => "https://www.linkedin.com",
+       #             :token_url => "/uas/oauth2/accessToken",
+        #            :authorize_url => "/uas/oauth2/authorization?resopse_type=code")
+    #token = auth['credentials']['token']
 
-    #xml_doc = Nokogiri::XML(auth['info']['connections'])
-    #first_names = xml_doc.xpath('//first-name')
-    #last_names = xml_doc.xpath('//last-name')
-    #connections = first_names.zip(last_names)
-    #connections.each do |connection|
-      #connection.text
-      #redirect_to events_path and return
-    #end
-    #redirect_to people_path and return
   end
 end

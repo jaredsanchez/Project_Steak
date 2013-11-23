@@ -50,18 +50,8 @@ ActiveRecord::Schema.define(:version => 20131121023743) do
     t.string   "last_name"
     t.string   "first_name"
     t.boolean  "active",     :default => false
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
     t.string   "email"
-    t.string   "token"
-    t.string   "refresh_token"
-    t.datetime "token_expires_at"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.boolean  "is_linkedin_connection"
   end
 
   create_table "users", :force => true do |t|
