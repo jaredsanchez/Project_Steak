@@ -3,12 +3,12 @@
     %a{href: "/"} Project&nbsp;Steak
   %nav#navbar
     %ul
-      %li
+      %li#People
         = link_to 'People', people_path()
         %ul
           %li
             = link_to "Add&nbsp;Person".html_safe, new_person_path
-      %li
+      %li#Initiatives
         %a{href: "#"} Initiatives
         %ul
           %li
@@ -17,7 +17,7 @@
             %a{href: "#"} Completed
           %li
             %a{href: "#"} Imcomplete
-      %li
+      %li#Events
         = link_to 'Events', events_path()
         %ul
           %li

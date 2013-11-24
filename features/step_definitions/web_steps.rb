@@ -65,6 +65,14 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 
+When /^(?:|I )hover over "([^"]*)"$/ do |value|
+  find('li', :text => value).native.hover
+end
+
+When /^(?:|I )select "([^"]*)" from the "([^"]*)" dropdown menu$/ do |option, menu|
+  select(option, :from => menu)
+end
+
 # Use this to fill in an entire form with data from a table. Example:
 #
 #   When I fill in the following:
