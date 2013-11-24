@@ -51,11 +51,11 @@ Scenario: sort the people by progress descending order
   When I follow "People"
   When I follow "Progress"
   When I follow "Progress"
-  Then I should see the following people in this order: 'Andy', 'Jared', 'Rey', 'Jeff', 'Wesley', 'John'
+  Then I should see the following people in this order: 'Jared', 'Andy', 'Rey', 'Wesley', 'Jeff', 'John'
 
 
 Scenario: sort the people by progress ascending order
   When I follow "People"
   When I follow "Progress"
-  Then I should see the following people in this order: 'John', 'Jeff', 'Wesley', 'Rey', 'Andy', 'Jared'
+  Then I should see the following people in this order: 'John', 'Wesley', 'Jeff', 'Rey', 'Jared', 'Andy'
 

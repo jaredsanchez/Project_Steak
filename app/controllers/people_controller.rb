@@ -9,22 +9,23 @@ class PeopleController < ApplicationController
   def new
   end
 
-  def index
-    @people = Person.all.sort! {|a,b| a.last_name <=> b.last_name}  
+  def index  
     sort = params[:sort] || session[:sort]
     order = params[:order] || session[:order]
     if sort
-      @people.sort! { |a,b|
+      @people = Person.all.sort! { |a,b|
         r1 = a.send(sort)
         r2 = b.send(sort)
         if r1 == r2
           a.last_name <=> b.last_name
         elsif order == 'asc'
 	  r1<=>r2
-        elsif order = 'desc'
+        elsif order == 'desc'
 	  r2<=>r1
         end
-      }      
+      }    
+    else
+      @people = Person.all.sort! {|a,b| a.last_name <=> b.last_name}
     end
   end
 

@@ -1,27 +1,29 @@
-Feature: add a new person involved in an intiative
+Feature: add a new person to the database
  
   As a user
   So that I can track who is part of an initiative
-  I want to add a new person to the list of people involved in the initiative
+  I want to add a new person to the list of people in the app
 
 Background: Start on the home page
   
   Given the following people exist:
-  | name          | progress |
-  | John Gunnison | 1        |
-  | Jeff Zayas    | 2        |
-  | Rey Blume     | 3        |
-  | Jared Sanchez | 4        |
-  | Wesley To     | 2        |
-  | Andy Smith    | 4        |
+  | first_name    | last_name | progress | favorite |
+  | John          | Gunnison  | 1        | true     |
+  | Jeff          | Zayas     | 2        | true     |
+  | Rey           | Blume     | 3        | true     |
+  | Jared         | Sanchez   | 4        | false    |
+  | Wesley        | To        | 2        | false    |
+  | Andy          | Smith     | 4        | false    |
 
   And I am on the StakeHolder Mapping home page
 
-Scenario: add a new person to the intitiative
+Scenario: add a new person to the database
   Then I should not see "James Bond"
-  When I follow "Add Person"
-  When I fill in "Name" with "James Bond"
-  When I fill in "Progress" with "3"
+  When I hover over "People"
+  And I follow "Add Person"
+  And I fill in "First Name" with "James"
+  And I fill in "Last Name" with "Bond"
+  And I select "Aware" from the "Progress" dropdown menu
   When I press "Add"
-  Then I should be on the home page
+  Then I should be on the People page
   Then I should see "James Bond"
