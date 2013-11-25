@@ -39,7 +39,7 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new params[:person]
     if @person.save
-      flash[:notice] = "#{@person.first_name} was successfully added to your list of stake holders"
+      flash[:notice] = "#{@person.first_name} was successfully added to your list of stakeholders"
       redirect_to person_path(@person)
     else
       render :new
@@ -53,7 +53,7 @@ class PeopleController < ApplicationController
   def update
     @person = Person.find(params[:id])
     @person.update_attributes!(params[:person])
-    flash[:notice] = "#{@person.name} was successfully updated."
+    flash[:notice] = "#{@person.first_name} was successfully updated."
     redirect_to person_path(@person)
   end
 
