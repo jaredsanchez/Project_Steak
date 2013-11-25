@@ -73,8 +73,17 @@ When /^(?:|I )select "([^"]*)" from the "([^"]*)" dropdown menu$/ do |option, me
   select(option, :from => menu)
 end
 
-Then /^(?:|I )should be redirected to the "([^"]*)" page$/ do |person|
+Then /^(?:|I )should be redirected to the person page for "(.*)"$/ do |person|
   assert current_path.should =~ /\/people\/\d*/
+  if page.respond_to? :should
+    page.should have_content(person)
+  else
+    assert page.has_content?(person)
+  end
+end
+
+Then /^(?:|I )should be redirected to the event page for "(.*)"$/ do |person|
+  assert current_path.should =~ /\/events\/\d*/
   if page.respond_to? :should
     page.should have_content(person)
   else

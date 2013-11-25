@@ -17,6 +17,7 @@ Background: Start on the home page
 
   And I am on the events page
 
+@javascript
 Scenario: add a new event
   Then I should not see "Stakeholder Dinner"
   When I hover over "Events"
@@ -25,6 +26,8 @@ Scenario: add a new event
   When I fill in "Name" with "Stakeholder Dinner"
   When I fill in "Description" with "A dinner for stake holders"
   When I fill in "Location" with "Cheeseboard"
-  When I press "Add Event"
-  Then I should be on the events page
+  When I press "Add"
+  Then I should be redirected to the event page for "Stakeholder Dinner"
+  When I follow "Events"
+  Then I should see "Stakeholder Dinner" in the main page body
 

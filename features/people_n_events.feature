@@ -6,10 +6,10 @@ Feature: add people to events
 Background:
   Given I am on the events page
   And I follow "Add Event"
-  And I fill in "Event Name" with "Stakeholder Dinner"
+  And I fill in "Name" with "Stakeholder Dinner"
   And I fill in "Description" with "Discussion about the API"
   And I fill in "Location" with "Cory"
-  And I press "Add Event"
+  And I press "Add"
   Then I should be on the events page
   And I should see "Stakeholder Dinner"
 
