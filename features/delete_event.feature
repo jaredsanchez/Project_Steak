@@ -15,7 +15,8 @@ Background: Start on the home page
 @javascript
 Scenario: delete an event from the database
   When I follow "Events"
-  Then I should see "Cocktail Party"
+  Then I should be on the events page
+  And I should see "Cocktail Party"
   When I follow "Cocktail Party"
   And I follow "Edit Info"
   And I follow "Delete Event"

@@ -27,6 +27,5 @@ Scenario: add a new event
   And I fill in "Description" with "A dinner for stake holders"
   And I fill in "Location" with "Cheeseboard"
   And I press "Add"
-  And I follow "Events"
   Then I should see "Stakeholder Dinner" in the main page body
 

@@ -109,6 +109,14 @@ input{
 	width:1em;
 	height:1em;
 }
+.medium_icon{
+	width:2em;
+	height:2em;
+}
+.refresh_button{
+	text-decoration:none;
+	color:#454545;
+}
 .small_link {
 	float:right;
 	text-decoration:none;
@@ -160,6 +168,12 @@ input{
 
           IGNORE THESE
 =================================*/
+.refresh_button img{
+	vertical-align:middle;
+}
+.refresh_button a:hover{
+	color:#6e7e8e;
+}
 .list_table th{
 	text-decoration:underline;
 	padding:1px 5px 1px 5px;
@@ -205,6 +219,7 @@ input{
 	display: inline-table;
 }
 #navbar ul li {
+	width:200px;
 	float: left;
 	position:relative;
 }
@@ -254,6 +269,15 @@ input{
 }
 #navbar ul ul li a:hover {
 	background: #4b545f;
+}
+#navbar #sign_out{
+	display:none;
+}
+#navbar #log_button:hover #curr_user{
+	display:none;
+}
+#navbar #log_button:hover #sign_out{
+	display:block;
 }
 
 /*=================================

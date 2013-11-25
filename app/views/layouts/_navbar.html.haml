@@ -8,6 +8,8 @@
         %ul
           %li
             = link_to "Add Person", new_person_path
+          %li
+            = link_to 'Find LinkedIn Connections', linkedin_signin_path
       %li#Initiatives
         %a{href: "#"} Initiatives
         %ul
@@ -22,5 +24,9 @@
         %ul
           %li
             = link_to "Add Event", new_event_path
-      %li
-        = link_to "Logout", signout_path
+      %li#log_button
+        - if user_signed_in?
+          =link_to "#{current_user.name}", signout_path, :id => 'curr_user'
+          =link_to "Sign Out", signout_path, :id => 'sign_out'
+        - else
+          =link_to "Sign In", signin_path
