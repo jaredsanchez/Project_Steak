@@ -26,7 +26,7 @@ class Person < ActiveRecord::Base
           new_person = Hash.new
           new_person['first_name'] = first_name
             new_person['last_name'] = last_name
-          new_person['progress'] = 1
+          new_person['progress'] = 0
           new_person['active'] = true
           updated_person.update_attributes(new_person)
         end
