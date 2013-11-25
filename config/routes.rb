@@ -4,6 +4,7 @@ ProjectSteak::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   get 'events/add_person/:id', to: 'events#add_person'
+  delete 'people/:id', to: 'people#destroy'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
