@@ -1,14 +1,10 @@
 require 'nokogiri'
 
 class Person < ActiveRecord::Base
-<<<<<<< HEAD
-	has_and_belongs_to_many :events
-	attr_accessible :name, :first_name, :last_name, :progress, :favorite
-=======
     extend ApplicationHelper
 	
     has_and_belongs_to_many :events
-	attr_accessible :name, :first_name, :last_name, :progress, :active, :favorite, :email, :linkedin_connection => false
+    attr_accessible :name, :first_name, :last_name, :progress, :active, :favorite, :email, :linkedin_connection => false
 
     def self.processPeople(org_unit)
         uri = "https://apis.berkeley.edu/calnet/person?searchFilter" +
@@ -39,5 +35,4 @@ class Person < ActiveRecord::Base
     def self.deactivateAllPeople()
         self.update_all "active = 'false'"
     end
->>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
 end

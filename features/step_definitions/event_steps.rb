@@ -10,8 +10,6 @@ Given /the following events exist/ do |event_table|
   end
 end
 
-    
-
 Then /^I should see the following events in this order: (.*)/ do |events_list|
 	sorted_events = []
 	events_list.split(', ').each do |event|

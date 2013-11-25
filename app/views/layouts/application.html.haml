@@ -12,8 +12,6 @@
     =render :partial => "/layouts/sidebar"
     #body
       = yield
-<<<<<<< HEAD
-=======
       - if user_signed_in?
         Greetings #{current_user.name}
         [#{link_to "sign out", signout_path}]
@@ -22,5 +20,4 @@
         -#    %li= calendar["summary"]
       - else
         [#{link_to "sign in", signin_path}]
->>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
     =render :partial => '/layouts/footer'

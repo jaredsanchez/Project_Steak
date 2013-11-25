@@ -40,6 +40,7 @@ Given /^I am signed in on Google$/ do
   user_information["name"] = "Test User"
   @current_user =  user_information
 end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }

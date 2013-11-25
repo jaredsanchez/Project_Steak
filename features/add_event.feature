@@ -5,7 +5,7 @@ Feature: add a new event for people involved in an intiative
   I want to add a new event
 
 Background: Start on the home page
-  
+  Given I am signed in on Google
   Given the following people exist:
   | first_name    | last_name | progress | favorite |
   | John          | Gunnison  | 1        | true     |
@@ -27,7 +27,6 @@ Scenario: add a new event
   When I fill in "Description" with "A dinner for stake holders"
   When I fill in "Location" with "Cheeseboard"
   When I press "Add"
-  Then I should be redirected to the event page for "Stakeholder Dinner"
   When I follow "Events"
   Then I should see "Stakeholder Dinner" in the main page body
 

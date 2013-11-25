@@ -5,7 +5,7 @@ Feature: add a new person to the database
   I want to add a new person to the list of people in the app
 
 Background: Start on the home page
-  
+  Given I am signed in on Google
   Given the following people exist:
   | first_name    | last_name | progress | favorite |
   | John          | Gunnison  | 1        | true     |

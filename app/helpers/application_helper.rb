@@ -2,8 +2,12 @@ require 'open-uri'
 
 module ApplicationHelper
 
-<<<<<<< HEAD
-=======
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
+    link_to title, :sort =>column, :order => order
+  end
+
   class NetworkError < RuntimeError ; end
 
   def getXML(uri)
@@ -16,14 +20,4 @@ module ApplicationHelper
     end
   end
 
->>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
-  def sortable(column, title = nil)
-    title ||= column.titleize
-    order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
-    link_to title, :sort =>column, :order => order
-  end
-<<<<<<< HEAD
-
-=======
->>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
 end

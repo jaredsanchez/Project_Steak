@@ -42,11 +42,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'figaro'
 gem 'selenium-webdriver'
-<<<<<<< HEAD
-
-=======
 gem 'google_oauth_calendar' , :git => 'git@github.com:deafgreatdane/google_oauth_calendar.git'
->>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

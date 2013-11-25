@@ -95,21 +95,21 @@ class EventsController < ApplicationController
     @event = Event.create!(params[:event])
     @event.uid = current_user.uid
     if @event.save
-	    #should eventually include attendees with email
-	    attendees = [{"email" => "bob@gmail.com"}]
-	    event = {
-	      'summary' => @event.name,
-	      'location' => @event.where,
-	      'start' => {'dateTime' => @event.event_time.to_datetime.rfc3339},
-	      'end' => {'dateTime' => @event.event_time.to_datetime.rfc3339},
-	      'attendees' => attendees
-	    }
-	    client = ClientBuilder.get_client(current_user)
-	    service = client.discovered_api('calendar', 'v3')
+    #should eventually include attendees with email
+      attendees = [{"email" => "bob@gmail.com"}]
+      event = {
+        'summary' => @event.name,
+        'location' => @event.where,
+        'start' => {'dateTime' => @event.event_time.to_datetime.rfc3339},
+        'end' => {'dateTime' => @event.event_time.to_datetime.rfc3339},
+        'attendees' => attendees
+      }
+      client = ClientBuilder.get_client(current_user)
+      service = client.discovered_api('calendar', 'v3')
 
-	    result = client.execute(:api_method => service.events.insert, :parameters => {'calendarId' => session[:calendar_id]}, :body => JSON.dump(event),   :headers => {'Content-Type' => 'application/json'})
-	    flash[:notice] = "#{@event.name} was successfully added"
-	    redirect_to event_path(@event)
+      result = client.execute(:api_method => service.events.insert, :parameters => {'calendarId' => session[:calendar_id]}, :body => JSON.dump(event),   :headers => {'Content-Type' => 'application/json'})
+      flash[:notice] = "#{@event.name} was successfully added to your list of events"
+      redirect_to event_path(@event)
     else
       render :new
     end
