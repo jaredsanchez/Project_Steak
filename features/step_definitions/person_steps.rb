@@ -13,6 +13,8 @@ Then /I should see '(.*)' before '(.*)'/ do |e1, e2|
 end
 
 
+
+
 Then /^I should see the following people in this order: (.*)/ do |people_list|
 	sorted_people = []
 	people_list.split(', ').each do |person|
