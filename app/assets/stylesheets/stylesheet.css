@@ -79,7 +79,7 @@ body{
 input{
 	border-radius:5px;
 }
-.refresh_button{
+#refresh_button{
 	display:inline-block;
 	background: #bfc5cf;
 	background: linear-gradient(top, #efefef 0%, #bfc5cf 100%);  

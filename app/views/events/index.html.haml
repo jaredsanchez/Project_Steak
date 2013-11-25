@@ -1,14 +1,7 @@
--if session[:calendar_id]
-  %iframe{frameborder: "0", height: "300", scrolling: "no", src: "https://www.google.com/calendar/embed?src="+session[:calendar_id]+"&ctz=America/Los_Angeles", style: "border: 0", width: "500"}
-  
-  %br
-  %ul
-    - @calendars.items.each do |calendar|
-      %li= calendar["summary"]
-
 = link_to refresh_path, :method => :get do 
-  .refresh_button
+  #refresh_button
     #{image_tag('refresh_blue.png', :class => 'medium_icon')}
+
 
 %table.list_table
   %thead
@@ -26,5 +19,3 @@
               %td= event.description
               %td= event.where
               %td= event.event_time
-
-

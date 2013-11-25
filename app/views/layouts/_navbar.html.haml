@@ -23,6 +23,8 @@
         = link_to 'Events', events_path()
         %ul
           %li
+            = link_to "Calendar", events_calendar_path
+          %li
             = link_to "Add Event", new_event_path
       %li#log_button
         - if user_signed_in?

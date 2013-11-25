@@ -91,12 +91,16 @@ class EventsController < ApplicationController
     @event = Event.find params[:id] 
   end
 
+  def calendar
+    render :calendar
+  end
+
   def create
     @event = Event.new params[:event]
     begin
         @event.uid = current_user.uid
     rescue
-        puts "nil:NilClass error?"
+        puts ">>>>>>>>> nil:NilClass error <<<<<<<<<<"
     end
     if @event.save
     #should eventually include attendees with email

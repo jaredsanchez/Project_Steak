@@ -7,20 +7,23 @@ Feature: Log In with Google
 Background: Start on the home page
   
   Given I am on the home page
-  Then I should see "sign in"
-  When I follow "sign in"
+  Then I should see "Sign In"
+  When I follow "Sign In"
   And I fill in "Email" with "projectsteak@gmail.com"
   And I fill in "Passwd" with "steak222"
-  Then I click "signIn"
+  Then I follow "Sign In"
   And I should see "Greetings"
 
-
+@javascript
 Scenario: add a new person to the intitiative
   Then I should not see "James Bond"
-  When I follow "Add a new stakeholder"
+  When I hover over "People"
+  And I follow "Add Person"
   Then I should be on the Add Person page
-  When I fill in "Name" with "James Bond"
-  When I fill in "Progress" with "3"
+  When I fill in "First Name" with "James"
+  When I fill in "Last Name" with "Bond"
+  And I select "Trying" from the "Progress" dropdown menu
   When I press "Add"
-  Then I should be on the StakeHolder Mapping home page
-  Then I should see "James Bond"
+  Then I should be redirected to the person page for "James Bond"
+  When I follow "People"
+  Then I should see "James Bond" in the main page body
