@@ -18,13 +18,13 @@ Scenario: display a list of events whose default order is by name ascending
   I should see the following events in this order: 'Cocktail Party', 'Something Else', 'Stakeholder Dinner'
 
 
-Scenario: sort the people by alphabetical first_name descending order
+Scenario: sort the events by alphabetical name descending order
   When I follow "Events"
   When I follow "Name"
   Then I should see the following events in this order: 'Cocktail Party', 'Something Else', 'Stakeholder Dinner'
 
 
-Scenario: sort the people by alphabetical first_name ascending order
+Scenario: sort the events by alphabetical name ascending order
   When I follow "Events"
   When I follow "Name"
   When I follow "Name"
