@@ -18,7 +18,7 @@ Background: Create events and go to events page
     When I follow "Edit Event"
     When I fill in "Description" with "New Description"
     And I fill in "Location" with "New Location"
-    And I press "Update Event"
+    And I press "Update"
     Then I should be on the show event page
     And I should see "New Description"
     And I should see "New Location"

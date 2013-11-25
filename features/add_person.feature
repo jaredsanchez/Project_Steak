@@ -26,6 +26,6 @@ Scenario: add a new person to the database
   And I fill in "Last Name" with "Bond"
   And I select "Aware" from the "Progress" dropdown menu
   When I press "Add"
-  Then I should be redirected to the "James Bond" page
+  Then I should be redirected to the person page for "James Bond"
   When I follow "People"
   Then I should see "James Bond" in the main page body
