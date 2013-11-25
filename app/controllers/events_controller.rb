@@ -39,7 +39,7 @@ class EventsController < ApplicationController
     else
       @event.people << person
       @event.save!
-      flash[:notice] = "#{person.name} was added to this event"
+      flash[:notice] = "#{person.first_name} was added to this event"
       redirect_to event_path(@event)
     end
   end

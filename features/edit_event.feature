@@ -15,7 +15,7 @@ Background: Create events and go to events page
     When I follow "Cocktail Party"
     Then I should be on the show event page
     Then I should see "Cocktail Party"
-    When I follow "Edit Event"
+    When I follow "Edit Info"
     When I fill in "Description" with "New Description"
     And I fill in "Location" with "New Location"
     And I press "Update"

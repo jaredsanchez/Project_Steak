@@ -13,7 +13,7 @@ Background: Start on the home page
   And I am on the StakeHolder Mapping home page
 
 @javascript
-Scenario: delete a person from the database
+Scenario: delete an event from the database
   When I follow "Events"
   Then I should see "Cocktail Party"
   When I follow "Cocktail Party"

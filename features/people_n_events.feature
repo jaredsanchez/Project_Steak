@@ -10,7 +10,7 @@ Background:
   And I fill in "Description" with "Discussion about the API"
   And I fill in "Location" with "Cory"
   And I press "Add"
-  Then I should be on the events page
+  Then I should be redirected to the event page for "Stakeholder Dinner"
   And I should see "Stakeholder Dinner"
 
   Given the following people exist:
@@ -25,20 +25,18 @@ Background:
 
 
   Scenario: show event page
-    When I follow "Stakeholder Dinner"
-    Then I should see "Stakeholder Dinner"
-
-  Scenario: delete event
-    When I follow "Stakeholder Dinner"
-    When I press "Delete Event"
-    Then I should be on the events page
-    And I should not see "Stakeholder Dinner"
+    When I follow "Events"
+    And I follow "Stakeholder Dinner"
+    Then I should be redirected to the event page for "Stakeholder Dinner"
+    And I should see "Stakeholder Dinner"
 
   Scenario: add a person to event
+    When I follow "Events"
     When I follow "Stakeholder Dinner"
-    And I fill in "person_name" with "Jeff Zayas"
-    And I press "Add Person"
-    Then I should see "Jeff Zayas"
+    And I fill in "Name" with "Jeff Zayas"
+    And I press "Add"
+    Then I should be redirected to the event page for "Stakeholder Dinner"
+    And I should see "Jeff Zayas"
 
 
     
