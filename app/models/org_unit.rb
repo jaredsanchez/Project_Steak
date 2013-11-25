@@ -9,7 +9,6 @@ class OrgUnit < ActiveRecord::Base
     def self.processOrgs
     # get all orgs from API and write each one to database
     #1.upto(7) do |i|
-      debugger
       Person.deactivateAllPeople()
       xml_doc = getOrgs(1)
 
