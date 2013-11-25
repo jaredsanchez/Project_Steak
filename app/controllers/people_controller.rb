@@ -51,6 +51,7 @@ class PeopleController < ApplicationController
     @person = Person.find params[:id]
     @person.update_attributes!(params[:person])
     flash[:notice] = "#{@person.name} was successfully updated."
+    redirect_to person_path(@person)
   end
 
   def destroy

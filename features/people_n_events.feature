@@ -5,7 +5,7 @@ Feature: add people to events
 
 Background:
   Given I am on the events page
-  And I follow "Add New Event"
+  And I follow "Add Event"
   And I fill in "Event Name" with "Stakeholder Dinner"
   And I fill in "Description" with "Discussion about the API"
   And I fill in "Location" with "Cory"
@@ -14,9 +14,13 @@ Background:
   And I should see "Stakeholder Dinner"
 
   Given the following people exist:
-    |name         | progress |
-    |John Gunnison| 1        |
-    |Jeff Zayas   | 4        |
+  | first_name    | last_name | progress | favorite |
+  | John          | Gunnison  | 1        | true     |
+  | Jeff          | Zayas     | 2        | true     |
+  | Rey           | Blume     | 3        | true     |
+  | Jared         | Sanchez   | 4        | false    |
+  | Wesley        | To        | 2        | false    |
+  | Andy          | Smith     | 4        | false    |
 
 
 

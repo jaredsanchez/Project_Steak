@@ -1,6 +1,6 @@
 #add_event.main#default
-  = form_tag event_path do
-    #leftform
+  = form_tag events_path do
+    .leftform
       = label :event, :name, 'Name'
       &nbsp;&nbsp;
       %br/
@@ -14,7 +14,7 @@
       %br/
       %br/
       = label :event, :event_time, 'Date'
-    #rightform
+    .rightform
       = text_field :event, 'name'
       %br/
       %br/
