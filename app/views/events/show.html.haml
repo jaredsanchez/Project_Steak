@@ -25,7 +25,7 @@
     %tbody
       - @event.people.each do |person|
         %tr
-          %td= person.name
+          %td= person.first_name + " " + person.last_name
 
 %h4 Add Person to This Event:
 = form_tag "/events/add_person/#{@event.id}", :method => :get do

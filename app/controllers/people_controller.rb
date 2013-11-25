@@ -19,8 +19,6 @@ class PeopleController < ApplicationController
         r2 = b.send(sort)
         if r1 == r2
           a.last_name <=> b.last_name
-        elsif order == 'asc'
-	  r1<=>r2
         elsif order == 'desc'
 	  r2<=>r1
         else
@@ -51,14 +49,22 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person = Person.find(params[:id])
-    @person.update_attributes!(params[:person])
-    flash[:notice] = "#{@person.first_name} was successfully updated."
-    redirect_to person_path(@person)
+      @person = Person.find(params[:id])
+      if @person.update_attributes(params[:person])
+         flash[:notice] = "#{@person.first_name} was successfully updated."
+         redirect_to person_path(@person)
+      else
+         render :edit
+      end
   end
 
   def destroy
     person = Person.find(params[:id])
+=begin
+    person.events.each do |event|
+      event.remove_references(person)
+    end
+=end
     person.destroy
     flash[:notice] = "#{person.first_name} deleted."
     redirect_to people_path and return

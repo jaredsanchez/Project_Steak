@@ -38,5 +38,10 @@ Background:
     Then I should be redirected to the event page for "Stakeholder Dinner"
     And I should see "Jeff Zayas"
 
-
-    
+  Scenario: add a non-existent person to event
+    When I follow "Events"
+    When I follow "Stakeholder Dinner"
+    And I fill in "Name" with "Puff The Magic Dragon"
+    And I press "Add"
+    Then I should be redirected to the event page for "Stakeholder Dinner"   
+    And I should not see "Puff The Magic Dragon" 
