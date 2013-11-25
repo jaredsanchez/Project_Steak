@@ -4,6 +4,8 @@ ProjectSteak::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   get 'events/add_person/:id', to: 'events#add_person'
+
+  get 'events/refresh', to: 'events#refresh', as: :refresh
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -17,6 +19,26 @@ ProjectSteak::Application.routes.draw do
   root :to => 'main#index'
   resources :people
   resources :events
+
+  match '/auth/failure' => 'sessions#failure'
+
+  match '/signout' => 'sessions#destroy', :as => :signout
+
+  match '/signin' => 'sessions#new', :as => :signin
+
+  match '/linkedin_signin' => 'sessions#new_linkedin', :as => :linkedin_signin
+
+  match '/auth/:provider/callback' => 'sessions#create'
+
+  get "sessions/new"
+
+  get "sessions/create"
+
+  get "sessions/failure"
+
+  get '/login', :to => 'sessions#new', :as => :login
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failure' 
 
   # Sample resource route with options:
   #   resources :products do

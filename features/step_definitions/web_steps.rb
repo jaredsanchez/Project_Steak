@@ -31,6 +31,15 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /^I am signed in on Google$/ do 
+  #visit "/signin"
+  user_information = Hash.new
+  user_information["email"] = "test@xxxx.com"
+  user_information["first_name"] = "Test"
+  user_information["last_name"] = "User"
+  user_information["name"] = "Test User"
+  @current_user =  user_information
+end
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }

@@ -21,7 +21,6 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'ruby-debug19'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
@@ -43,7 +42,11 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'figaro'
 gem 'selenium-webdriver'
+<<<<<<< HEAD
 
+=======
+gem 'google_oauth_calendar' , :git => 'git@github.com:deafgreatdane/google_oauth_calendar.git'
+>>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -57,4 +60,10 @@ gem 'selenium-webdriver'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
+
+gem "omniauth", ">= 1.0.3"
+gem "omniauth-google-oauth2"
+gem "google-api-client"
+gem "omniauth-linkedin-oauth2"
+gem "linkedin"

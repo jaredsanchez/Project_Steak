@@ -19,6 +19,11 @@ class PeopleController < ApplicationController
         r2 = b.send(sort)
         if r1 == r2
           a.last_name <=> b.last_name
+<<<<<<< HEAD
+=======
+        elsif order == 'asc'
+	  r1<=>r2
+>>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
         elsif order == 'desc'
 	  r2<=>r1
         else
@@ -49,6 +54,7 @@ class PeopleController < ApplicationController
   end
 
   def update
+<<<<<<< HEAD
       @person = Person.find(params[:id])
       if @person.update_attributes(params[:person])
          flash[:notice] = "#{@person.first_name} was successfully updated."
@@ -56,6 +62,12 @@ class PeopleController < ApplicationController
       else
          render :edit
       end
+=======
+    @person = Person.find(params[:id])
+    @person.update_attributes!(params[:person])
+    flash[:notice] = "#{@person.first_name} was successfully updated."
+    redirect_to person_path(@person)
+>>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
   end
 
   def destroy

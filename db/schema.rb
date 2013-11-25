@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131108235005) do
+ActiveRecord::Schema.define(:version => 20131123110658) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -21,11 +21,21 @@ ActiveRecord::Schema.define(:version => 20131108235005) do
     t.integer  "people_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "google_id"
+    t.string   "uid"
   end
 
   create_table "events_people", :force => true do |t|
     t.integer "event_id"
     t.integer "person_id"
+  end
+
+  create_table "org_units", :force => true do |t|
+    t.string   "org_node"
+    t.string   "org_node_description"
+    t.integer  "level"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "people", :force => true do |t|
@@ -35,8 +45,23 @@ ActiveRecord::Schema.define(:version => 20131108235005) do
     t.integer  "progress"
     t.boolean  "favorite"
     t.integer  "events_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "email"
+    t.boolean  "active",                 :default => false
+    t.boolean  "is_linkedin_connection"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "email"
+    t.string   "token"
+    t.string   "refresh_token"
+    t.datetime "token_expires_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end

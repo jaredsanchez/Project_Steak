@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+=======
+%h3 Events
+- if user_signed_in?
+  Greetings #{current_user.name}
+  [#{link_to "sign out", signout_path}]
+  %br
+  -if session[:calendar_id]
+    %iframe{frameborder: "0", height: "300", scrolling: "no", src: "https://www.google.com/calendar/embed?src="+session[:calendar_id]+"&ctz=America/Los_Angeles", style: "border: 0", width: "500"}
+  
+  %br
+  -#%ul
+  -#  - @calendars.items.each do |calendar|
+  -#    %li= calendar["summary"]
+- else
+  [#{link_to "sign in", signin_path}]
+>>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
 %table.list_table
   %thead
     %tr
@@ -7,8 +24,22 @@
       %th{:class => @date_header}=sortable("date") 
     %tbody
       -@events.each do |event|
+<<<<<<< HEAD
         %tr
           %td= link_to "#{event.name}", event_path(event)
           %td= event.description
           %td= event.where
           %td= event.event_time
+=======
+        - if user_signed_in?
+          -if event.uid == current_user.uid
+            %tr
+              %td= link_to "#{event.name}", event_path(event)
+              %td= event.description
+              %td= event.where
+              %td= event.event_time
+
+=# link_to 'Back to People Page', people_path
+= button_to 'Update', refresh_path, :method => :get
+= link_to 'Add New Event',  new_event_path
+>>>>>>> acf78c2e4734a05faeabbd6ec8641254aeaf0e35
