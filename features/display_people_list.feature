@@ -7,13 +7,13 @@ Feature: display list of people involved in an intiative
 Background: movies have been added to database
   
   Given the following people exist:
-  | name          | progress |
-  | John Gunnison | 1        |
-  | Jeff Zayas    | 2        |
-  | Rey Blume     | 3        |
-  | Jared Sanchez | 4        |
-  | Wesley To     | 2        |
-  | Andy Smith    | 4        |
+  | first_name    | last_name | progress | favorite |
+  | John          | Gunnison  | 1        | true     |
+  | Jeff          | Zayas     | 2        | true     |
+  | Rey           | Blume     | 3        | true     |
+  | Jared         | Sanchez   | 4        | false    |
+  | Wesley        | To        | 2        | false    |
+  | Andy          | Smith     | 4        | false    |
 
   And I am on the StakeHolder Mapping home page
 

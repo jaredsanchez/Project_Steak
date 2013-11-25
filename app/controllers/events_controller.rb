@@ -29,12 +29,12 @@ class EventsController < ApplicationController
     person = Person.find_by_name(params[:name_person])
     if person == nil
       flash[:warning] = "Could not find person with name #{params[:name_person]}"
-      redirect_to event_path(@event) and return
+      redirect_to event_path(@event)
     else
       @event.people << person
       @event.save!
       flash[:notice] = "#{person.name} was added to this event"
-      redirect_to event_path(@event) and return
+      redirect_to event_path(@event)
     end
   end
 
@@ -57,7 +57,6 @@ class EventsController < ApplicationController
       flash[:notice] = "#{@event.name} was successfully added to your list of events"
       redirect_to event_path(@event)
     else
-      @event = Event.all
       render :new
     end
   end
