@@ -69,11 +69,6 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-=begin
-    @event.people.each do |person|
-      person.events.remove_references(@event)
-    end
-=end
     @event.destroy
     flash[:notice]= "#{@event.name} Deleted"
     redirect_to events_path and return

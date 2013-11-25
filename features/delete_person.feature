@@ -17,7 +17,7 @@ Background: Start on the home page
 
   And I am on the StakeHolder Mapping home page
 
-@javascipt
+@javascript
 Scenario: delete a person from the database
   When I follow "People"
   Then I should see "Wesley"

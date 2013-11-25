@@ -60,11 +60,6 @@ class PeopleController < ApplicationController
 
   def destroy
     person = Person.find(params[:id])
-=begin
-    person.events.each do |event|
-      event.remove_references(person)
-    end
-=end
     person.destroy
     flash[:notice] = "#{person.first_name} deleted."
     redirect_to people_path and return

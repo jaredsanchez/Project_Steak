@@ -1,5 +1,5 @@
 #edit_person
-  = form_tag event_path(@person), :method => :put do
+  = form_tag person_path(@person), :method => :put do
     .leftform
       %br/
       = label :person, :first_name, 'First Name'
@@ -17,7 +17,7 @@
       = label :person, :favorite, 'Favorite'
       &nbsp;&nbsp;
     .rightform
-      .small_link#delete= link_to 'Delete Person', people_path(@person), :method => :delete, :confirm => 'Are you sure?'
+      .small_link#delete= link_to 'Delete Person', person_path(@person), :method => :delete, :confirm => 'Are you sure?'
       %br/
       = text_field :person, 'first_name'
       %br/
