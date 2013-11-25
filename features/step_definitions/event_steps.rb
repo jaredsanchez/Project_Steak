@@ -9,4 +9,5 @@ Given /the following events exist/ do |event_table|
     Event.create!(event)
   end
 end
+
     

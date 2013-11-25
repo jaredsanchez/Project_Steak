@@ -3,11 +3,11 @@ Feature: Add a Google Event
   So that I can use Google Calender to Add an Event
   I want to be able to add a Google Event
 
-  Background: Start on the home page
-    Given I am on the home page
-    And I have signed in with Google
 
+  @omniauth_test
   Scenario: add a Google Event
+    Given I am signed in on Google
+    And I am on the home page
     When I follow Add Event
     Then I should see Event details
     When I fill in title with "Dinner"
