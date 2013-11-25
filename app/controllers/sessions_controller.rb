@@ -10,7 +10,10 @@ class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     if auth['provider'] == 'linkedin'
-      find_linkedin_connections(auth)
+      #token = auth[:credentials][:token]
+      #secret = auth[:credentials][:secret]
+      find_linkedin_connections
+      return
     else
       user = User.where(:provider => auth['provider'],
                       :uid => auth['uid']).first || User.create_with_omniauth(auth)
@@ -40,10 +43,10 @@ class SessionsController < ApplicationController
     redirect_to '/auth/linkedin'
   end
 
-  def find_linkedin_connections(auth)
+  def find_linkedin_connections
     temp_client = LinkedIn::Client.new(ENV['LINKEDIN_KEY'],ENV['LINKEDIN_SECRET'])
     # fix so ACCESSS_TOKEN and ACCESS_SECRET don't need to be hard coded in
-    temp_client.authorize_from_access('ACCESSS_TOKEN', 'ACCESS_SECRET')
+    temp_client.authorize_from_access(ENV['ACCESS_TOKEN'], ENV['ACCESS_SECRET'])
     xml_doc = Nokogiri::XML(temp_client.connections.to_xml)
     first_names = xml_doc.xpath('//first-name')
     last_names = xml_doc.xpath('//last-name')
@@ -57,7 +60,7 @@ class SessionsController < ApplicationController
         match.is_linkedin_connection = true
       end
     end
-    redirect_to people_path and return
+    redirect_to people_path, flash[:notice] => 'Signed in with LinkedIn'
     
     #client = OAuth2::Client.new(
      #       ENV['LINKEDIN_KEY']ENV['LINKEDIN_KEY'],
