@@ -4,8 +4,8 @@ Feature: display list of people involved in an intiative
   so I can know who is involved
   I want to see who is working on a given initiative when I view it 
 
-Background: movies have been added to database
-  
+Background: people have been added to database
+  Given I am signed in on Google
   Given the following people exist:
   | first_name    | last_name | progress | favorite |
   | John          | Gunnison  | 1        | true     |
@@ -15,7 +15,7 @@ Background: movies have been added to database
   | Wesley        | To        | 2        | false    |
   | Andy          | Smith     | 4        | false    |
 
-  And I am on the StakeHolder Mapping home page
+  Given I am on the people page
 
 Scenario: display list of people involved in initiative
   Then I should see "John Gunnison"

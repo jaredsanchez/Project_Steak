@@ -1,6 +1,7 @@
-= link_to refresh_path, :method => :get do 
-  #refresh_button
-    #{image_tag('refresh_blue.png', :class => 'medium_icon')}
+- if user_signed_in?
+  = link_to refresh_path, :method => :get do 
+    #refresh_button
+      #{image_tag('refresh_blue.png', :class => 'medium_icon')}
 
 
 %table.list_table

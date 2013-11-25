@@ -11,7 +11,7 @@ Background: Start on the home page
   When I follow "Sign In"
   And I fill in "Email" with "projectsteak@gmail.com"
   And I fill in "Passwd" with "steak222"
-  Then I follow "Sign In"
+  Then I follow "signIn"
   And I should see "Greetings"
 
 @javascript

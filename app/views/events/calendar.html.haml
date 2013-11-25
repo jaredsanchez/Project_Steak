@@ -1,6 +1,7 @@
-= link_to refresh_path, :method => :get do 
-  #refresh_button
-    #{image_tag('refresh_blue.png', :class => 'medium_icon')}
+- if user_signed_in?
+  = link_to refresh_path, :method => :get do 
+    #refresh_button
+      #{image_tag('refresh_blue.png', :class => 'medium_icon')}
 
 -if session[:calendar_id]
   %iframe{frameborder: "0", height: "300", scrolling: "no", src: "https://www.google.com/calendar/embed?src="+session[:calendar_id]+"&ctz=America/Los_Angeles", style: "border: 0", width: "500"}

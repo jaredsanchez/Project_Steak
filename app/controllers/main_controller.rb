@@ -5,7 +5,8 @@ class MainController < ApplicationController
     if user_signed_in?
         render 'index'
     else
-        redirect_to signin_path
+        #redirect_to signin_path
+	render 'index'
     end
   end
 end

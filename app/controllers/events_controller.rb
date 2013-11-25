@@ -97,11 +97,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new params[:event]
-    begin
-        @event.uid = current_user.uid
-    rescue
-        puts ">>>>>>>>> nil:NilClass error <<<<<<<<<<"
-    end
+    @event.uid = current_user.uid
     if @event.save
     #should eventually include attendees with email
       attendees = [{"email" => "bob@gmail.com"}]

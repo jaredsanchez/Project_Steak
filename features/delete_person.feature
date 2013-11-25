@@ -5,7 +5,7 @@ Feature: delete a person from the database
   I want to delete a person from the list of people in the app
 
 Background: Start on the home page
-  
+  Given I am signed in on Google
   Given the following people exist:
   | first_name    | last_name | progress | favorite |
   | John          | Gunnison  | 1        | true     |
