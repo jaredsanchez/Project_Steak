@@ -5,7 +5,10 @@
   %ul
     - @calendars.items.each do |calendar|
       %li= calendar["summary"]
-= link_to ("#{image_tag('refresh_blue.png', :class => 'medium_icon')} Refresh").html_safe, refresh_path, :method => :get, :class => 'refresh_button'
+
+= link_to refresh_path, :method => :get do 
+  .refresh_button
+    #{image_tag('refresh_blue.png', :class => 'medium_icon')}
 
 %table.list_table
   %thead

@@ -80,8 +80,15 @@ input{
 	border-radius:5px;
 }
 .refresh_button{
-	text-decoration:none;
-	color:#454545;
+	display:inline-block;
+	background: #bfc5cf;
+	background: linear-gradient(top, #efefef 0%, #bfc5cf 100%);  
+	background: -moz-linear-gradient(top, #efefef 0%, #bfc5cf 100%); 
+	background: -webkit-linear-gradient(top, #efefef 0%,#bfc5cf 100%); 
+	box-shadow: 0px 0px 2em rgba(0,0,0,0.15);
+	border-radius:0.5em;
+	margin: 0 0 3px 5px;
+	padding:0.25em 1em 0 1em;
 }
 
 /*===============================
@@ -90,8 +97,8 @@ input{
      ==>  USE THESE  <==
 
 .thumb => thumbnail images
-.icon => very small icons
-.medium_icon => double-sized icons
+.icon => small icon
+.medium_icon => medium icon
 .small_link => delete, edit links...
 .info => infobox for events/people
 .leftform => left side of a form with fields
@@ -115,8 +122,8 @@ input{
 	height:1em;
 }
 .medium_icon{
-	width:2em;
-	height:2em;
+	width:1.5em;
+	height:1.5em;
 }
 .small_link {
 	float:right;
@@ -169,12 +176,6 @@ input{
 
           IGNORE THESE
 =================================*/
-.refresh_button img{
-	vertical-align:middle;
-}
-.refresh_button a:hover{
-	color:#6e7e8e;
-}
 .list_table th{
 	text-decoration:underline;
 	padding:1px 5px 1px 5px;
