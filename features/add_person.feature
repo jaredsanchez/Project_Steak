@@ -17,6 +17,7 @@ Background: Start on the home page
 
   And I am on the StakeHolder Mapping home page
 
+@javascript
 Scenario: add a new person to the database
   Then I should not see "James Bond"
   When I hover over "People"
@@ -25,5 +26,6 @@ Scenario: add a new person to the database
   And I fill in "Last Name" with "Bond"
   And I select "Aware" from the "Progress" dropdown menu
   When I press "Add"
-  Then I should be on the People page
-  Then I should see "James Bond"
+  Then I should be redirected to the "James Bond" page
+  When I follow "People"
+  Then I should see "James Bond" in the main page body

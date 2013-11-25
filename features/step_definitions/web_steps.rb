@@ -66,11 +66,25 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
 end
 
 When /^(?:|I )hover over "([^"]*)"$/ do |value|
-  find('li', :text => value).native.hover
+  find('li', :text => value).hover
 end
 
 When /^(?:|I )select "([^"]*)" from the "([^"]*)" dropdown menu$/ do |option, menu|
   select(option, :from => menu)
+end
+
+Then /^(?:|I )should be redirected to the "([^"]*)" page$/ do |person|
+  assert current_path.should =~ /\/people\/\d*/
+  if page.respond_to? :should
+    page.should have_content(person)
+  else
+    assert page.has_content?(person)
+  end
+end
+
+Then(/^I should see "(.*?)" in the main page body$/) do |arg1|
+	body = page.find('#body').text
+	assert_not_nil body.index(arg1)
 end
 
 # Use this to fill in an entire form with data from a table. Example:

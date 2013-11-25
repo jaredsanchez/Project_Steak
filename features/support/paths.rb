@@ -21,6 +21,9 @@ module NavigationHelpers
     when /^the Add Person page/
       new_person_path
 
+    when /^the People page/
+      people_path
+
     when /^the Add Event page/
       new_event_path
 
