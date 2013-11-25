@@ -93,9 +93,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create!(params[:event])
-    if current_user
-      @event.uid = current_user.uid
-    end
+    @event.uid = current_user.uid
     if @event.save
     #should eventually include attendees with email
       attendees = [{"email" => "bob@gmail.com"}]

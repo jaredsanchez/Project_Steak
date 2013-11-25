@@ -5,7 +5,7 @@ Feature: display a list of events on the events page and be able to sort them
   I want to be able to sort a list of events
 
 Background: Start on the events page
-  
+  Given I am signed in on Google
   Given the following events exist:
     | name               | description  | where       | event_time               |
     | Cocktail Party     | description  | location    | 2013-11-3T00:00:00+00:00 |
