@@ -55,7 +55,7 @@ class SessionsController < ApplicationController
       first_name = connection[0].text
       last_name = connection[1].text
       full_name = first_name + ' ' + last_name
-      match = Person.find_by_name(full_name)
+      match = Person.find_by_first_name_and_last_name(first_name, last_name)
       if match
         match.is_linkedin_connection = true
       end
