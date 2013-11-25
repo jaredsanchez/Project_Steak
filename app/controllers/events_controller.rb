@@ -17,9 +17,7 @@ class EventsController < ApplicationController
       @events = Event.all.sort! { |a,b|
         r1 = a.send(sort)
         r2 = b.send(sort)
-        if order == 'asc'
-	  r1<=>r2
-        elsif order == 'desc'
+        if order == 'desc'
 	  r2<=>r1
         else
           r1<=>r2
@@ -62,7 +60,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-
   def update
     @event = Event.find(params[:id])
     @event.update_attributes!(params[:event])
@@ -73,7 +70,7 @@ class EventsController < ApplicationController
   def destroy
     event = Event.find(params[:id])
     event.destroy
-    flash[:notice]= "#{event.name}   Deleted"
+    flash[:notice]= "#{event.name} Deleted"
     redirect_to events_path and return
   end
 
