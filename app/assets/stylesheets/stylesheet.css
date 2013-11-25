@@ -79,6 +79,10 @@ body{
 input{
 	border-radius:5px;
 }
+.refresh_button{
+	text-decoration:none;
+	color:#454545;
+}
 
 /*===============================
   Miscellaneous styling classes
@@ -87,6 +91,7 @@ input{
 
 .thumb => thumbnail images
 .icon => very small icons
+.medium_icon => double-sized icons
 .small_link => delete, edit links...
 .info => infobox for events/people
 .leftform => left side of a form with fields
@@ -112,10 +117,6 @@ input{
 .medium_icon{
 	width:2em;
 	height:2em;
-}
-.refresh_button{
-	text-decoration:none;
-	color:#454545;
 }
 .small_link {
 	float:right;
