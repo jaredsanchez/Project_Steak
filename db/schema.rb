@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131121023743) do
+ActiveRecord::Schema.define(:version => 20131123110658) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -45,12 +45,10 @@ ActiveRecord::Schema.define(:version => 20131121023743) do
     t.integer  "progress"
     t.boolean  "favorite"
     t.integer  "events_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.string   "last_name"
-    t.string   "first_name"
-    t.boolean  "active",     :default => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "email"
+    t.boolean  "active",                 :default => false
     t.boolean  "is_linkedin_connection"
   end
 

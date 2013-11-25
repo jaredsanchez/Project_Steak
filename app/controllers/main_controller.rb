@@ -6,6 +6,7 @@ class MainController < ApplicationController
         render 'index'
     else
         #redirect_to signin_path
+        @favorites = Person.find(:all, :conditions => { :favorite => true})
         @people = Person.all 
         render 'index'
     end
