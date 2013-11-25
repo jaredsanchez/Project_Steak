@@ -73,6 +73,14 @@ When /^(?:|I )select "([^"]*)" from the "([^"]*)" dropdown menu$/ do |option, me
   select(option, :from => menu)
 end
 
+When /^I confirm popup$/ do
+  page.driver.browser.switch_to.alert.accept    
+end
+
+When /^I dismiss popup$/ do
+  page.driver.browser.switch_to.alert.dismiss
+end
+
 Then /^(?:|I )should be redirected to the person page for "(.*)"$/ do |person|
   assert current_path.should =~ /\/people\/\d*/
   if page.respond_to? :should

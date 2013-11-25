@@ -6,24 +6,30 @@ class EventsController < ApplicationController
     @favorites = Person.find(:all, :conditions => { :favorite => true})
   end
 
+  def new 
+  end
 
   def index
-    @events = Event.all
     sort = params[:sort] || session[:sort]
     order = params[:order] || session[:order]
-    if sort == 'name'
-      case order
-      when 'asc'
-        @events.sort! {|a,b| a.send(sort)<=> b.send(sort)}
-      when 'desc'
-        @events.sort! {|a,b| b.send(sort)<=>a.send(sort)}
-      end
+    known_params = ['name']
+    if known_params.include? sort
+      @events = Event.all.sort! { |a,b|
+        r1 = a.send(sort)
+        r2 = b.send(sort)
+        if order == 'asc'
+	  r1<=>r2
+        elsif order == 'desc'
+	  r2<=>r1
+        else
+          r1<=>r2
+        end
+      }    
+    else
+      @events = Event.all.sort! {|a,b| a.name <=> b.name}
     end
   end
 
-  def new 
-  end
-  
   def add_person
     @event = Event.find(params[:id])
     person = Person.find_by_name(params[:name_person])
@@ -38,17 +44,8 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
-    event = Event.find(params[:id])
-    event.destroy
-    flash[:notice]= "#{event.name}   Deleted"
-    redirect_to events_path  and return
-  end
-
   def show
-    @events = Event.all
     @event = Event.find params[:id] 
-    redirect_to event_path(@event)
   end
 
   def create
@@ -72,4 +69,12 @@ class EventsController < ApplicationController
     flash[:notice] = "#{@event.name} was successfully updated."
     redirect_to event_path(@event)
   end
+
+  def destroy
+    event = Event.find(params[:id])
+    event.destroy
+    flash[:notice]= "#{event.name}   Deleted"
+    redirect_to events_path and return
+  end
+
 end

@@ -34,7 +34,5 @@
   = hidden_field_tag 'id', @event.id
   = submit_tag 'Add Person'
 
-= button_to 'Delete Event', event_path(@event), :method => :delete, :confirm => 'Are you sure?'
-= link_to 'Edit Event', edit_event_path(@event)
-= link_to 'Back to Events List', events_path
+= link_to 'Edit Info', edit_event_path(@event)
 

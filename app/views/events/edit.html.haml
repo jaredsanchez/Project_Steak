@@ -1,16 +1,38 @@
-%h1 Edit Event
-
-= form_tag event_path(@event), :method => :put do
-  = label :event, :name, 'Name'
-  = text_field :event, 'name'
-
-  = label :event, :description, 'Description'
-  = text_field :event, 'description'
-
-  = label :event, :where, 'Location'
-  = text_field :event, 'where'
-
-  = label :event, :event_time, 'Event Date'
-  = date_select :event, :event_time
-
-  = submit_tag 'Update Event'
+#edit_event
+  = form_tag event_path(@event), :method => :put do
+    .leftform
+      %br/
+      = label :event, :name, 'Name'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = label :event, :description, 'Description'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = label :event, :where, 'Location'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = label :event, :event_time, 'Event Date'
+      &nbsp;&nbsp;
+    .rightform
+      .small_link#delete= link_to 'Delete Event', event_path(@event), :method => :delete, :confirm => 'Are you sure?'
+      %br/
+      = text_field :event, 'name'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = text_field :event, 'description'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = text_field :event, 'where'
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = date_select :event, :event_time
+      &nbsp;&nbsp;
+      %br/
+      %br/
+      = submit_tag 'Update Event'

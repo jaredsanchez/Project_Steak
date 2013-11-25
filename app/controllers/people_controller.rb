@@ -12,7 +12,8 @@ class PeopleController < ApplicationController
   def index  
     sort = params[:sort] || session[:sort]
     order = params[:order] || session[:order]
-    if sort
+    known_params = ['first_name', 'last_name', 'progress']
+    if known_params.include? sort
       @people = Person.all.sort! { |a,b|
         r1 = a.send(sort)
         r2 = b.send(sort)
@@ -22,6 +23,8 @@ class PeopleController < ApplicationController
 	  r1<=>r2
         elsif order == 'desc'
 	  r2<=>r1
+        else
+          r1<=>r2
         end
       }    
     else
@@ -48,17 +51,17 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person = Person.find params[:id]
+    @person = Person.find(params[:id])
     @person.update_attributes!(params[:person])
     flash[:notice] = "#{@person.name} was successfully updated."
     redirect_to person_path(@person)
   end
 
   def destroy
-    @person = Person.find(params[:id])
-    @person.destroy
-    flash[:notice] = "'#{@person.first_name}' deleted."
-    redirect_to people_path
+    person = Person.find(params[:id])
+    person.destroy
+    flash[:notice] = "#{person.first_name} deleted."
+    redirect_to people_path and return
   end
 
 end
