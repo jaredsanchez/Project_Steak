@@ -19,7 +19,7 @@
       %th{:class => @name_header}=sortable("name")
       %th Description
       %th Location
-      %th{:class => @date_header}=sortable("date") 
+      %th{:class => @date_header}=sortable("event_time", 'Date') 
     %tbody
       -@events.each do |event|
         - if user_signed_in?

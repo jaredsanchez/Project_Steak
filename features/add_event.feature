@@ -24,9 +24,9 @@ Scenario: add a new event
   And I follow "Add Event"
   Then I should be on the Add Event page
   When I fill in "Name" with "Stakeholder Dinner"
-  When I fill in "Description" with "A dinner for stake holders"
-  When I fill in "Location" with "Cheeseboard"
-  When I press "Add"
-  When I follow "Events"
+  And I fill in "Description" with "A dinner for stake holders"
+  And I fill in "Location" with "Cheeseboard"
+  And I press "Add"
+  And I follow "Events"
   Then I should see "Stakeholder Dinner" in the main page body
 

@@ -5,6 +5,7 @@ Feature: edit an existing event
   I want to be able to edit an event
 
 Background: Create events and go to events page
+  Given I am signed in on Google
   Given the following events exist:
     | name               | description  | where    | event_time               |
     | Cocktail Party     | description  | location | 2013-11-3T00:00:00+00:00 |

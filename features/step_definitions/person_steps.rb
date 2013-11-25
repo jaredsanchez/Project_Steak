@@ -6,11 +6,6 @@ Given /the following people exist/ do |people_table|
   end
 end
 
-Then /I should see '(.*)' before '(.*)'/ do |e1, e2|
-	body = page.find('#body').text
-	body.index(e1).should < body.index(e2)
-end
-
 Then /^I should see the following people in this order: (.*)/ do |people_list|
 	sorted_people = []
 	people_list.split(', ').each do |person|

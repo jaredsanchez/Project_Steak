@@ -4,6 +4,7 @@ Feature: add people to events
   I want to add a person to an event
 
 Background:
+  Given I am signed in on Google
   Given I am on the events page
   And I follow "Add Event"
   And I fill in "Name" with "Stakeholder Dinner"
@@ -21,8 +22,6 @@ Background:
   | Jared         | Sanchez   | 4        | false    |
   | Wesley        | To        | 2        | false    |
   | Andy          | Smith     | 4        | false    |
-
-
 
   Scenario: show event page
     When I follow "Events"

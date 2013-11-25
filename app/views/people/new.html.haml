@@ -9,15 +9,15 @@
       &nbsp;&nbsp;
       %br/
       %br/
+      = label :person, :email, 'Email'
+      &nbsp;&nbsp;
+      %br/
+      %br/
       = label :person, :progress, 'Progress'
       &nbsp;&nbsp;
       %br/
       %br/
       = label :person, :favorite, 'Favorite'
-      &nbsp;&nbsp;
-      %br/
-      %br/
-      = label :person, :email, 'Email'
       &nbsp;&nbsp;
     .rightform
       = text_field :person, 'first_name'
@@ -26,13 +26,13 @@
       = text_field :person, 'last_name'
       %br/
       %br/
+      = text_field :person, 'email'
+      %br/
+      %br/
       = select :person, 'progress', [['None', '0'], ['Aware', '1'], ['Interested', '2'], ['Trying', '3'], ['Adopted', '4']]
       %br/
       %br/
       = check_box :person, 'favorite' 
-      %br/
-      %br/
-      = text_field :person, 'email'
       %br/
       %br/
       = submit_tag 'Add'

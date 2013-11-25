@@ -100,6 +100,11 @@ Then /^(?:|I )should be redirected to the person page for "(.*)"$/ do |person|
   end
 end
 
+Then /I should see '(.*)' before '(.*)'/ do |e1, e2|
+	body = page.find('#body').text
+	body.index(e1).should < body.index(e2)
+end
+
 Then /^(?:|I )should be redirected to the event page for "(.*)"$/ do |person|
   assert current_path.should =~ /\/events\/\d*/
   if page.respond_to? :should
