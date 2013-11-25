@@ -14,7 +14,8 @@ describe SessionsController do
       OmniAuth.config.add_mock(:linkedin, {:uid => '12345'})
       #mock_auth_hash
       click_button 'Find LinkedIn Connections'
-      page.should have_content('Signed in with LinkedIn')
+      current_path.should eq(people_path)
+     # page.should have_content('Signed in with LinkedIn')
     end
   
     it 'can handle authentication error' do
@@ -22,7 +23,8 @@ describe SessionsController do
       page.should have_button("Find LinkedIn Connections")
       OmniAuth.config.mock_auth[:linkedin] = :invalid_credentials
       click_button 'Find LinkedIn Connections'
-      page.should have_content('Authentication error:')
+      current_path.should eq(root_path)
+      #page.should have_content('Authentication error:')
     end
   end
 end
