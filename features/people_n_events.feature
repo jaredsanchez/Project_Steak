@@ -4,7 +4,13 @@ Feature: add people to events
   I want to add a person to an event
 
 Background:
-  Given I am signed in on Google
+  Given I am on the home page
+  Then I should see "Sign In"
+  When I follow "Sign In"
+  And I conditionally fill in "Email" with "projectsteak@gmail.com"
+  And I conditionally fill in "Passwd" with "steak222"
+  Then I conditionally press "Sign in"
+  Then I conditionally press "Accept"
   Given I am on the events page
   And I follow "Add Event"
   And I fill in "Name" with "Stakeholder Dinner"
@@ -23,6 +29,7 @@ Background:
   | Wesley        | To        | 2        | false    |
   | Andy          | Smith     | 4        | false    |
 
+  @javascript
   Scenario: show event page
     When I follow "Events"
     And I follow "Stakeholder Dinner"

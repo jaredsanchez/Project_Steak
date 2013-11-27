@@ -9,10 +9,11 @@ Background: Start on the home page
   Given I am on the home page
   Then I should see "Sign In"
   When I follow "Sign In"
-  And I fill in "Email" with "projectsteak@gmail.com"
-  And I fill in "Passwd" with "steak222"
-  Then I follow "signIn"
-  And I should see "Greetings"
+  And I conditionally fill in "Email" with "projectsteak@gmail.com"
+  And I conditionally fill in "Passwd" with "steak222"
+  Then I conditionally press "Sign in"
+  Then I conditionally press "Accept"
+
 
 @javascript
 Scenario: add a new person to the intitiative

@@ -31,6 +31,12 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+When /^I trash the cookies$/ do
+  browser = Capybara.current_session.driver.browser
+  browser.manage.delete_all_cookies
+
+end
+
 Given /^I am signed in on Google$/ do 
   #visit "/signin"
   user_information = Hash.new
@@ -63,12 +69,28 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
+When /^(?:|I )conditionally press "([^"]*)"$/ do |button|
+  begin
+    click_button(button)
+  rescue Capybara::ElementNotFound
+    
+  end
+end
+
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
+end
+
+When /^(?:|I )conditionally fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+  begin
+    fill_in(field, :with => value)
+  rescue Capybara::ElementNotFound
+    
+  end
 end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|

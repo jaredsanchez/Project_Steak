@@ -5,7 +5,13 @@ Feature: delete an event from the database
   I want to delete an event from the list of events in the app
 
 Background: Start on the home page
-  Given I am signed in on Google
+  Given I am on the home page
+  Then I should see "Sign In"
+  When I follow "Sign In"
+  And I conditionally fill in "Email" with "projectsteak@gmail.com"
+  And I conditionally fill in "Passwd" with "steak222"
+  Then I conditionally press "Sign in"
+  Then I conditionally press "Accept"
   Given the following events exist:
     | name               | description  | where    | event_time               |
     | Cocktail Party     | description  | location | 2013-11-3T00:00:00+00:00 |

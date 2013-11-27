@@ -5,7 +5,13 @@ Feature: add a new event for people involved in an intiative
   I want to add a new event
 
 Background: Start on the home page
-  Given I am signed in on Google
+  Given I am on the home page
+  Then I should see "Sign In"
+  When I follow "Sign In"
+  And I conditionally fill in "Email" with "projectsteak@gmail.com"
+  And I conditionally fill in "Passwd" with "steak222"
+  Then I conditionally press "Sign in"
+  Then I conditionally press "Accept"
   Given the following people exist:
   | first_name    | last_name | progress | favorite |
   | John          | Gunnison  | 1        | true     |

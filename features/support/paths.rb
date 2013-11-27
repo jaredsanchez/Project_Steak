@@ -34,6 +34,9 @@ module NavigationHelpers
       event = Event.find(1)
       event_path(event)
 
+    when /^the calendar page/
+      '/events/calendar'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
