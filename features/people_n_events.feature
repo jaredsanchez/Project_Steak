@@ -12,6 +12,7 @@ Background:
   Then I conditionally press "Sign in"
   Then I conditionally press "Accept"
   Given I am on the events page
+  And I hover over "Events"
   And I follow "Add Event"
   And I fill in "Name" with "Stakeholder Dinner"
   And I fill in "Description" with "Discussion about the API"
@@ -36,14 +37,16 @@ Background:
     Then I should be redirected to the event page for "Stakeholder Dinner"
     And I should see "Stakeholder Dinner"
 
+  @javascript
   Scenario: add a person to event
     When I follow "Events"
     When I follow "Stakeholder Dinner"
-    And I fill in "Name" with "Jeff Zayas"
+    And I fill in "Name" with "John Gunnison"
     And I press "Add"
     Then I should be redirected to the event page for "Stakeholder Dinner"
-    And I should see "Jeff Zayas"
+    And I should see "John Gunnison"
 
+  @javascript
   Scenario: add a non-existent person to event
     When I follow "Events"
     When I follow "Stakeholder Dinner"

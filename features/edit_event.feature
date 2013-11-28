@@ -12,10 +12,12 @@ Background: Create events and go to events page
   And I conditionally fill in "Passwd" with "steak222"
   Then I conditionally press "Sign in"
   Then I conditionally press "Accept"
-  Given the following events exist:
-    | name               | description  | where    | event_time               |
-    | Cocktail Party     | description  | location | 2013-11-3T00:00:00+00:00 |
-
+  And I hover over "Events"
+  And I follow "Add Event"
+  And I fill in "Name" with "Cocktail Party"
+  And I fill in "Description" with "Party"
+  And I fill in "Location" with "Cory"
+  And I press "Add"
   And I am on the Events page
 
   @javascript

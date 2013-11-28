@@ -12,28 +12,40 @@ Background: Start on the events page
   And I conditionally fill in "Passwd" with "steak222"
   Then I conditionally press "Sign in"
   Then I conditionally press "Accept"
-  Given the following events exist:
-    | name               | description  | where       | event_time               |
-    | Cocktail Party     | description  | location    | 2013-11-3T00:00:00+00:00 |
-    | Stakeholder Dinner | steak dinner | someplace   | 2013-11-5T00:00:00+00:00 |
-    | Something Else     | miscellanous | undisclosed | 2013-11-7T00:00:00+00:00 |
-
-  And I am on the events page
+  And I hover over "Events"
+  And I follow "Add Event"
+  And I fill in "Name" with "Cocktail Party"
+  And I fill in "Description" with "description"
+  And I fill in "Location" with "location"
+  And I press "Add"
+  And I hover over "Events"
+  And I follow "Add Event"
+  And I fill in "Name" with "Stakeholder Dinner"
+  And I fill in "Description" with "steak dinner"
+  And I fill in "Location" with "someplace"
+  And I press "Add"
+  And I hover over "Events"
+  And I follow "Add Event"
+  And I fill in "Name" with "Something Else"
+  And I fill in "Description" with "miscellaneous"
+  And I fill in "Location" with "undisclosed"
+  And I press "Add"
 
 @javascript
 Scenario: display a list of events whose default order is by name ascending
-  I should see the following events in this order: 'Cocktail Party', 'Something Else', 'Stakeholder Dinner'
+  When I follow "Events"
+  Then I should see the following events in this order: "Cocktail Party", "Something Else", "Stakeholder Dinner"
 
-
+@javascript
 Scenario: sort the events by alphabetical name descending order
   When I follow "Events"
   When I follow "Name"
-  Then I should see the following events in this order: 'Cocktail Party', 'Something Else', 'Stakeholder Dinner'
+  Then I should see the following events in this order: "Cocktail Party", "Something Else", "Stakeholder Dinner"
 
-
+@javascript
 Scenario: sort the events by alphabetical name ascending order
   When I follow "Events"
   When I follow "Name"
   When I follow "Name"
-  Then I should see the following events in this order: 'Stakeholder Dinner', 'Something Else', 'Cocktail Party'
+  Then I should see the following events in this order: "Stakeholder Dinner", "Something Else", "Cocktail Party"
 
