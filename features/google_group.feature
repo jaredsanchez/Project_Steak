@@ -32,7 +32,7 @@ Background: Start on the home page
   And I fill in "Group" with "Partners"
   And I press "Add"
   Then I should see "Stakeholder Dinner" in the main page body
-  And I should see "John Gunnision"
+  And I should see "John Gunnison"
   And I should see "Jeff Zayas"
   And I should see "Jared Sanchez"
   And I should see "Wesley To"
@@ -50,6 +50,18 @@ Background: Start on the home page
   Then I should see "Error: Group name 'FakeGroupNAME' not found"
   And I should be on the Add Event Page
 
+ Scenario: Group name should appear when group is added
+  When I hover over "Events"
+  And I follow "Add Event"
+  Then I should be on the Add Event page
+  When I fill in "Name" with "Stakeholder Dinner"
+  And I fill in "Description" with "A dinner for stake holders"
+  And I fill in "Location" with "Cheeseboard"
+  And I fill in "Group" with "Parterns"
+  And I press "Add"
+  Then I should see "Partners" before "John Gunnison"
+
+ 
 
 
 
