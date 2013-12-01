@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131123110658) do
+ActiveRecord::Schema.define(:version => 20131130025632) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -50,6 +50,10 @@ ActiveRecord::Schema.define(:version => 20131123110658) do
     t.string   "email"
     t.boolean  "active",                 :default => false
     t.boolean  "is_linkedin_connection"
+    t.string   "phone_number"
+    t.string   "cal_net_dept_name"
+    t.string   "hr_dept_name"
+    t.string   "job_title"
   end
 
   create_table "users", :force => true do |t|

@@ -6,13 +6,13 @@
     %span#field #{@person.first_name + ' ' + @person.last_name}
     %br/
     Organization:&nbsp;
-    %span#field [From Org Chart]
+    %span#field #{@person.hr_dept_name}
     %br/
     Position:&nbsp;
-    %span#field [From LinkedIn / Org Chart]
+    %span#field #{@person.job_title}
     %br/
     Phone:&nbsp;
-    %span#field 510-555-5555
+    %span#field #{@person.phone_number}
     %br/
     Email:&nbsp;
     %span#field #{@person.email}
