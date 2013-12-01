@@ -61,7 +61,5 @@ Background: Start on the home page
   And I press "Add"
   Then I should see "Partners" before "John Gunnison"
 
- 
-
 
 

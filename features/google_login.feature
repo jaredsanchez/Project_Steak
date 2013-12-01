@@ -28,3 +28,11 @@ Scenario: add a new person to the intitiative
   Then I should be redirected to the person page for "James Bond"
   When I follow "People"
   Then I should see "James Bond" in the main page body
+
+@javascript 
+Scenario: log out of a user session
+Then I should see "Project Steak"
+When I hover over "Project Steak"
+Then I should see "Sign Out"
+When I follow "Sign Out"
+Then I should see "Sign In"
