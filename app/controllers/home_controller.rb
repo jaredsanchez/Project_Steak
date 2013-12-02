@@ -11,7 +11,7 @@ class HomeController < ApplicationController
       @calendar_events = Hash.new
       @calendars.items.each { |cal|
         event = client.execute(:api_method => service.events.list, :parameters => {'calendarId'=> cal.id})
-        puts "events got got for calendar: " + cal.summary
+        #puts "events got got for calendar: " + cal.summary
         cal_events = event.data.items
 
         #if calendar_events[cal.id].nil?
@@ -28,14 +28,14 @@ class HomeController < ApplicationController
           #  calendar_events[calendarId][curr_event]
           #end
 
-          puts "Event Summary: "
-          puts curr_event["summary"]
-          puts "Starts at : " 
-          puts curr_event["start"]
-          puts "Ends at : " 
-          puts curr_event["end"]
-          puts "Event location: "
-          puts curr_event["location"]
+          #puts "Event Summary: "
+          #puts curr_event["summary"]
+          #puts "Starts at : " 
+          #puts curr_event["start"]
+          #puts "Ends at : " 
+          #puts curr_event["end"]
+          #puts "Event location: "
+          #puts curr_event["location"]
         }
 
 
