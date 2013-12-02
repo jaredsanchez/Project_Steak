@@ -101,6 +101,10 @@ When /^(?:|I )hover over "([^"]*)"$/ do |value|
   find('li', :text => value).hover
 end
 
+When /^(?:|I )mouseover the element "([^"]*)"$/ do |value|
+  find_by_id(value).hover
+end
+
 When /^(?:|I )select "([^"]*)" from the "([^"]*)" dropdown menu$/ do |option, menu|
   select(option, :from => menu)
 end

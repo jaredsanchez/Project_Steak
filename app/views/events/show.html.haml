@@ -1,38 +1,43 @@
-%h2 Details about #{@event.name}
 - if flash[:notice]
   #notice.message= flash[:notice]
 - elsif flash[:warning]
   #notice.message= flash[:warning]
 
 
-%ul#detials
-  %li
+%div{:id => [@event.name]}
+  .info
+    .small_link#edit= link_to 'Edit Info', edit_event_path(@event)
     Name:
-    = @event.name
-  %li
-    Location:
-    = @event.where
-  %li 
-    Date:
-    = @event.event_time
-%h3 Description:
-%p#description= @event.description
+    %span#field #{@event.name}
+    %br/
+    Location:&nbsp;
+    %span#field #{@event.where}
+    %br/
+    Date:&nbsp;
+    %span#field #{@event.event_time}
+    %br/
+    Description:&nbsp;
+    %span.description #{@event.description}
+    %br/
+-if @event.people != [] 
+  .leftlist
+    %h4 People Attending:
+    .popup
+      %ul
+        -@event.people.each do |person|
+          %li
+            =link_to person.first_name + ' ' + person.last_name, person_path(person.id)
+            %ul
+              %li
+                #{person.first_name + ' ' + person.last_name}
+                %br/
+                #{person.email}
+                %br/
 
-- if @event.people != [] 
-  %table#people
-    %thead
-      %h4 People Attending:
-    %tbody
-      - @event.people.each do |person|
-        %tr
-          %td= person.first_name + " " + person.last_name
-
-%h4 Add Person to This Event:
-= form_tag "/events/add_person/#{@event.id}", :method => :get do
-  = label :event, :people , 'Name'
-  = text_field :event, 'people'
-  = hidden_field_tag 'id', @event.id
-  = submit_tag 'Add'
-
-= link_to 'Edit Info', edit_event_path(@event)
-
+.rightlist
+  %h4 Add Person to This Event:
+  = form_tag "/events/add_person/#{@event.id}", :method => :get do
+    = label :event, :people , 'Name'
+    = text_field :event, 'people'
+    = hidden_field_tag 'id', @event.id
+    = submit_tag 'Add'

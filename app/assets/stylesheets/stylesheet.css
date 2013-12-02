@@ -103,9 +103,12 @@ input{
 .info => infobox for events/people
 .leftform => left side of a form with fields
 .rightform => right side with inputs
+.leftlist => a list of items to take up about half the page
+.rightlist => whatever else you want taking up the right half
 .button => submit buttons
 .list_table => display all objects in a list (People, events...)
 .popup => informational popup
+.description => sets an element to be 50 characters wide. Useful for long text elements.
 
      USE THESE CLASSES AS-IS!
     DO NOT MODIFY THEM AT RISK
@@ -146,9 +149,16 @@ input{
 }
 .leftform{
 	float:left;
-	text-align:right;
 }
 .rightform{
+	float:left;
+}
+
+.leftlist{
+	float:left;
+	width:30%;
+}
+.rightlist{
 	float:left;
 }
 
@@ -170,6 +180,9 @@ input{
 }
 .popup{
 	text-overflow:ellipsis;
+}
+.description{
+	width:50em;
 }
 /*=================================
           Dependencies
@@ -359,9 +372,7 @@ input{
 .popup ul li{
 	width:100%;
 	border-radius: 10px;  
-	list-style: none;
-	position: relative;
-	display: block;
+	display: inline-block;
 	padding:10px;
 }
 
