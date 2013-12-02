@@ -8,11 +8,6 @@ module ApplicationHelper
     link_to title, :sort =>column, :order => order
   end
 
-  def sign_in_redirect
-    session[:return_to] ||= request.referer
-    link_to "Sign In", signin_path
-  end
-
   class NetworkError < RuntimeError ; end
 
   def getXML(uri)
