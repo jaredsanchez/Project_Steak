@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       #token = auth[:credentials][:token]
       #secret = auth[:credentials][:secret]
       find_linkedin_connections
-      return
+      redirect_to people_path and return
     else
       user = User.where(:provider => auth['provider'],
                       :uid => auth['uid']).first || User.create_with_omniauth(auth)
@@ -23,14 +23,15 @@ class SessionsController < ApplicationController
       user.save
 
       session[:user_id] = user.id
-      redirect_to events_path, :notice => 'Signed in!'
+      redirect_to session.delete(:return_to), :notice => 'Signed in!'
     end
   end
 
   def destroy
-    #reset_session
     session[:user_id] = nil
-    redirect_to events_path, :notice => 'Signed out!'
+    session.delete(:user_id)
+    reset_session
+    redirect_to root_path, :notice => 'Signed out!'
   end
 
   def failure

@@ -31,4 +31,4 @@
           =link_to "#{current_user.name}", signout_path, :id => 'curr_user'
           =link_to "Sign Out", signout_path, :id => 'sign_out'
         - else
-          =link_to "Sign In", signin_path
+          =sign_in_redirect

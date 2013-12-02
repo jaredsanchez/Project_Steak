@@ -105,6 +105,10 @@ When /^(?:|I )mouseover the element "([^"]*)"$/ do |value|
   find_by_id(value).hover
 end
 
+When /^(?:|I )click the image for "([^"]*)"$/ do |value|
+  find_by_id(value).click
+end
+
 When /^(?:|I )select "([^"]*)" from the "([^"]*)" dropdown menu$/ do |option, menu|
   select(option, :from => menu)
 end
