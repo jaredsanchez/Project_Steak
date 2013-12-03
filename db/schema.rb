@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20131123110658) do
     t.datetime "updated_at",                                :null => false
     t.string   "email"
     t.boolean  "active",                 :default => false
-    t.boolean  "is_linkedin_connection"
+    t.boolean  "is_linkedin_connection", :default => false
   end
 
   create_table "users", :force => true do |t|

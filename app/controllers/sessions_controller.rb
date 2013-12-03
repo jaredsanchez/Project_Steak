@@ -54,10 +54,10 @@ class SessionsController < ApplicationController
     connections.each do |connection|
       first_name = connection[0].text
       last_name = connection[1].text
-      full_name = first_name + ' ' + last_name
       match = Person.find_by_first_name_and_last_name(first_name, last_name)
       if match
         match.is_linkedin_connection = true
+        match.save
       end
     end
     redirect_to people_path, flash[:notice] => 'Signed in with LinkedIn'

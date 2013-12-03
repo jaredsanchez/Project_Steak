@@ -5,7 +5,7 @@ class Person < ActiveRecord::Base
     extend ApplicationHelper
 	
     has_and_belongs_to_many :events
-    attr_accessible :name, :first_name, :last_name, :progress, :active, :favorite, :email, :linkedin_connection => false
+    attr_accessible :name, :first_name, :last_name, :progress, :active, :favorite, :email, :is_linkedin_connection
 
     def self.processPeople(org_unit)
         uri = "https://apis.berkeley.edu/calnet/person?searchFilter" +
