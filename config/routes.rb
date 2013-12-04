@@ -19,6 +19,7 @@ ProjectSteak::Application.routes.draw do
   #   resources :products
   root :to => 'main#index'
   resources :people
+  resources :groups
   resources :events
 
   match '/auth/failure' => 'sessions#failure'

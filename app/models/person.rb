@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
     extend ApplicationHelper
 	
     has_and_belongs_to_many :events
+    has_and_belongs_to_many :groups
     attr_accessible :name, :first_name, :last_name, :progress, :active, :favorite, :email, :is_linkedin_connection
 
     def self.processPeople(org_unit)
