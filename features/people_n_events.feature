@@ -54,3 +54,20 @@ Background:
     And I press "Add"
     Then I should be redirected to the event page for "Stakeholder Dinner"   
     And I should not see "Puff The Magic Dragon" 
+
+  @javascript
+  Scenario: add multiple people to an event
+    When I follow "Events"
+    When I follow "Stakeholder Dinner"
+    And I fill in "Name" with "John Gunnison"
+    And I press "Add"
+    Then I should be redirected to the event page for "Stakeholder Dinner"
+    And I should see "John Gunnison"
+    When I fill in "Name" with "Andy Smith"
+    And I press "Add"
+    Then I should be redirected to the event page for "Stakeholder Dinner"
+    And I should see "John Gunnison"
+    And I should see "Andy Smith"
+
+
+
