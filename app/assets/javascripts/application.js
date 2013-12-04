@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//=require bootstrap
+//=require bootstrap/modal
+
 function showOne(className, target){
     $("#hello").hide();
     $("." + className).hide();

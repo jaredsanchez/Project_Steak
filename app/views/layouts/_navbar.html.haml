@@ -10,15 +10,9 @@
             = link_to "Add Person", new_person_path
           %li
             = link_to 'Find LinkedIn Connections', linkedin_signin_path
-      %li#Initiatives
-        %a{href: "#"} Initiatives
-        %ul
-          %li
-            %a{href: "#"} All
-          %li
-            %a{href: "#"} Completed
-          %li
-            %a{href: "#"} Imcomplete
+      %li#Groups
+        = link_to 'Groups', groups_path()
+        //%a{href: "#"} Groups
       %li#Events
         = link_to 'Events', events_path()
         %ul
