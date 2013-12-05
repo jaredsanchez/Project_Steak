@@ -256,6 +256,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   linkedin
+  nokogiri
   omniauth (>= 1.0.3)
   omniauth-google-oauth2
   omniauth-linkedin-oauth2

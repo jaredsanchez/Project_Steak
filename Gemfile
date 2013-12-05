@@ -39,6 +39,7 @@ group :production do
   gem 'pg'
 end
 
+gem 'nokogiri'
 gem 'jquery-rails'
 gem 'haml'
 gem 'figaro'
