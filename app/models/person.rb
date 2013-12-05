@@ -1,4 +1,3 @@
-require 'debugger'
 require 'nokogiri'
 
 class Person < ActiveRecord::Base
