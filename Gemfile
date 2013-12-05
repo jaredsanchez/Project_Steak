@@ -27,6 +27,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'factory_girl_rails'
+  gem 'debugger'
 end
 
 group :test do
@@ -56,7 +57,6 @@ gem 'google_oauth_calendar' , :git => 'git://github.com/deafgreatdane/google_oau
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
 
 gem "omniauth", ">= 1.0.3"
 gem "omniauth-google-oauth2"
