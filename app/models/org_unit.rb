@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 class OrgUnit < ActiveRecord::Base
     extend ApplicationHelper
 

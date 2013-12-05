@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 class Person < ActiveRecord::Base
     extend ApplicationHelper
 	
