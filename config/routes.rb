@@ -4,6 +4,7 @@ ProjectSteak::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   get 'events/add_person/:id', to: 'events#add_person'
+  get 'events/add_group/:id', to: 'events#add_group'
 
   get 'events/refresh', to: 'events#refresh', as: :refresh
   match 'events/calendar', to: 'events#calendar'

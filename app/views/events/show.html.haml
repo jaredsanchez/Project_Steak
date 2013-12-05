@@ -35,9 +35,15 @@
                 %br/
 
 .rightlist
-  %h4 Add Person to This Event:
+  %br/
   = form_tag "/events/add_person/#{@event.id}", :method => :get do
-    = label :event, :people , 'Name'
-    = text_field :event, 'people'
+    = label :event, :person, "Add a Person to #{@event.name}: "
     = hidden_field_tag 'id', @event.id
-    = submit_tag 'Add'
+    =collection_select(:person, :person_id, Person.all, :id, :full_name, :prompt => "Select Person", :id =>"select_person")
+    =submit_tag "Add Person"
+
+  = form_tag "/events/add_group/#{@event.id}", :method => :get do
+    = label :event, :group, "Add a Group to #{@event.name}: "
+    = hidden_field_tag 'id', @event.id
+    =collection_select(:group, :group_id, Group.all, :id, :name, :prompt  => "Select Group")
+    =submit_tag "Add Group"

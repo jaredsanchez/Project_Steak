@@ -65,9 +65,11 @@ class EventsController < ApplicationController
 
   def add_person
     @event = Event.find(params[:id])
-    person = Person.find_by_name(params[:name_person])
+    person = Person.find_by_id params[:person][:person_id]
     if person == nil
-      flash[:warning] = "Could not find person with name #{params[:name_person]}"
+      redirect_to event_path(@event)
+    elsif @event.people.include? person
+      flash[:notice] = "#{person.first_name} was already added to this event"
       redirect_to event_path(@event)
     else
       @event.people << person
@@ -77,6 +79,22 @@ class EventsController < ApplicationController
     end
   end
 
+  def add_group
+    @event = Event.find(params[:id])
+    group = Group.find_by_id params[:group][:group_id]
+    if group == nil
+      redirect_to event_path(@event)
+    else
+      group.people.each { |person|
+        if ! @event.people.include? person
+          @event.people << person
+        end
+      }
+      @event.save!
+      flash[:notice] = "#{group.name} was added to this event"
+      redirect_to event_path(@event)
+    end
+  end
   def destroy
     event = Event.find(params[:id])
     client = ClientBuilder.get_client(current_user)
