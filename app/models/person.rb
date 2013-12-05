@@ -34,4 +34,8 @@ class Person < ActiveRecord::Base
     def self.deactivateAllPeople()
         self.update_all "active = 'false'"
     end
+
+    def full_name
+      "#{first_name} " + "#{last_name}"
+    end
 end

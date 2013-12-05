@@ -41,30 +41,34 @@ Background:
   Scenario: add a person to event
     When I follow "Events"
     When I follow "Stakeholder Dinner"
-    And I fill in "Name" with "John Gunnison"
-    And I press "Add"
+    And I select "John Gunnison" from "person_person_id"
+    And I press "Add Person"
     Then I should be redirected to the event page for "Stakeholder Dinner"
     And I should see "John Gunnison"
 
   @javascript
-  Scenario: add a non-existent person to event
+  Scenario: add a duplicate person to event
     When I follow "Events"
     When I follow "Stakeholder Dinner"
-    And I fill in "Name" with "Puff The Magic Dragon"
-    And I press "Add"
+    And I select "John Gunnison" from "person_person_id"
+    And I press "Add Person"
     Then I should be redirected to the event page for "Stakeholder Dinner"   
-    And I should not see "Puff The Magic Dragon" 
+    And I should see "John Gunnison"
+    When I select "John Gunnison" from "person_person_id"
+    And I press "Add Person"
+    Then I should see "already"
+
 
   @javascript
   Scenario: add multiple people to an event
     When I follow "Events"
     When I follow "Stakeholder Dinner"
-    And I fill in "Name" with "John Gunnison"
-    And I press "Add"
+    And I select "John Gunnison" from "person_person_id"
+    And I press "Add Person"
     Then I should be redirected to the event page for "Stakeholder Dinner"
     And I should see "John Gunnison"
-    When I fill in "Name" with "Andy Smith"
-    And I press "Add"
+    When I select "Andy Smith" from "person_person_id"
+    And I press "Add Person"
     Then I should be redirected to the event page for "Stakeholder Dinner"
     And I should see "John Gunnison"
     And I should see "Andy Smith"
