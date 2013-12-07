@@ -7,7 +7,6 @@
     - @groups.each do |group|
       %tr
         %td 
-          / #accordion2.accordion
           #accordion2.accordion
             .accordion-group
               .accordion-heading
@@ -15,11 +14,22 @@
                   =group.name
               .accordion-body.collapse{:id => "collapse#{group.id}"}
                 .accordion-inner
+                  %p Description:  
                   =group.description
+                  %ul
+                  -group.people.each do |person|
+                    %li= person.full_name
+                  = form_tag groups_path do
+                    = label :group, :person, "Add a Person to #{group.name}: "
+                    = hidden_field_tag 'id', group.id
+                    =collection_select(:person, :person_id, Person.all, :id, :full_name, :prompt => true)
+                    =submit_tag "Add Person"
 
 %br/
 %br/
 %br/
+
+
 
 %fieldset
 %legend Add a Group

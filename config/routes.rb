@@ -8,6 +8,7 @@ ProjectSteak::Application.routes.draw do
 
   get 'events/refresh', to: 'events#refresh', as: :refresh
   match 'events/calendar', to: 'events#calendar'
+  get 'events/send_invites/:id', to: 'events#send_invites'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -42,6 +43,7 @@ ProjectSteak::Application.routes.draw do
   get '/login', :to => 'sessions#new', :as => :login
   match '/auth/:provider/callback', :to => 'sessions#create'
   match '/auth/failure', :to => 'sessions#failure' 
+
 
   # Sample resource route with options:
   #   resources :products do

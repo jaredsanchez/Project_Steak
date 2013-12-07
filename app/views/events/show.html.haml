@@ -47,3 +47,8 @@
     = hidden_field_tag 'id', @event.id
     =collection_select(:group, :group_id, Group.all, :id, :name, :prompt  => "Select Group")
     =submit_tag "Add Group"
+
+  %br/
+  = form_tag "/events/send_invites/#{@event.id}", :method => :get do
+    = hidden_field_tag 'id', @event.id
+    =submit_tag "Send Google Calendar Invites"
