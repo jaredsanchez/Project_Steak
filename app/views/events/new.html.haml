@@ -24,7 +24,9 @@
       = text_field :event, 'where'
       %br/
       %br/
-      = date_select :event, :event_time
+
+      = datetime_select :event, :event_time, ampm: true
       %br/
       %br/
       = submit_tag 'Add'
+
