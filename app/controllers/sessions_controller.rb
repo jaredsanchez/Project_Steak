@@ -3,7 +3,6 @@ class SessionsController < ApplicationController
   require 'linkedin'
 
   def new
-    #puts "New gets called"
     redirect_to '/auth/google_oauth2'
   end
 

@@ -30,11 +30,8 @@ class EventsController < ApplicationController
         end
       }
       google_cal_hash.each {|google_id, value| 
-        puts value["summary"]
         if Event.find_by_google_id(google_id).nil?
           newevent = Event.create!(:name => value["summary"], :google_id => google_id, :where => value["location"], :event_time => value["start"]["dateTime"], :description => value["description"], :uid => current_user.uid)
-          puts "newevent"
-          puts newevent
         end
       }
     end
@@ -126,19 +123,16 @@ class EventsController < ApplicationController
         'end' => {'dateTime' => @event.event_time.to_datetime.rfc3339},
         'attendees' => attendees
       }
-      puts "current_user"
-      puts current_user
+     
       client = ClientBuilder.get_client(current_user)
       service = client.discovered_api('calendar', 'v3')
 
       result = client.execute(:api_method => service.events.insert, :parameters => {'calendarId' => session[:calendar_id]}, :body => JSON.dump(event),   :headers => {'Content-Type' => 'application/json'})
-      return_event = result.data
-      puts "Return event"
-      puts return_event
-      puts "Google return event id"
-      puts return_event.id 
-      @event.google_id = return_event.id
-      @event.save
+      if ! result.data.nil?
+        return_event = result.data
+        @event.google_id = return_event.id
+        @event.save
+      end
       flash[:notice] = "#{@event.name} was successfully added to your list of events"
       redirect_to event_path(@event)
     else
@@ -159,34 +153,22 @@ class EventsController < ApplicationController
 
   def send_invites
     @event = Event.find(params[:id])
-    puts "@event"
-    puts @event
-    puts "@event attr"
-    puts @event.attributes
     if (user_signed_in? )
-      puts "Pre google_id"
-      puts @event.google_id
       client = ClientBuilder.get_client(current_user)
       service = client.discovered_api('calendar', 'v3')
       result = client.execute(:api_method => service.events.get,
                               :parameters => {'calendarId' => session[:calendar_id], 'eventId' => @event.google_id})
       gevent = result.data
 
-      email_list = Array.new
-      email_list << {"email " => "jeffrz11@gmail.com"}
-      # gevent.attendees = email_list
-      gevent.summary = "Changed name.."
-      puts "calendarId"
-      puts session[:calendar_id]
-      puts "gevent"
-      puts gevent
-      puts "NEW google_id"
-      puts @event.google_id
-      puts "gevent.id"
-      puts gevent.id
-      puts "Gevent attendees "
-      puts gevent.attendees
-      gevent.attendees = [ { 'email' => 'jeffrz11@gmail.com'}]
+      email_list = [] 
+      #email_list.push({'email' => 'jeffrz11@gmail.com'})
+      @event.people.each { | person|
+        if person.email
+          email_list << {'email' => person.email}
+        end
+      }
+      gevent.attendees = email_list
+      #gevent.attendees = [ { 'email' => 'jeffrz11@gmail.com'}]
 
       result = client.execute(:api_method => service.events.update,
                               :parameters => {'calendarId' => session[:calendar_id], 
@@ -194,9 +176,6 @@ class EventsController < ApplicationController
                                               'sendNotifications' => true}, 
                               :body_object => gevent,
                               :headers => {'Content-Type' => 'application/json'})
-      puts "Result.data post send"
-      puts result.data
-      puts "Result.data.summary"
 
     end
 
