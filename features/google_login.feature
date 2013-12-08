@@ -32,7 +32,6 @@ Scenario: add a new person to the intitiative
 @javascript 
 Scenario: log out of a user session
 Then I should see "Project Steak"
-When I hover over "Project Steak"
-Then I should see "Sign Out"
+And show me the page
 When I follow "Sign Out"
 Then I should see "Sign In"

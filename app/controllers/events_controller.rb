@@ -111,6 +111,19 @@ class EventsController < ApplicationController
   end
 
   def create
+    if user_signed_in?
+      client = ClientBuilder.get_client(current_user)
+      service = client.discovered_api('calendar', 'v3')
+      result = client.execute(:api_method => service.calendar_list.list)
+
+      calendars = result.data
+      google_cal_hash = Hash.new
+      calendars.items.each { |cal|
+        if (cal.summary == "CS169 Project") 
+          session[:calendar_id] = cal.id
+        end
+      }
+    end
     @event = Event.new params[:event]
     @event.uid = current_user.uid
     if @event.save
@@ -159,26 +172,23 @@ class EventsController < ApplicationController
       result = client.execute(:api_method => service.events.get,
                               :parameters => {'calendarId' => session[:calendar_id], 'eventId' => @event.google_id})
       gevent = result.data
-
       email_list = [] 
-      #email_list.push({'email' => 'jeffrz11@gmail.com'})
       @event.people.each { | person|
         if person.email
           email_list << {'email' => person.email}
         end
       }
       gevent.attendees = email_list
-      #gevent.attendees = [ { 'email' => 'jeffrz11@gmail.com'}]
-
       result = client.execute(:api_method => service.events.update,
                               :parameters => {'calendarId' => session[:calendar_id], 
                                               'eventId' => gevent.id,
                                               'sendNotifications' => true}, 
                               :body_object => gevent,
                               :headers => {'Content-Type' => 'application/json'})
-
+      if result
+        flash[:notice] = "Emails sent!"
+      end
     end
-
     redirect_to event_path(@event)
   end
 
