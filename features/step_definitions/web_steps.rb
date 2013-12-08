@@ -36,7 +36,8 @@ When /^I trash the cookies$/ do
   browser.manage.delete_all_cookies
 
 end
-
+ 
+ 
 Given /^I am signed in on Google$/ do 
   #visit "/signin"
   user_information = Hash.new
