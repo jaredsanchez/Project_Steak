@@ -7,7 +7,16 @@ class Person < ActiveRecord::Base
 
     def self.search(search)
       if search
-	find(:all, :conditions => ['first_name LIKE ? OR last_name LIKE ?', "%#{search}%", "%#{search}%"])
+        ids = []
+        search.split(' ').each do |term|
+	  people = find(:all, :conditions => ['first_name LIKE ? OR last_name LIKE ? OR 
+            hr_dept_name LIKE ? OR email LIKE ? OR hr_dept_name LIKE ?', 
+            "%#{term}%", "%#{term}", "%#{term}%", "%#{term}", "%#{term}"])
+          people.each do |p|
+            ids << p.id
+          end
+        end
+        find(ids)
       else
         find.all
       end
