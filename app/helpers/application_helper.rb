@@ -8,6 +8,13 @@ module ApplicationHelper
     link_to title, :sort =>column, :order => order
   end
 
+  def filterable(column, term)
+    if term == '' or term == nil
+      term = '---'
+    end
+    link_to term, :term =>term, :filter => column
+  end
+
   class NetworkError < RuntimeError ; end
 
   def getXML(uri)

@@ -1,12 +1,17 @@
-require 'debugger'
-require 'nokogiri'
-
 class Person < ActiveRecord::Base
     extend ApplicationHelper
 	
     has_and_belongs_to_many :events
     attr_accessible :name, :first_name, :last_name, :progress, :active, :favorite, :email,
      :linkedin_connection, :phone_number, :cal_net_dept_name, :hr_dept_name, :job_title, :room_number, :building
+
+    def self.search(search)
+      if search
+	find(:all, :conditions => ['first_name LIKE ? OR last_name LIKE ?', "%#{search}%", "%#{search}%"])
+      else
+        find.all
+      end
+    end
 
     def self.processPeople(org_unit)
         uri = "https://apis.berkeley.edu/calnet/person?searchFilter" +

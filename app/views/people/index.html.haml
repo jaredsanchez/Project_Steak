@@ -1,3 +1,8 @@
+=form_tag people_path, :method => :get do
+  .input_field
+    = text_field_tag :search_term, params[:search_term]
+    = submit_tag "Search", :name => nil
+%br/
 %table.list_table
   %thead
     %tr
@@ -6,6 +11,12 @@
       %th{:class => @first_name_header}=sortable("first_name")
       %th{:class => @last_name_header}=sortable("last_name")
       %th.progress_header{:class => @progress_header}=sortable("progress")
+      %th{:class => @email_header}=sortable("email")
+      %th{:class => @phone_number_header}=sortable("phone_number")
+      %th{:class => @job_title_header}=sortable("job_title")
+      %th{:class => @hr_dept_name_header}=sortable("hr_dept_name", "Organization")
+      %th{:class => @room_number_header}=sortable("room_number", "Room #")
+      %th{:class => @building_header}=sortable("building", "Building")
   %tbody#scrolling_list
     -@people.each do |person|
       %tr
@@ -18,6 +29,15 @@
         %td= link_to person.first_name, person_path(person.id)
         %td= link_to person.last_name, person_path(person.id)
         %td
-          .mini_progress
-            -title = "progress#{person.progress}"
-            =render :partial => "/main/#{title}"
+          = link_to people_path(:filter => 'progress', :term => person.progress) do
+            .mini_progress
+              -title = "progress#{person.progress}"
+              =render :partial => "/main/#{title}"
+        %td=person.email
+        %td=person.phone_number
+        %td=person.job_title
+        %td=filterable('hr_dept_name', person.hr_dept_name)
+        %td=person.room_number
+        %td=filterable('building', person.building)
+        
+

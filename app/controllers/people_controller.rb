@@ -12,9 +12,22 @@ class PeopleController < ApplicationController
   def index  
     sort = params[:sort] || session[:sort]
     order = params[:order] || session[:order]
-    known_params = ['first_name', 'last_name', 'progress']
-    if known_params.include? sort
-      @people = Person.all.sort! { |a,b|
+    search_terms = params[:search_term]
+
+    safe_sort_params = ['first_name', 'last_name', 
+	'progress', 'email', 'hr_dept_name', 
+	'cal_net_dept_name', 'building', 
+	'room_number', 'phone_number',
+        'job_title']
+
+    if search_terms
+      @people = Person.search(search_terms)
+    else
+      @people = Person.all
+    end 
+
+    if safe_sort_params.include? sort
+      @people.sort! { |a,b|
         r1 = a.send(sort)
         r2 = b.send(sort)
         if r1 == r2
@@ -26,7 +39,7 @@ class PeopleController < ApplicationController
         end
       }    
     else
-      @people = Person.all.sort! {|a,b| a.last_name <=> b.last_name}
+      @people.sort! {|a,b| a.last_name <=> b.last_name}
     end
   end
 
