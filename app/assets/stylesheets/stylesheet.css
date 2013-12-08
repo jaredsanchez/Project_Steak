@@ -79,6 +79,9 @@ body{
 input{
 	border-radius:5px;
 }
+.input_field{
+	height:2em;
+}
 #refresh_button{
 	display:inline-block;
 	background: #bfc5cf;

@@ -17,6 +17,7 @@
     Email:&nbsp;
     %span#field #{@person.email}
     %br/
+
     Progress:&nbsp;
     %span#field
     / populate the progress bars with an iterator
@@ -34,16 +35,3 @@
             %br/
             [Event Info Here]
             %br/
-    / Populate annotations with iterator
-  .popup
-    %ul
-      %li
-        %a{href: "#event_name"} Note 1
-        %ul
-          %li
-            Popup
-            %br/
-            [Annotation here]
-            %br/
-      %li
-        %a{href: "#add_note"} Add Note
