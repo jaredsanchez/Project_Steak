@@ -1,7 +1,5 @@
+//@import 'bootstrap';
 @import 'stylesheet';
-/*
-*/
-@import 'bootstrap';
 /*
 * This is a manifest file that'll be compiled into application.css, which will include all the files
 * listed below.
@@ -13,5 +11,39 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require_self
-*= require_tree .
+
+*=require normalize
+*=require print
+*=require scaffolding
+*=require type
+*=require code
+*=require mixins
+*=require tables
+*=require forms
+*=require buttons
+*=require glyphicons
+*=require component-animations
+*=require dropdowns
+*=require button-groups
+*=require input-groups
+*=require navs
+*=require navbar
+*=require breadcrubms
+*=require pager
+*=require labels
+*=require badges
+*=require jumbotron
+*=require thumbnails
+*=require alerts
+*=require media
+*=require list-group
+*=require panels
+*=require well
+*=require close
+*=require modals
+*=require tooltips
+*=require popovers
+*=require carousel
+*=require utilities
+*= require stylesheet
 */
