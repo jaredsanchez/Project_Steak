@@ -1,38 +1,60 @@
 #add_person.main#default
   = form_tag people_path do
     .leftform
-      = label :person, :first_name, 'First Name'
-      &nbsp;&nbsp;
-      %br/
-      %br/
-      = label :person, :last_name, 'Last Name'
-      &nbsp;&nbsp;
-      %br/
-      %br/
-      = label :person, :email, 'Email'
-      &nbsp;&nbsp;
-      %br/
-      %br/
-      = label :person, :progress, 'Progress'
-      &nbsp;&nbsp;
-      %br/
-      %br/
-      = label :person, :favorite, 'Favorite'
-      &nbsp;&nbsp;
+      .input_field
+        = label :person, :first_name, 'First Name'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :last_name, 'Last Name'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :email, 'Email'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :phone_number, 'Phone'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :room_number, 'Room #'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :building, 'Building'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :hr_dept_name, 'Organization'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :job_title, 'Job Title'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :progress, 'Progress'
+        &nbsp;&nbsp;
+      .input_field
+        = label :person, :favorite, 'Favorite'
+        &nbsp;&nbsp;
+
+
+
+
     .rightform
-      = text_field :person, 'first_name'
-      %br/
-      %br/
-      = text_field :person, 'last_name'
-      %br/
-      %br/
-      = text_field :person, 'email'
-      %br/
-      %br/
-      = select :person, 'progress', [['None', '0'], ['Aware', '1'], ['Interested', '2'], ['Trying', '3'], ['Adopted', '4']]
-      %br/
-      %br/
-      = check_box :person, 'favorite' 
-      %br/
-      %br/
-      = submit_tag 'Add'
+      .input_field
+        = text_field :person, 'first_name'
+      .input_field
+        = text_field :person, 'last_name'
+      .input_field
+        = text_field :person, 'email'
+      .input_field
+        = text_field :person, 'phone_number'
+      .input_field
+        = text_field :person, 'room_number'
+      .input_field
+        = text_field :person, 'building'
+      .input_field
+        = text_field :person, 'job_title'
+      .input_field
+        = text_field :person, 'hr_dept_name'
+      .input_field
+        = select :person, 'progress', [['None', '0'], ['Aware', '1'], ['Interested', '2'], ['Trying', '3'], ['Adopted', '4']]
+      .input_field
+        = check_box :person, 'favorite' 
+      .input_field
+        = submit_tag 'Add'

@@ -40,6 +40,7 @@ group :production do
 end
 
 gem 'nokogiri'
+gem 'will_paginate', '~> 3.0'
 gem 'jquery-rails'
 gem 'haml'
 gem 'figaro'

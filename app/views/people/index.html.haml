@@ -1,23 +1,53 @@
+=form_tag people_path, :method => :get do
+  .input_field
+    = text_field_tag :search_term, params[:search_term]
+    = submit_tag "Search", :name => nil
+%br/
 %table.list_table
   %thead
     %tr
-      %th
-      %th
+      %th.icon_width
+      %th.icon_width
       %th{:class => @first_name_header}=sortable("first_name")
       %th{:class => @last_name_header}=sortable("last_name")
       %th.progress_header{:class => @progress_header}=sortable("progress")
-  %tbody#scrolling_list
+      -# EMAIL, PHONE, TITLE REMOVED BECAUSE OF REDUNDANCY & UI/SPACING
+      -# CAL_NET_DEPT REMOVED BECAUSE SPARSE AND CONFLICTS WITH HR_DEPT_NAME
+      -# %th{:class => @email_header}=sortable("email")
+      -# %th{:class => @phone_number_header}=sortable("phone_number")
+      -# %th{:class => @job_title_header}=sortable("job_title")
+      -# %th{:class => @hr_dept_name_header}=sortable("cal_net_dept_name", "Department")
+      %th{:class => @hr_dept_name_header}=sortable("hr_dept_name", "Department")
+      %th{:class => @room_number_header}=sortable("room_number", "Room")
+      %th{:class => @building_header}=sortable("building", "Building")
+  %tbody
     -@people.each do |person|
       %tr
-        %td
+        %td.icon_width
           -if person.favorite
             =image_tag "favorites.png", :class => "icon"
-        %td
+        %td.icon_width
           -if person.is_linkedin_connection
             =image_tag "linkedin.png", :class => 'icon'
         %td= link_to person.first_name, person_path(person.id)
         %td= link_to person.last_name, person_path(person.id)
         %td
-          .mini_progress
-            -title = "progress#{person.progress}"
-            =render :partial => "/main/#{title}"
+          = link_to people_path(:filter => 'progress', :term => person.progress) do
+            .mini_progress
+              -title = "progress#{person.progress}"
+              =render :partial => "/main/#{title}"
+        -# REMOVED FOR REASONS DETAILED ABOVE
+        -# %td=person.email
+        -# %td=person.phone_number
+        -# %td=person.job_title
+        -# %td=filterable('hr_dept_name', person.cal_net_dept_name)
+        %td=filterable('hr_dept_name', person.hr_dept_name)
+        %td=filterable('building', person.building, person.room_number)
+        %td=filterable('building', person.building)
+
+%br/
+.apple_pagination
+  = will_paginate @people
+-# Breaks to create spaced for rendered footer  
+%br/
+%br/

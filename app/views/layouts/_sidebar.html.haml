@@ -1,8 +1,13 @@
-%div#sidebar
-  %ul
-    -@favorites.each do |person|
+-if @favorites
+  %div#sidebar
+    %ul
       %li
-        =link_to person_path(person.id) do
-          #{person.first_name+" "+person.last_name}
-          .mini_progress
-            =render :partial => "/main/progress#{person.progress}"
+        %h3
+          %center
+            Favorites
+      -@favorites.each do |person|
+        %li
+          =link_to person_path(person.id) do
+            #{person.first_name+" "+person.last_name}
+            .mini_progress
+              =render :partial => "/main/progress#{person.progress}"

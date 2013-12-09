@@ -59,7 +59,7 @@ body{
 	text-align:center;
 	border-radius:10px;
 	vertical-align:top;
-	width:45%;
+	width:700px;
 	margin-top:3%;
 	background: #bfc5cf;
 	background: linear-gradient(top, #efefef 0%, #bfc5cf 100%);  
@@ -68,16 +68,18 @@ body{
 	box-shadow: 0px 0px 9px rgba(0,0,0,0.15);
 }
 #body {
-	padding-top:0;
 	padding-left:2%;
 	display: block;
 	vertical-align: top; 
 	padding-top:3%;
 	height: 570px;
-	margin-left:450px;
+	margin-left:300px;
 }
 input{
 	border-radius:5px;
+}
+.input_field{
+	height:2em;
 }
 #refresh_button{
 	display:inline-block;
@@ -90,6 +92,7 @@ input{
 	margin: 0 0 3px 5px;
 	padding:0.25em 1em 0 1em;
 }
+
 
 /*===============================
   Miscellaneous styling classes
@@ -177,6 +180,7 @@ input{
 	background: -webkit-linear-gradient(right, #9ba4b1 0%,#dfdfdf 100%); 
 	border-radius:10px;
 	color:#454545;
+	width:900px;
 }
 .popup{
 	text-overflow:ellipsis;
@@ -215,11 +219,24 @@ input{
 	display:inline;
 }
 
+.info a{
+	text-decoration:none;
+	color:#454545;
+}
+.info a:hover{
+	color:#6e7e8e; 
+}
+.icon_width{
+	width:1em;
+}
+
+
 /*=================================
              Navbar
 =================================*/
 #navbar {
 	display: inline-block;
+	width:800px;
 }
 #navbar ul {
 	background: #bfc5cf; 
@@ -299,7 +316,7 @@ input{
              Sidebar
 =================================*/
 #sidebar {
-	margin-left:200px;
+	margin-left:100px;
 	margin-top:2%;
 	float:left;
 	width: 200px;
@@ -479,4 +496,45 @@ input{
 }
 .progress-bar-adopted {
   background-color: #d9534f;
+}
+
+/*=================================
+          Pagination
+=================================*/
+
+.apple_pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  border-radius:10px;
+  text-align: center;
+  padding: 0.25em;
+  cursor: default; 
+  width:890px;
+}
+.apple_pagination a, .apple_pagination span {
+    padding: 0.2em 0.3em; 
+}
+.apple_pagination .disabled {
+    color: #6e7e8e; 
+}
+.apple_pagination .current {
+    color:#6e7e8e;
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; 
+}
+.apple_pagination a {
+    text-decoration: none;
+    color: #454545; 
+}
+.apple_pagination a:hover, .apple_pagination a:focus {
+    text-decoration: underline; 
 }
