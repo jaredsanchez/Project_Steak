@@ -2,7 +2,6 @@ class Person < ActiveRecord::Base
     extend ApplicationHelper
 	
     has_and_belongs_to_many :events
-    has_and_belongs_to_many :groups
     attr_accessible :name, :first_name, :last_name, :progress, :active, :favorite, :email,
      :linkedin_connection, :phone_number, :cal_net_dept_name, :hr_dept_name, :job_title, :room_number, :building
 
@@ -65,7 +64,55 @@ class Person < ActiveRecord::Base
         self.update_all "active = 'false'"
     end
 
-    def full_name
-      "#{first_name} " + "#{last_name}"
+    def self.get_from_XML(person, field)
+      attribute = person.xpath(field).inner_text
+        if attribute == ""
+          attribute = nil
+        end
+        return attribute
+    end
+
+    def self.get_names_from_XML(person)
+      #displayname is the only name parameter guaranteed to exist.
+      first_name = person.xpath('berkeleyedufirstname').inner_text.split(" ")
+      if first_name != []
+        first_name = first_name.first.capitalize
+        last_name = person.xpath('berkeleyedulastname').inner_text.capitalize
+      else
+        name = person.xpath('displayname').inner_text.split(" ")
+        first_name = name.first.capitalize
+        last_name = name.last.capitalize
+      end
+      return first_name, last_name
+    end
+
+    #Parses the room number and building from two possible API fields.
+    #It's possible that only a number is contained in the roomnumber field,
+    #but more often roomnumber contains a number and a building.
+    #It's also possible that roomnumber is empty in which case street has both
+    #the number and the building. 369 Soda Hall will return as 369 and Soda.
+    #The Hall is stripped off.
+    def self.get_address_from_XML(person)
+      room_number = nil
+      building = nil
+      room_number_string = person.xpath('roomnumber').inner_text
+      unless room_number_string == ""
+        room_number_string =~ /(\d*)\s*([a-zA-Z]*)\s*([a-zA-Z]*)/
+        room_number = $1
+        unless $2 == ""
+          building = $2
+        end
+      end
+      street_string = person.xpath('street').inner_text
+      street_string =~ /(\d*)\s*([a-zA-Z]*)\s*([a-zA-Z]*)/
+      unless room_number
+        room_number = $1
+      end
+      unless building
+        building = $2
+      end
+      building = building.gsub(/\bhall\b/i, "").strip
+      return room_number, building
     end
 end
+
