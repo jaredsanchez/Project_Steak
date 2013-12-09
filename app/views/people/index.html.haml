@@ -6,8 +6,8 @@
 %table.list_table
   %thead
     %tr
-      %th
-      %th
+      %th.icon_width
+      %th.icon_width
       %th{:class => @first_name_header}=sortable("first_name")
       %th{:class => @last_name_header}=sortable("last_name")
       %th.progress_header{:class => @progress_header}=sortable("progress")
@@ -23,10 +23,10 @@
   %tbody
     -@people.each do |person|
       %tr
-        %td
+        %td.icon_width
           -if person.favorite
             =image_tag "favorites.png", :class => "icon"
-        %td
+        %td.icon_width
           -if person.is_linkedin_connection
             =image_tag "linkedin.png", :class => 'icon'
         %td= link_to person.first_name, person_path(person.id)
@@ -44,7 +44,10 @@
         %td=filterable('hr_dept_name', person.hr_dept_name)
         %td=filterable('building', person.building, person.room_number)
         %td=filterable('building', person.building)
-      
+
+%br/
+.apple_pagination
+  = will_paginate @people
 -# Breaks to create spaced for rendered footer  
 %br/
 %br/

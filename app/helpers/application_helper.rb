@@ -4,8 +4,11 @@ module ApplicationHelper
 
   def sortable(column, title = nil)
     title ||= column.titleize
+    search_terms = params[:search_term]
+    filter = params[:filter]
+    term = params[:term] 
     order = (column == params[:sort] && params[:order] == 'asc') ? 'desc' : 'asc'
-    link_to title, :sort =>column, :order => order
+    link_to title, :sort =>column, :order => order, :search_term => search_terms, :term => term, :filter => filter
   end
 
   def filterable(column, term, title = nil)

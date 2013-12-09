@@ -1,3 +1,5 @@
+require 'will_paginate/array' 
+
 class PeopleController < ApplicationController
 
   before_filter :init_vars
@@ -15,7 +17,8 @@ class PeopleController < ApplicationController
     filter = params[:filter] || session[:filter]
     term = params[:term] || session[:filter]
     search_terms = params[:search_term]
-
+    page = params[:page]
+    page ||= 1
     safe_sort_params = ['first_name', 'last_name', 
 	'progress', 'email', 'hr_dept_name', 
 	'cal_net_dept_name', 'building', 
@@ -24,15 +27,39 @@ class PeopleController < ApplicationController
     safe_filter_params = ['hr_dept_name', 'cal_net_dept_name', 'progress', 'building']
 
     if safe_filter_params.include? filter
-      @people = Person.where(filter => term)
-    elsif search_terms
-      @people = Person.search(search_terms)
-    else
-      @people = Person.all
-    end 
-
-    if safe_sort_params.include? sort
-      @people.sort! { |a,b|
+      if sort and safe_sort_params.include? sort
+        @people = Person.where(filter => term).sort! { |a,b|
+            r1 = a.send(sort)
+            r2 = b.send(sort)
+            if r1 == r2
+              a.last_name <=> b.last_name
+            elsif order == 'desc'
+	      r2<=>r1
+            else
+              r1<=>r2
+            end
+          }.paginate(:page => params[:page])
+      else
+        @people = Person.where(filter => term).sort! {|a,b| a.last_name <=> b.last_name}.paginate(:page => params[:page])
+      end
+    elsif not search_terms.blank?
+      if sort and safe_sort_params.include? sort
+        @people = Person.search(search_terms).sort! { |a,b|
+            r1 = a.send(sort)
+            r2 = b.send(sort)
+            if r1 == r2
+              a.last_name <=> b.last_name
+            elsif order == 'desc'
+	      r2<=>r1
+            else
+              r1<=>r2
+            end
+          }.paginate(:page => params[:page])
+      else
+        @people = Person.search(search_terms).sort! {|a,b| a.last_name <=> b.last_name}.paginate(:page => params[:page])
+      end
+    elsif safe_sort_params.include? sort
+      @people = Person.all.sort! { |a,b|
         r1 = a.send(sort)
         r2 = b.send(sort)
         if r1 == r2
@@ -42,9 +69,9 @@ class PeopleController < ApplicationController
         else
           r1<=>r2
         end
-      }    
+      }.paginate(:page => params[:page])
     else
-      @people.sort! {|a,b| a.last_name <=> b.last_name}
+      @people = Person.all.sort! {|a,b| a.last_name <=> b.last_name}.paginate(:page => params[:page])
     end
   end
 
