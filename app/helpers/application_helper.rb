@@ -16,6 +16,15 @@ module ApplicationHelper
     link_to title, :term =>term, :filter => column
   end
 
+  def link_to_filter(column, term, path, title = nil)
+    title ||=term
+    if title == '' or title == nil
+      title = '---'
+    end
+    link_path = path+'_path'
+    link_to title, send(link_path, :term => term, :filter => column)
+  end
+
   class NetworkError < RuntimeError ; end
 
   def getXML(uri)

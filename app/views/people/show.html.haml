@@ -1,31 +1,41 @@
 -# in app/views/people/show.html.haml
+
+=form_tag people_path, :method => :get do
+  .input_field
+    = text_field_tag :search_term, params[:search_term]
+    = submit_tag "Search", :name => nil
+
 %div{:id => [@person.first_name+@person.last_name]}
   .info
     .small_link#edit= link_to 'Edit Info', edit_person_path(@person)
     Name:
     %span#field #{@person.first_name + ' ' + @person.last_name}
     %br/
-    Organization:&nbsp;
-    %span#field #{@person.hr_dept_name}
+    Dept:&nbsp;
+    %span#field 
+      =link_to_filter('hr_dept_name', @person.hr_dept_name, 'people')
     %br/
-    Position:&nbsp;
+    Title:&nbsp;
     %span#field #{@person.job_title}
     %br/
     Phone:&nbsp;
     %span#field #{@person.phone_number}
     %br/
     Email:&nbsp;
-    %span#field #{@person.email}
+    %span#field
+      =mail_to @person.email
     %br/
     Office:&nbsp;
-    %span#field #{@person.room_number + ' ' + @person.building}
+    %span#field 
+      =link_to_filter('building', @person.building, 'people', @person.room_number + ' '+@person.building)
     %br/
     Progress:&nbsp;
     %span#field
     / populate the progress bars with an iterator
     %span#field
-      .progress
-        =render :partial => "/main/progress_lg_#{@person.progress}"
+      = link_to people_path(:filter => 'progress', :term => @person.progress) do
+        .progress
+          =render :partial => "/main/progress_lg_#{@person.progress}"
     /
       .popup
         %ul

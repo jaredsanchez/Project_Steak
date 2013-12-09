@@ -206,6 +206,14 @@ input{
 	display:inline;
 }
 
+.info a{
+	text-decoration:none;
+	color:#454545;
+}
+.info a:hover{
+	color:#6e7e8e; 
+}
+
 /*=================================
              Navbar
 =================================*/
