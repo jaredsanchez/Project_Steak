@@ -8,11 +8,12 @@ module ApplicationHelper
     link_to title, :sort =>column, :order => order
   end
 
-  def filterable(column, term)
-    if term == '' or term == nil
-      term = '---'
+  def filterable(column, term, title = nil)
+    title ||= term
+    if title == '' or title == nil
+      title = '---'
     end
-    link_to term, :term =>term, :filter => column
+    link_to title, :term =>term, :filter => column
   end
 
   class NetworkError < RuntimeError ; end

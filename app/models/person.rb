@@ -9,9 +9,13 @@ class Person < ActiveRecord::Base
       if search
         ids = []
         search.split(' ').each do |term|
-	  people = find(:all, :conditions => ['first_name LIKE ? OR last_name LIKE ? OR 
-            hr_dept_name LIKE ? OR email LIKE ? OR hr_dept_name LIKE ?', 
-            "%#{term}%", "%#{term}", "%#{term}%", "%#{term}", "%#{term}"])
+	  people = find(:all, :conditions => ['first_name LIKE ? OR 
+	    last_name LIKE ? OR 
+            hr_dept_name LIKE ? OR 
+	    cal_net_dept_name LIKE ? OR
+	    email LIKE ? OR 
+            building LIKE ?', 
+            "%#{term}%", "%#{term}", "%#{term}%", "%#{term}", "%#{term}", "%#{term}"])
           people.each do |p|
             ids << p.id
           end

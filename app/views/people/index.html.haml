@@ -11,14 +11,16 @@
       %th{:class => @first_name_header}=sortable("first_name")
       %th{:class => @last_name_header}=sortable("last_name")
       %th.progress_header{:class => @progress_header}=sortable("progress")
-      /
-        %th{:class => @email_header}=sortable("email")
-        %th{:class => @phone_number_header}=sortable("phone_number")
-      %th{:class => @job_title_header}=sortable("job_title")
-      %th{:class => @hr_dept_name_header}=sortable("hr_dept_name", "Dept")
+      -# EMAIL, PHONE, TITLE REMOVED BECAUSE OF REDUNDANCY & UI/SPACING
+      -# CAL_NET_DEPT REMOVED BECAUSE SPARSE AND CONFLICTS WITH HR_DEPT_NAME
+      -# %th{:class => @email_header}=sortable("email")
+      -# %th{:class => @phone_number_header}=sortable("phone_number")
+      -# %th{:class => @job_title_header}=sortable("job_title")
+      -# %th{:class => @hr_dept_name_header}=sortable("cal_net_dept_name", "Department")
+      %th{:class => @hr_dept_name_header}=sortable("hr_dept_name", "Department")
       %th{:class => @room_number_header}=sortable("room_number", "Room")
       %th{:class => @building_header}=sortable("building", "Building")
-  %tbody#scrolling_list
+  %tbody
     -@people.each do |person|
       %tr
         %td
@@ -34,12 +36,15 @@
             .mini_progress
               -title = "progress#{person.progress}"
               =render :partial => "/main/#{title}"
-        /
-          %td=person.email
-          %td=person.phone_number
-        %td=person.job_title
+        -# REMOVED FOR REASONS DETAILED ABOVE
+        -# %td=person.email
+        -# %td=person.phone_number
+        -# %td=person.job_title
+        -# %td=filterable('hr_dept_name', person.cal_net_dept_name)
         %td=filterable('hr_dept_name', person.hr_dept_name)
-        %td=person.room_number
+        %td=filterable('building', person.building, person.room_number)
         %td=filterable('building', person.building)
-        
-
+      
+-# Breaks to create spaced for rendered footer  
+%br/
+%br/
