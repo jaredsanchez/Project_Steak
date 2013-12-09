@@ -496,17 +496,18 @@ input{
   border: 1px solid #e5e5e5;
   border-radius:10px;
   text-align: center;
-  padding: 1em;
+  padding: 0.25em;
   cursor: default; 
-  width:870px;
+  width:890px;
 }
 .apple_pagination a, .apple_pagination span {
     padding: 0.2em 0.3em; 
 }
 .apple_pagination .disabled {
-    color: #aaaaaa; 
+    color: #6e7e8e; 
 }
 .apple_pagination .current {
+    color:#6e7e8e;
     font-style: normal;
     font-weight: bold;
     background-color: #bebebe;
@@ -521,7 +522,7 @@ input{
 }
 .apple_pagination a {
     text-decoration: none;
-    color: black; 
+    color: #454545; 
 }
 .apple_pagination a:hover, .apple_pagination a:focus {
     text-decoration: underline; 
