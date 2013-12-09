@@ -14,6 +14,7 @@ class PeopleController < ApplicationController
     order = params[:order] || session[:order]
     filter = params[:filter] || session[:filter]
     term = params[:term] || session[:filter]
+    search_terms = params[:search_term]
 
     safe_sort_params = ['first_name', 'last_name', 
 	'progress', 'email', 'hr_dept_name', 
@@ -24,6 +25,8 @@ class PeopleController < ApplicationController
 
     if safe_filter_params.include? filter
       @people = Person.where(filter => term)
+    elsif search_terms
+      @people = Person.search(search_terms)
     else
       @people = Person.all
     end 

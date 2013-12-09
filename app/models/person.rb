@@ -5,6 +5,23 @@ class Person < ActiveRecord::Base
     attr_accessible :name, :first_name, :last_name, :progress, :active, :favorite, :email,
      :linkedin_connection, :phone_number, :cal_net_dept_name, :hr_dept_name, :job_title, :room_number, :building
 
+    def self.search(search)
+      if search
+        ids = []
+        search.split(' ').each do |term|
+	  people = find(:all, :conditions => ['first_name LIKE ? OR last_name LIKE ? OR 
+            hr_dept_name LIKE ? OR email LIKE ? OR hr_dept_name LIKE ?', 
+            "%#{term}%", "%#{term}", "%#{term}%", "%#{term}", "%#{term}"])
+          people.each do |p|
+            ids << p.id
+          end
+        end
+        find(ids)
+      else
+        find.all
+      end
+    end
+
     def self.processPeople(org_unit)
         uri = "https://apis.berkeley.edu/calnet/person?searchFilter" +
           "=(departmentNumber=" + org_unit['org_node'] + ")&attributesToReturn=displayName," +

@@ -12,7 +12,7 @@ module ApplicationHelper
     if term == '' or term == nil
       term = '---'
     end
-    link_to term, :term =>term, :filter => column 
+    link_to term, :term =>term, :filter => column
   end
 
   class NetworkError < RuntimeError ; end
