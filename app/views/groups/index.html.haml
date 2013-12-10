@@ -22,7 +22,7 @@
                   = form_tag groups_path do
                     = label :group, :person, "Add a Person to #{group.name}: "
                     = hidden_field_tag 'id', group.id
-                    =collection_select(:person, :person_id, Person.all(:order => 'last_name ASC'), :id, :full_name, :prompt => true)
+                    =collection_select(:person, :person_id, Person.all(:order => 'last_name ASC'), :id, :last_first, :prompt => true)
                     =submit_tag "Add Person"
 
 %br/
