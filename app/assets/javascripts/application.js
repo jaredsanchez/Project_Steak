@@ -15,9 +15,3 @@
 //= require_tree .
 //=require bootstrap
 //=require bootstrap/modal
-
-function showOne(className, target){
-    $("#hello").hide();
-    $("." + className).hide();
-    $("#" + target).css('display', 'block');
-};

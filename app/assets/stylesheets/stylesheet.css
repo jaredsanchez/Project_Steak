@@ -11,6 +11,13 @@ body{
 	background-image:url(/assets/bg.jpg);
 	overflow-x:hidden;
 	font-family: 'Helvetica Neue', helvetica, 'microsoft sans serif', arial, sans-serif;
+
+
+	margin: 0;
+	font-size:14px;
+	line-height:20px;
+	color:#333333;
+	background-color:#ffffff;
 }
 #nav_container{
 	display: block;
@@ -548,4 +555,47 @@ input{
 }
 .apple_pagination a:hover, .apple_pagination a:focus {
     text-decoration: underline; 
+}
+
+
+
+
+.accordion {
+  margin-bottom: 20px;
+}
+
+.accordion-group {
+  margin-bottom: 2px;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.accordion-heading {
+  border-bottom: 0;
+}
+
+.accordion-heading .accordion-toggle {
+  display: block;
+  padding: 8px 15px;
+}
+
+.accordion-toggle {
+  cursor: pointer;
+}
+
+.accordion-inner {
+  padding: 9px 15px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.collapse {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height 0.35s ease;
+     -moz-transition: height 0.35s ease;
+       -o-transition: height 0.35s ease;
+          transition: height 0.35s ease;
 }
