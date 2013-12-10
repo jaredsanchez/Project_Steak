@@ -8,7 +8,7 @@ class OrgUnit < ActiveRecord::Base
     # get all orgs from API and write each one to database
     #1.upto(7) do |i|
       Person.deactivateAllPeople()
-      xml_doc = getOrgs(4)
+      xml_doc = getOrgs(1)
 
       xml_doc.xpath('//OrganizationalUnit').map do |unit|
         orgName = unit.xpath('orgNode').inner_text
@@ -26,7 +26,8 @@ class OrgUnit < ActiveRecord::Base
     end
     
     def self.getOrgs(level)
-        uri = "https://apis-dev.berkeley.edu/cxf/asws/orgunit?level=" + level.to_s + 
+        #uri = "https://apis-dev.berkeley.edu/cxf/asws/orgunit?level=" + level.to_s +
+        uri = "https://apis-dev.berkeley.edu/cxf/asws/orgunit?orgNode=EH1EO" + 
           "&_type=xml&app_id=" + ENV['ORG_APP_ID'] + "&app_key=" + ENV['ORG_APP_KEY']
         doc = getXML(uri)
     end

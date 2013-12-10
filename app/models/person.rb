@@ -88,7 +88,8 @@ class Person < ActiveRecord::Base
 
     #Parses the room number and building from two possible API fields.
     #It's possible that only a number is contained in the roomnumber field,
-    #but more often roomnumber contains a number and a building.
+    #but more often roomnumber contains a number and a building. roomnumber can
+    #also contain something like "Suite 400"
     #It's also possible that roomnumber is empty in which case street has both
     #the number and the building. 369 Soda Hall will return as 369 and Soda.
     #The Hall is stripped off.
@@ -97,14 +98,14 @@ class Person < ActiveRecord::Base
       building = nil
       room_number_string = person.xpath('roomnumber').inner_text
       unless room_number_string == ""
-        room_number_string =~ /(\d*)\s*([a-zA-Z]*)\s*([a-zA-Z]*)/
+        room_number_string =~ /([a-zA-Z0-9]*)\s*([a-zA-Z0-9\s]*)/
         room_number = $1
         unless $2 == ""
           building = $2
         end
       end
       street_string = person.xpath('street').inner_text
-      street_string =~ /(\d*)\s*([a-zA-Z]*)\s*([a-zA-Z]*)/
+      street_string =~ /([a-zA-Z0-9]*)\s*([a-zA-Z0-9\s]*)/
       unless room_number
         room_number = $1
       end
@@ -113,6 +114,10 @@ class Person < ActiveRecord::Base
       end
       building = building.gsub(/\bhall\b/i, "").strip
       return room_number, building
+    end
+
+    def full_name
+      self.first_name + " " + self.last_name
     end
 end
 
