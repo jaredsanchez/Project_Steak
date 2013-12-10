@@ -31,7 +31,9 @@ Scenario: add a new person to the intitiative
 
 @javascript 
 Scenario: log out of a user session
+Then I follow "People"
 Then I should see "Project Steak"
 And show me the page
-When I follow "Sign Out"
+When I mouseover the element "log_button"
+And I follow "Sign Out"
 Then I should see "Sign In"
