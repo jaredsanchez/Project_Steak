@@ -9,7 +9,8 @@
   .info
     .small_link#edit= link_to 'Edit Info', edit_person_path(@person)
     Name:
-    %span#field #{@person.first_name + ' ' + @person.last_name}
+    %span#field 
+    #{@person.first_name + ' ' + @person.last_name}
     %br/
     Dept:&nbsp;
     %span#field 
@@ -27,7 +28,11 @@
     %br/
     Office:&nbsp;
     %span#field 
-      =link_to_filter('building', @person.building, 'people', @person.room_number + ' '+@person.building)
+      -begin
+        -@address = @person.room_number + ' ' + @person.building
+      -rescue
+        -@address = '---'
+      =link_to_filter('building', @person.building, 'people', @address)
     %br/
     Progress:&nbsp;
     %span#field

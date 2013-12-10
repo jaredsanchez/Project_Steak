@@ -73,7 +73,7 @@ body{
 	vertical-align: top; 
 	padding-top:3%;
 	height: 570px;
-	margin-left:300px;
+	margin-left:350px;
 }
 input{
 	border-radius:5px;
@@ -180,7 +180,10 @@ input{
 	background: -webkit-linear-gradient(right, #9ba4b1 0%,#dfdfdf 100%); 
 	border-radius:10px;
 	color:#454545;
-	width:900px;
+	width: -moz-calc(100% - 400px);
+	width: -webkit-calc(100% - 400px);
+	width: -o-calc(100% - 400px);
+	width: calc(100% - 400px);
 }
 .popup{
 	text-overflow:ellipsis;
@@ -509,7 +512,10 @@ input{
   text-align: center;
   padding: 0.25em;
   cursor: default; 
-  width:890px;
+  width: -moz-calc(100% - 400px - 0.5em);
+  width: -webkit-calc(100% - 400px - 0.5em);
+  width: -o-calc(100% - 400px - 0.5em);
+  width: calc(100% - 400px - 0.5em);
 }
 .apple_pagination a, .apple_pagination span {
     padding: 0.2em 0.3em; 

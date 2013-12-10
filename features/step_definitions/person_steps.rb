@@ -2,7 +2,14 @@ Given /the following people exist/ do |people_table|
   people_table.hashes.each do |person|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that person to the database here.
-    Person.create!(:first_name => person[:first_name], :last_name => person[:last_name], :progress => person[:progress], :favorite => person[:favorite], :email => person[:email])
+    Person.create!(:first_name => person[:first_name], 
+	:last_name => person[:last_name], 
+	:progress => person[:progress], 
+	:favorite => person[:favorite], 
+	:email => person[:email],
+	:hr_dept_name => person[:hr_dept_name], 
+	:building => person[:building], 
+	:room_number => person[:room_number], )
   end
 end
 

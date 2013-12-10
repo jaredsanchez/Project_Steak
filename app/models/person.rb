@@ -6,24 +6,20 @@ class Person < ActiveRecord::Base
      :linkedin_connection, :phone_number, :cal_net_dept_name, :hr_dept_name, :job_title, :room_number, :building
 
     def self.search(search)
-      if search
         ids = []
         search.split(' ').each do |term|
 	  people = find(:all, :conditions => ['first_name LIKE ? OR 
 	    last_name LIKE ? OR 
-            hr_dept_name LIKE ? OR 
+	    hr_dept_name LIKE ? OR 
 	    cal_net_dept_name LIKE ? OR
 	    email LIKE ? OR 
-            building LIKE ?', 
-            "%#{term}%", "%#{term}", "%#{term}%", "%#{term}", "%#{term}", "%#{term}"])
+	    building LIKE ?', 
+	    "%#{term}%", "%#{term}", "%#{term}%", "%#{term}", "%#{term}", "%#{term}"])
           people.each do |p|
             ids << p.id
           end
         end
         find(ids)
-      else
-        find.all
-      end
     end
 
     def self.processPeople(org_unit)
