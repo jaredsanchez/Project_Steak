@@ -37,5 +37,5 @@ Scenario: Filter by org then sort by building
 	When I follow "Building"
 	Then I should see the following people in this order: "Jeff", "Rey", "John"
 	When I follow "Building"
-	Then I should see the following people in this order: "John", "Rey", "Jeff"
+	Then I should see the following people in this order: "Rey", "John", "Jeff"
 

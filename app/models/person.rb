@@ -68,6 +68,10 @@ class Person < ActiveRecord::Base
         return attribute
     end
 
+    def full_name()
+	first_name + ' ' + last_name
+    end
+
     def self.get_names_from_XML(person)
       #displayname is the only name parameter guaranteed to exist.
       first_name = person.xpath('berkeleyedufirstname').inner_text.split(" ")
