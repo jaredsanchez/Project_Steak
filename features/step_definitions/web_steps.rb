@@ -79,6 +79,10 @@ When /^(?:|I )conditionally press "([^"]*)"$/ do |button|
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
+  click_link(link)
+end
+
+When /^(?:|I )conditionally follow "([^"]*)"$/ do |link|
   first(:link, link).click
 end
 

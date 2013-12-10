@@ -20,7 +20,7 @@ Background: Start on the people page
 Scenario: Filter by building then sort by name
         When I am on the people page
 	Then I should see all of the following: "Cory", "Evans", "Soda", "John", "Jeff", "Rey", "Jared", "Wesley", "Andy"
-	When I follow "Soda"
+	When I conditionally follow "Soda"
 	Then I should not see all of the following: "Cory", "Evans", "Jeff", "Jared", "Andy"
 	And I should see all of the following: "Soda", "John", "Rey", "Wesley"
 	When I follow "First Name"
@@ -31,7 +31,7 @@ Scenario: Filter by building then sort by name
 Scenario: Filter by org then sort by building
         When I am on the people page
 	Then I should see all of the following: "EECS", "MATH", "LSCS", "John", "Jeff", "Rey", "Jared", "Wesley", "Andy"
-	When I follow "EECS"
+	When I conditionally follow "EECS"
 	Then I should not see all of the following: "MATH", "LSCS", "Jared", "Andy", "Wesley"
 	And I should see all of the following: "EECS", "John", "Rey", "Jeff"
 	When I follow "Building"
