@@ -12,18 +12,21 @@ Background: Start on the events page
   And I conditionally fill in "Passwd" with "steak222"
   Then I conditionally press "Sign in"
   Then I conditionally press "Accept"
+
   And I hover over "Events"
   And I follow "Add Event"
   And I fill in "Name" with "Cocktail Party"
   And I fill in "Description" with "description"
   And I fill in "Location" with "location"
   And I press "Add"
+
   And I hover over "Events"
   And I follow "Add Event"
   And I fill in "Name" with "Stakeholder Dinner"
   And I fill in "Description" with "steak dinner"
   And I fill in "Location" with "someplace"
   And I press "Add"
+
   And I hover over "Events"
   And I follow "Add Event"
   And I fill in "Name" with "Something Else"
@@ -46,6 +49,7 @@ Scenario: sort the events by alphabetical name descending order
 Scenario: sort the events by alphabetical name ascending order
   When I follow "Events"
   When I follow "Name"
+  Then I should see the following events in this order: "Cocktail Party", "Something Else", "Stakeholder Dinner"
   When I follow "Name"
   Then I should see the following events in this order: "Stakeholder Dinner", "Something Else", "Cocktail Party"
 

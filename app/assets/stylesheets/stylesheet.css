@@ -235,7 +235,9 @@ input{
 .icon_width{
 	width:1em;
 }
-
+#field a{
+	font-size:1em;
+}
 
 /*=================================
              Navbar
