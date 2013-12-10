@@ -79,7 +79,7 @@ When /^(?:|I )conditionally press "([^"]*)"$/ do |button|
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
-  click_link(link)
+  first(:link, link).click
 end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
@@ -153,6 +153,11 @@ end
 Then(/^I should see "(.*?)" in the main page body$/) do |arg1|
 	body = page.find('#body').text
 	assert_not_nil body.index(arg1)
+end
+
+Then(/^I should not see "(.*?)" in the main page body$/) do |arg1|
+	body = page.find('#body').text
+	assert_nil body.index(arg1)
 end
 
 # Use this to fill in an entire form with data from a table. Example:
