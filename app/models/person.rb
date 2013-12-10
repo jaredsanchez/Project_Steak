@@ -115,5 +115,9 @@ class Person < ActiveRecord::Base
       building = building.gsub(/\bhall\b/i, "").strip
       return room_number, building
     end
+
+    def full_name
+      self.first_name + " " + self.last_name
+    end
 end
 
