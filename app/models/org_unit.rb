@@ -26,8 +26,8 @@ class OrgUnit < ActiveRecord::Base
     end
     
     def self.getOrgs(level)
-        uri = "https://apis-dev.berkeley.edu/cxf/asws/orgunit?level=" + level.to_s +
-        #uri = "https://apis-dev.berkeley.edu/cxf/asws/orgunit?orgNode=EH1EO" + 
+        #uri = "https://apis-dev.berkeley.edu/cxf/asws/orgunit?level=" + level.to_s +
+        uri = "https://apis-dev.berkeley.edu/cxf/asws/orgunit?orgNode=EH1CS" + 
           "&_type=xml&app_id=" + ENV['ORG_APP_ID'] + "&app_key=" + ENV['ORG_APP_KEY']
         doc = getXML(uri)
     end
