@@ -56,7 +56,7 @@ class EventsController < ApplicationController
         end
       }    
     else
-      @events = Event.all.sort
+      @events = Event.all
     end
   end
 

@@ -35,9 +35,9 @@ Background: Start on the events page
   And I press "Add"
 
 @javascript
-Scenario: display a list of events whose default order is by name ascending
+Scenario: display a list of events
   When I follow "Events"
-  Then I should see the following events in this order: "Cocktail Party", "Something Else", "Stakeholder Dinner"
+  Then I should see all of the following: "Cocktail Party", "Something Else", "Stakeholder Dinner"
 
 @javascript
 Scenario: sort the events by alphabetical name descending order

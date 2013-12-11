@@ -13,7 +13,20 @@ Background: Start on the home page
   And I conditionally fill in "Passwd" with "steak222"
   Then I conditionally press "Sign in"
   Then I conditionally press "Accept"
-
+  When I hover over "Events"
+  And I follow "Add Event"
+  Then I should be on the Add Event page
+  When I fill in "Name" with "Stakeholder Dinner"
+  And I fill in "Description" with "A dinner for stake holders"
+  And I fill in "Location" with "Cheeseboard"
+  And I press "Add"  
+  When I hover over "Events"
+  And I follow "Add Event"
+  Then I should be on the Add Event page
+  When I fill in "Name" with "Project Steak"
+  And I fill in "Description" with "A project meeting"
+  And I fill in "Location" with "Soda"
+  And I press "Add"
 
 @javascript
 Scenario: refresh the Google Calendar
